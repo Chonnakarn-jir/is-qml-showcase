@@ -854,6 +854,9 @@ function setLanguage(lang) {
 
   renderCharts(lang);
 }
+window.addEventListener('load', () => {
+  setLanguage('en');
+});
 
 // 1. Plotly Premium Hover Theme (ใส่เพิ่มในฟังก์ชัน baseLayout)
 // ให้ค้นหาฟังก์ชัน baseLayout เดิม แล้วแก้ท่อน return ให้มี hoverlabel แบบนี้ครับ:
