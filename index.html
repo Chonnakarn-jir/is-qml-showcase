@@ -58,15 +58,34 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- Header & Navigation --- */
+/* --- Premium Frosted Glass Header --- */
 header {
   position: sticky;
   top: 0;
   z-index: 100;
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  background: rgba(0, 0, 0, 0.65);
-  border-bottom: 1px solid var(--line);
+  
+  /* 1. กระจกฝ้าโปร่งแสง (Glassmorphism) สไตล์ Apple */
+  background: rgba(10, 10, 12, 0.65);
+  backdrop-filter: saturate(200%) blur(24px);
+  -webkit-backdrop-filter: saturate(200%) blur(24px);
+  
+  /* 2. มิติแสงเงา: เงาฟุ้งด้านนอก + เส้นกระจกสะท้อนแสงด้านใน */
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.5),             
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08); 
+}
+
+/* 3. เส้นขอบนำสายตาสีทองคำขาว (Platinum Gold Accent Line) */
+header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  /* ไล่สีให้สว่างตรงกลางและกลืนหายไปที่ปลายขอบทั้ง 2 ข้าง */
+  background: linear-gradient(90deg, transparent 5%, rgba(229, 195, 122, 0.5) 50%, transparent 95%);
+  z-index: 101;
 }
 
 .nav {
