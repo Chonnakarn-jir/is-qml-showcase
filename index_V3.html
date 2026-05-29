@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CJ - IS QML Bitcoin Research Showcase</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  /* Apple Pro Dark Mode Palette */
+  --bg: #000000; /* ดำสนิทแบบจอ OLED */
+  --surface: rgba(28, 28, 30, 0.5); /* สีเทากระจกของ Apple */
+  --surface2: rgba(44, 44, 46, 0.5);
+  --surface3: rgba(58, 58, 60, 0.5);
+  --text: #F5F5F7; /* ขาวนวลสบายตา */
+  --text-muted: #D2D2D7; /* เทา Apple Gray */
+  --line: rgba(255, 255, 255, 0.12);
+  --line-strong: rgba(255, 255, 255, 0.24);
+  
+  /* Refined Premium Colors */
+  --accent: #F2D288; /* ทองคำขาว (Platinum Gold) ดูแพง ไม่เหลืองอ๋อย */
+  --accent-soft: rgba(242, 210, 136, 0.08);
+  --accent-line: rgba(242, 210, 136, 0.25);
+  --accent-glow: 0 0 32px rgba(242, 210, 136, 0.15);
+  
+  --blue: #2997FF; /* Apple Blue */
+  --green: #30D158; /* Apple Green */
+  --red: #FF453A; /* Apple Red */
+  
+  --shadow-base: 0 20px 40px rgba(0, 0, 0, 0.5);
+  --shadow-lift: 0 30px 60px rgba(0, 0, 0, 0.7);
+  --inner-light: inset 0 1px 0 rgba(255, 255, 255, 0.1); /* ขอบกระจกด้านใน */
+  
+  --radius-sm: 14px;
+  --radius-md: 22px;
+  --radius-lg: 36px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  /* Ambient Studio Light Effect (แสงไฟสตูดิโอเบาๆ) */
+  background-image: 
+    radial-gradient(circle at 50% -20%, rgba(242, 210, 136, 0.08), transparent 50%),
+    radial-gradient(circle at 100% 50%, rgba(41, 151, 255, 0.03), transparent 40%);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: "Inter", "Prompt", -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Header & Navigation --- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: rgba(0, 0, 0, 0.65);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-weight: 850; 
+  font-size: 1.45rem; /* ขยายขนาดให้ใหญ่ขึ้นอีกนิด */
+  letter-spacing: -0.02em; 
+  
+  /* เอฟเฟกต์สีทอง 3D Metallic Gold (Premium Foil) */
+  background: linear-gradient(to right, #F2D288 0%, #D6B56D 40%, #FFFFFF 80%, #F2D288 100%);
+  background-size: 200% auto; /* เตรียมไว้ทำแอนิเมชันแสงสะท้อน */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* เรืองแสงสีทองอ่อนๆ ตัดกับพื้นหลังสีดำสนิท */
+  filter: drop-shadow(0 2px 10px rgba(229, 195, 122, 0.25)); 
+  transition: all 0.5s ease;
+  cursor: default;
+}
+
+.brand:hover {
+  /* แสงเรืองรองสว่างขึ้น และมีแสงสีขาววิ่งผ่านตัวอักษรตอนเอาเมาส์ชี้ */
+  filter: drop-shadow(0 2px 16px rgba(229, 195, 122, 0.45));
+  background-position: right center; 
+}
+
+.nav-right { display: flex; align-items: center; gap: 20px; }
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+/* --- Language Toggle --- */
+.lang-toggle {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px;
+}
+
+.lang-toggle button {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lang-toggle button.active {
+  background: var(--text);
+  color: #000;
+}
+
+/* --- Main Layout --- */
+main { max-width: 1240px; margin: 0 auto; padding: 60px 24px 100px; }
+
+/* --- Hero Section --- */
+.hero {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.hero-main, .hero-answer, .kpi, .summary-card, .panel, .metric-board, .claim-column, .appendix, .decision-box {
+  background: var(--surface);
+  backdrop-filter: saturate(180%) blur(40px);
+  -webkit-backdrop-filter: saturate(180%) blur(40px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-base), var(--inner-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-main { padding: 64px 48px; }
+.hero-answer { 
+  padding: 48px 40px; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+}
+
+.eyebrow {
+  display: inline-flex;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 24px;
+}
+
+/* Apple Metallic Gradient Text */
+h1 {
+  margin: 0 0 20px;
+  font-size: clamp(28px, 3.2vw, 42px);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-main p { color: var(--text-muted); font-size: 18px; max-width: 90%; font-weight: 400; }
+
+.answer-label {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero-answer h2 { 
+  font-size: 28px; 
+  line-height: 1.25; 
+  margin: 16px 0; 
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.hero-answer p { color: var(--text-muted); font-size: 16px; font-weight: 400; }
+
+.answer-footer {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  color: var(--text-muted);
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* --- KPI Grid --- */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 40px 0 80px; }
+
+.kpi {
+  border-radius: var(--radius-md);
+  padding: 32px 24px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
+}
+
+.kpi:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--accent-line);
+  box-shadow: var(--shadow-lift), var(--accent-glow);
+  background: rgba(44, 44, 46, 0.7);
+}
+
+.kpi-number { color: var(--text); font-size: 48px; font-weight: 700; line-height: 1; margin-bottom: 12px; letter-spacing: -0.04em; }
+.kpi:last-child .kpi-number { color: var(--accent); } /* ไฮไลท์เลข 0 ตัวสุดท้าย */
+.kpi-label { font-weight: 600; font-size: 14px; color: var(--text-muted); }
+.kpi p { color: var(--text-muted); font-size: 12px; margin: 8px 0 0; opacity: 0.6; }
+
+/* --- Section Formatting --- */
+.section { margin-top: 80px; }
+.section-head { margin-bottom: 40px; max-width: 800px; }
+.section-kicker { color: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+.section h2 { margin: 0 0 16px; font-size: 32px; font-weight: 700; letter-spacing: -0.03em; }
+.section-desc { color: var(--text-muted); font-size: 18px; font-weight: 400; }
+
+/* --- Cards & Panels --- */
+.summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+.summary-card, .panel, .metric-board, .claim-column, .appendix, .decision-box {
+  border-radius: var(--radius-md);
+  padding: 32px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.summary-card:hover, .decision-box:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.2);
+  box-shadow: var(--shadow-lift), var(--inner-light);
+}
+
+.summary-card h3 { margin: 0 0 12px; font-size: 18px; font-weight: 600; letter-spacing: -0.02em; }
+.summary-card p { color: var(--text-muted); margin: 0; font-size: 15px; line-height: 1.6; }
+
+.plot { height: 400px; width: 100%; margin: 24px 0; }
+
+.so-what {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  padding: 20px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.so-what strong { color: var(--text); font-weight: 600; }
+
+/* --- Metric Boards --- */
+.evidence-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+.metric-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0; }
+.metric {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+}
+.metric-value { font-size: 32px; font-weight: 700; color: var(--text); letter-spacing: -0.03em; }
+.metric-label { font-size: 12px; color: var(--text-muted); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+
+/* --- Claim Columns --- */
+.claim-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.claim-column h3 { font-size: 20px; margin: 0 0 20px; padding-bottom: 16px; border-bottom: 1px solid var(--line); font-weight: 600; }
+.claim-supported h3 { color: var(--green); border-bottom-color: rgba(48, 209, 88, 0.2); }
+.claim-qualified h3 { color: var(--accent); border-bottom-color: var(--accent-line); }
+.claim-not h3 { color: var(--red); border-bottom-color: rgba(255, 69, 58, 0.2); }
+.claim-column ul { margin: 0; padding-left: 20px; color: var(--text-muted); font-size: 15px; }
+.claim-column li { margin-bottom: 14px; line-height: 1.6; }
+.claim-column li::marker { color: rgba(255,255,255,0.3); }
+
+/* --- Decision Box --- */
+.decision-box {
+  background: radial-gradient(circle at 50% 0%, rgba(242, 210, 136, 0.1), var(--surface));
+  border: 1px solid var(--accent-line);
+  text-align: center;
+  padding: 64px 40px;
+  border-radius: var(--radius-lg);
+}
+.decision-box .section-kicker { display: block; margin-bottom: 20px; }
+.decision-box p { margin: 0 auto; max-width: 800px; font-size: 20px; color: var(--text-muted); line-height: 1.6; }
+
+/* --- Tables & Details --- */
+details { border-bottom: 1px solid var(--line); padding: 20px 0; }
+details:last-child { border-bottom: none; }
+summary { font-weight: 600; font-size: 16px; cursor: pointer; color: var(--text); outline: none; list-style: none; display: flex; align-items: center; justify-content: space-between; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: '+'; color: var(--text-muted); font-size: 24px; font-weight: 300; transition: transform 0.3s ease; }
+details[open] summary::after { transform: rotate(45deg); color: var(--text); } /* แอนิเมชันหมุนกากบาท */
+
+.table-scroll { overflow-x: auto; margin-top: 24px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: rgba(0, 0, 0, 0.3); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; text-align: left; }
+th { background: rgba(255,255,255,0.03); color: var(--text); font-weight: 500; padding: 16px 20px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 16px 20px; color: var(--text-muted); border-bottom: 1px solid var(--line); }
+tr { transition: background-color 0.2s ease; }
+tr:hover { background-color: rgba(255,255,255,0.05); } 
+tr:last-child td { border-bottom: none; }
+
+/* --- Footer --- */
+.footer { margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--line); text-align: center; color: var(--text-muted); font-size: 13px; opacity: 0.6; }
+
+/* --- Wow Factor Animations --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); /* Apple Easing */
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  .hero, .dashboard-grid, .evidence-pair, .claim-grid { grid-template-columns: 1fr; }
+  .kpi-grid, .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  h1 { font-size: 32px; }
+  .hero-main { padding: 48px 32px; }
+}
+@media (max-width: 600px) {
+  .kpi-grid, .summary-grid { grid-template-columns: 1fr; }
+  .nav { flex-direction: column; gap: 16px; align-items: flex-start; }
+  .hero-main, .hero-answer, .decision-box { padding: 32px 24px; }
+}
+
+/* --- Typography Legibility Optimization --- */
+.hero-main p, .hero-answer p, .summary-card p, .panel p, .so-what, td {
+  color: var(--text-muted);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.65; /* เพิ่มความห่างระหว่างบรรทัดให้อ่านเนื้อหายาวๆ ได้ง่าย ไม่ล้าสายตา */
+  letter-spacing: -0.01em;
+}
+
+/* ปรับให้ส่วนข้อความสรุปในการ์ด KPI ชัดเจนยิ่งขึ้น */
+.kpi p {
+  color: var(--text-muted);
+  font-size: 13px;
+  opacity: 0.85; /* เพิ่มความเข้มขึ้นจากเดิมที่ตั้งไว้ 0.6 */
+}
+
+/* --- Premium Strategic Highlighting System (Apple Pro Layout) --- */
+tr.highlight-row {
+  background-color: rgba(242, 210, 136, 0.04) !important;
+  transition: all 0.3s ease;
+}
+tr.highlight-row td {
+  color: #FFFFFF !important; /* ดึงตัวอักษรให้ออกโทนขาวบริสุทธิ์สว่างกว่าแถวปกติ */
+  font-weight: 600; /* เพิ่มความหนาของตัวอักษรเพื่อเน้นผลลัพธ์ */
+}
+tr.highlight-row td:first-child {
+  box-shadow: inset 4px 0 0 var(--accent); /* เติมแถบสีทองบางเฉียบนำสายตาสไตล์พรีเมียม */
+  padding-left: 20px;
+}
+.badge-focus {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.badge-focus.gold {
+  background: rgba(242, 210, 136, 0.12);
+  border: 1px solid rgba(242, 210, 136, 0.3);
+  color: var(--accent);
+}
+.badge-focus.red {
+  background: rgba(255, 69, 58, 0.12);
+  border: 1px solid rgba(255, 69, 58, 0.3);
+  color: var(--red);
+}
+
+</style>
+
+</head>
+
+<body>
+<header>
+  <nav class="nav">
+    <div class="brand">CJ - IS QML Bitcoin Research Showcase</div>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#dashboard" data-i18n="nav_dashboard"></a>
+        <a href="#summary" data-i18n="nav_summary"></a>
+        <a href="#claims" data-i18n="nav_claims"></a>
+        <a href="#appendix" data-i18n="nav_appendix"></a>
+      </div>
+      <div class="lang-toggle" aria-label="Language toggle">
+        <button id="btn-en" class="active" onclick="setLanguage('en')">EN</button>
+        <button id="btn-th" onclick="setLanguage('th')">TH</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-main">
+      <div class="eyebrow" data-i18n="eyebrow"></div>
+      <h1 data-i18n="hero_title"></h1>
+      <p data-i18n="hero_subtitle"></p>
+      <p data-i18n="hero_positioning"></p>
+    </div>
+
+    <aside class="hero-answer">
+      <div>
+        <div class="answer-label" data-i18n="final_answer_label"></div>
+        <h2 data-i18n="final_answer_title"></h2>
+        <p data-i18n="final_answer_text"></p>
+      </div>
+      <div class="answer-footer" data-i18n="scope_note"></div>
+    </aside>
+  </section>
+
+  <section class="kpi-grid reveal">
+    <div class="kpi">
+      <div class="kpi-number">27</div>
+      <div class="kpi-label" data-i18n="kpi_folds_label"></div>
+      <p data-i18n="kpi_folds_note"></p>
+    </div>
+    <div class="kpi">
+      <div class="kpi-number">3</div>
+      <div class="kpi-label" data-i18n="kpi_horizons_label"></div>
+      <p data-i18n="kpi_horizons_note"></p>
+    </div>
+    <div class="kpi">
+      <div class="kpi-number">4</div>
+      <div class="kpi-label" data-i18n="kpi_layers_label"></div>
+      <p data-i18n="kpi_layers_note"></p>
+    </div>
+    <div class="kpi">
+      <div class="kpi-number" data-i18n="kpi_num"></div>
+      <div class="kpi-label" data-i18n="kpi_adv_label"></div>
+      <p data-i18n="kpi_adv_note"></p>
+    </div>
+  </section>
+
+  <section class="section reveal" id="summary">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker" data-i18n="summary_kicker"></div>
+        <h2 data-i18n="summary_title"></h2>
+      </div>
+      <p class="section-desc" data-i18n="summary_desc"></p>
+    </div>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <h3 data-i18n="sum1_title"></h3>
+        <p data-i18n="sum1_text"></p>
+      </div>
+      <div class="summary-card">
+        <h3 data-i18n="sum2_title"></h3>
+        <p data-i18n="sum2_text"></p>
+      </div>
+      <div class="summary-card">
+        <h3 data-i18n="sum3_title"></h3>
+        <p data-i18n="sum3_text"></p>
+      </div>
+      <div class="summary-card">
+        <h3 data-i18n="sum4_title"></h3>
+        <p data-i18n="sum4_text"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="dashboard">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker" data-i18n="dashboard_kicker"></div>
+        <h2 data-i18n="dashboard_title"></h2>
+      </div>
+      <p class="section-desc" data-i18n="dashboard_desc"></p>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="panel">
+        <h3 data-i18n="chart1_title"></h3>
+        <p data-i18n="chart1_desc"></p>
+        <div id="chart_classification" class="plot"></div>
+        <div class="so-what" data-i18n="chart1_sowhat"></div>
+      </div>
+
+      <div class="panel">
+        <h3 data-i18n="chart2_title"></h3>
+        <p data-i18n="chart2_desc"></p>
+        <div id="chart_trading" class="plot"></div>
+        <div class="so-what" data-i18n="chart2_sowhat"></div>
+      </div>
+    </div>
+
+    <div class="evidence-pair">
+      <div class="metric-board">
+        <h3 data-i18n="gap_title"></h3>
+        <p data-i18n="gap_desc"></p>
+        <div class="metric-row">
+          <div class="metric">
+            <div class="metric-value">0.475</div>
+            <div class="metric-label" data-i18n="metric_f1"></div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">-0.67</div>
+            <div class="metric-label" data-i18n="metric_sharpe"></div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">-94.1%</div>
+            <div class="metric-label" data-i18n="metric_return"></div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">1315</div>
+            <div class="metric-label" data-i18n="metric_turnover"></div>
+          </div>
+        </div>
+        <div class="so-what" data-i18n="gap_sowhat"></div>
+      </div>
+
+      <div class="metric-board">
+        <h3 data-i18n="diag_title"></h3>
+        <p data-i18n="diag_desc"></p>
+        <div id="chart_diagnostic" class="plot" style="height: 260px;"></div>
+        <div class="so-what" data-i18n="diag_sowhat"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="decision-box">
+      <div class="section-kicker" data-i18n="decision_kicker"></div>
+      <h2 data-i18n="decision_title"></h2>
+      <p data-i18n="decision_text"></p>
+    </div>
+  </section>
+
+  <section class="section reveal" id="claims">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker" data-i18n="claim_kicker"></div>
+        <h2 data-i18n="claim_title"></h2>
+      </div>
+      <p class="section-desc" data-i18n="claim_desc"></p>
+    </div>
+
+    <div class="claim-grid">
+      <div class="claim-column claim-supported">
+        <h3 data-i18n="claim_supported_title"></h3>
+        <ul data-i18n="claim_supported_html"></ul>
+      </div>
+
+      <div class="claim-column claim-qualified">
+        <h3 data-i18n="claim_qualified_title"></h3>
+        <ul data-i18n="claim_qualified_html"></ul>
+      </div>
+
+      <div class="claim-column claim-not">
+        <h3 data-i18n="claim_not_title"></h3>
+        <ul data-i18n="claim_not_html"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="appendix">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker" data-i18n="appendix_kicker"></div>
+        <h2 data-i18n="appendix_title"></h2>
+      </div>
+      <p class="section-desc" data-i18n="appendix_desc"></p>
+    </div>
+
+    <div class="appendix">
+      <details>
+        <summary data-i18n="table_classification"></summary>
+        <div id="table_classification_container"></div>
+      </details>
+
+      <details>
+        <summary data-i18n="table_trading"></summary>
+        <div id="table_trading_container"></div>
+      </details>
+
+      <details>
+        <summary data-i18n="table_decision"></summary>
+        <div id="table_decision_container"></div>
+      </details>
+
+      <details>
+        <summary data-i18n="table_diagnostic"></summary>
+        <div id="table_diagnostic_container"></div>
+      </details>
+
+      <details>
+        <summary data-i18n="table_verdict"></summary>
+        <div id="table_verdict_container"></div>
+      </details>
+    </div>
+  </section>
+
+  <div class="footer">
+    <span data-i18n="footer"></span> · Generated UTC: 2026-05-28T11:39:56.476827+00:00
+  </div>
+</main>
+
+<script>
+const i18n = {"en": {"nav_dashboard": "Dashboard", "nav_summary": "Summary", "nav_claims": "Claim boundary", "nav_appendix": "Evidence appendix", "eyebrow": "Finance ML · QML benchmark · Bitcoin forecasting", "hero_title": "Testing Quantum Machine Learning Under Real Financial Validation", "hero_subtitle": "A leakage-safe, multi-horizon Bitcoin forecasting benchmark comparing QSVM and classical kernels across directional prediction, trading/risk evaluation, and quantum diagnostics.", "hero_positioning": "This is not a promotional claim about quantum models or a trading-system pitch. It is a disciplined comparison of what quantum kernels can support, where classical baselines remain stronger, and which conclusions should not be made beyond the evidence.", "final_answer_label": "Final answer", "final_answer_title": "Quantum expressivity is observable. Task-relevant quantum advantage is not established.", "final_answer_text": "QSVM is scientifically meaningful and remains competitive in predicting Bitcoin price direction, but the integrated evidence does not support overall superiority, trading superiority, or quantum advantage in this tested setting.", "kpi_folds_label": "Walk-forward folds", "kpi_folds_note": "Rolling out-of-sample validation", "kpi_horizons_label": "Forecast horizons", "kpi_horizons_note": "h = 1, 7, 30", "kpi_layers_label": "Evidence layers", "kpi_layers_note": "Prediction, trading/risk, robustness, diagnostics", "kpi_num": "0", "kpi_adv_label": "Unsubstantiated Overclaims", "kpi_adv_note": "No superiority claim is made beyond the integrated evidence.", "summary_kicker": "Executive summary", "summary_title": "There is no single winner across all criteria", "summary_desc": "The main finding is disciplined: QSVM remains useful as a benchmark, but it is not superior under the full financial validation protocol.", "sum1_title": "QSVM remains useful for predicting price direction", "sum1_text": "The evidence shows that QSVM is still worth considering for predicting Bitcoin price direction across short-, medium-, and longer-horizon tests.", "sum2_title": "A good prediction score is not the same as financial usefulness", "sum2_text": "The h = 1 QSVM case shows why prediction scores alone can mislead in financial ML. Strong prediction scores can be weakened once transaction costs, turnover, and risk exposure are considered.", "sum3_title": "RBF_FULL is stronger in trading/risk evidence", "sum3_text": "At h = 7 and h = 30, RBF_FULL provides stronger risk-adjusted trading evidence than QSVM under the tested protocol.", "sum4_title": "Model complexity is not the same as advantage", "sum4_text": "QSVM kernels are different and structurally richer, but a richer representation does not automatically become a useful advantage for this prediction task.", "dashboard_kicker": "Main evidence dashboard", "dashboard_title": "Evidence changes the interpretation", "dashboard_desc": "Classification alone makes QSVM look competitive. Trading/risk and quantum diagnostics define the final evidence boundary.", "chart1_title": "Classification evidence", "chart1_desc": "Mean F1 across horizons and models.", "chart1_sowhat": "<strong>So what:</strong> QSVM remains worth considering for predicting price direction. However, this is only the first evidence layer, not the final conclusion.", "chart2_title": "Trading/risk evidence", "chart2_desc": "Sharpe ratio across horizons and models.", "chart2_sowhat": "<strong>So what:</strong> The trading/risk layer changes the interpretation. RBF_FULL becomes stronger at h = 7 and h = 30, showing that classification strength does not directly translate into financial usefulness.", "gap_title": "QSVM h = 1 evidence gap", "gap_desc": "A promising prediction score does not automatically become a useful trading outcome.", "gap_sowhat": "<strong>So what:</strong> This is the project’s turning point. QSVM looks promising by F1, but its short-horizon trading profile is weakened by turnover and transaction costs.", "metric_f1": "Mean F1", "metric_sharpe": "Trading Sharpe", "metric_return": "Total return", "metric_turnover": "Turnover", "diag_title": "Quantum diagnostic", "diag_desc": "The quantum model captures a richer structure, but that does not prove a useful advantage.", "diag_sowhat": "<strong>So what:</strong> The quantum kernel is different and richer, but richness alone is not enough. The evidence does not show that this richer representation is more aligned with the prediction target.", "decision_kicker": "Decision takeaway", "decision_title": "QSVM is worth studying, but the evidence should not be overstated", "decision_text": "The strongest result of this project is not a quantum-advantage claim. It is a rigorous evidence boundary showing where quantum kernels are meaningful, where classical baselines remain stronger, and why financial ML evaluation must go beyond F1.", "claim_kicker": "Claim boundary", "claim_title": "Supported, qualified, and not supported", "claim_desc": "The final interpretation separates evidence from overclaim.", "claim_supported_title": "Supported", "claim_qualified_title": "Qualified", "claim_not_title": "Not supported", "claim_supported_html": "<li>QSVM is classification-competitive.</li><li>Quantum expressivity is observable.</li><li>RBF_FULL is stronger in trading/risk evidence at longer horizons.</li><li>The framework provides leakage-safe, multi-layer financial validation.</li>", "claim_qualified_html": "<li>Classification evidence is not final superiority.</li><li>Trading/risk results are an evaluation layer, not a deployable trading strategy.</li><li>Higher kernel richness does not imply target usefulness.</li><li>Results are specific to this dataset, horizons, features, and validation protocol.</li>", "claim_not_html": "<li>QSVM overall superiority.</li><li>QSVM trading superiority.</li><li>Task-relevant quantum advantage.</li><li>Live trading readiness or guaranteed profitability.</li>", "appendix_kicker": "Evidence appendix", "appendix_title": "Validated source tables", "appendix_desc": "These tables are retained for auditability and defense traceability. They are not the primary presentation layer, but they allow the conclusions to be checked against validated source outputs.", "table_classification": "Classification evidence table", "table_trading": "Trading/risk evidence table", "table_decision": "Integrated decision table", "table_diagnostic": "Quantum diagnostic table", "table_verdict": "Final verdict table", "axis_f1": "Mean F1", "axis_sharpe": "Sharpe ratio", "axis_rank": "Effective rank", "diag_annotation": "Kernel corr ≈ 0.6808 · target alignment diff ≈ 0.0022", "footer": "Final bilingual finance-grade showcase · Code 12 visualization/reporting only · No new experiment"}, "th": {"nav_dashboard": "ภาพรวมผลลัพธ์", "nav_summary": "สรุปใจความ", "nav_claims": "ขอบเขตข้อสรุป", "nav_appendix": "หลักฐานประกอบ", "eyebrow": "Finance ML · เปรียบเทียบโมเดลควอนตัม · พยากรณ์ Bitcoin", "hero_title": "ทดสอบ Quantum Machine Learning กับโจทย์ Bitcoin ภายใต้การประเมินทางการเงินจริง", "hero_subtitle": "งานนี้ศึกษาว่า QSVM ซึ่งเป็นโมเดลในกลุ่ม Quantum Machine Learning ให้ผลดีกว่าโมเดลแบบดั้งเดิมได้จริงหรือไม่ ในโจทย์การพยากรณ์ทิศทางราคา Bitcoin ที่มีความผันผวนสูงและพฤติกรรมตลาดเปลี่ยนได้ตลอดเวลา", "hero_positioning": "การประเมินไม่ได้ดูเพียงคะแนนการพยากรณ์ แต่พิจารณาต่อถึงผลตอบแทน ความเสี่ยง ต้นทุนจากการเปลี่ยนสถานะซื้อขาย และความสามารถของโมเดลในการนำไปใช้ภายใต้การทดสอบที่ป้องกันข้อมูลรั่ว เป้าหมายคือสรุปอย่างมีหลักฐานว่า QSVM มีคุณค่าตรงไหน โมเดลแบบดั้งเดิมยังแข็งแรงกว่าตรงไหน และข้อสรุปใดที่ยังไม่ควรถูกอ้างเกินผลการทดลอง", "final_answer_label": "คำตอบหลัก", "final_answer_title": "โมเดลควอนตัมจับความสัมพันธ์ของข้อมูลที่ซับซ้อนได้จริง แต่ยังไม่พบหลักฐานว่าเหนือกว่าอย่างชัดเจนในโจทย์นี้", "final_answer_text": "QSVM ยังมีคุณค่าในฐานะโมเดลเปรียบเทียบ และยังทำผลงานได้ดีในการพยากรณ์ทิศทางราคา แต่เมื่อพิจารณาร่วมกับผลตอบแทน ความเสี่ยง และการวิเคราะห์โครงสร้างของโมเดลแล้ว หลักฐานโดยรวมยังไม่เพียงพอที่จะสรุปว่า QSVM เหนือกว่าโมเดลแบบดั้งเดิม", "kpi_folds_label": "รอบทดสอบแบบเลื่อนเวลา", "kpi_folds_note": "ประเมินจากข้อมูลอนาคตที่โมเดลยังไม่เคยเห็น", "kpi_horizons_label": "ระยะพยากรณ์", "kpi_horizons_note": "1 วัน, 7 วัน, 30 วัน", "kpi_layers_label": "มุมประเมินผล", "kpi_layers_note": "การพยากรณ์, ผลตอบแทน/ความเสี่ยง, ความทนทาน, โครงสร้างโมเดล", "kpi_num": "0", "kpi_adv_label": "การอ้างเกินหลักฐาน", "kpi_adv_note": "ไม่มีการสรุปว่าโมเดลควอนตัมเหนือกว่า หากหลักฐานรวมยังไม่ชัดเจน", "summary_kicker": "สรุปใจความสำคัญ", "summary_title": "ผลลัพธ์ไม่ได้มีผู้ชนะเพียงมิติเดียว", "summary_desc": "ผลการทดลองชี้ว่า QSVM ยังมีคุณค่าในเชิงการพยากรณ์ แต่เมื่อประเมินร่วมกับผลตอบแทน ความเสี่ยง และต้นทุนจากการซื้อขายแล้ว หลักฐานโดยรวมยังไม่สนับสนุนว่า QSVM เหนือกว่าโมเดลแบบดั้งเดิม", "sum1_title": "QSVM ยังมีศักยภาพในการพยากรณ์ทิศทางราคา", "sum1_text": "ผลการทดลองแสดงว่า QSVM ยังทำผลงานได้ดีพอแข่งขันในการพยากรณ์ทิศทางราคา Bitcoin ทั้งในระยะสั้น ระยะกลาง และระยะยาว", "sum2_title": "คะแนนการพยากรณ์ที่ดี อาจยังไม่พอในงานการเงิน", "sum2_text": "กรณีระยะ 1 วันของ QSVM แสดงให้เห็นว่า คะแนนการพยากรณ์ที่ดูดีอาจลดความน่าเชื่อถือลง เมื่อนำไปพิจารณาร่วมกับต้นทุนการซื้อขาย ความเสี่ยง และการเปลี่ยนสถานะซื้อขายบ่อยครั้ง", "sum3_title": "RBF_FULL ให้หลักฐานด้านผลตอบแทนและความเสี่ยงที่แข็งแรงกว่า", "sum3_text": "ในการทดสอบระยะ 7 วันและ 30 วัน โมเดล RBF_FULL ให้ผลตอบแทนเมื่อเทียบกับความเสี่ยงดีกว่า QSVM ภายใต้กรอบการทดสอบเดียวกัน", "sum4_title": "โมเดลที่ซับซ้อนกว่า ไม่ได้แปลว่าใช้งานได้ดีกว่าเสมอ", "sum4_text": "QSVM สามารถจับความสัมพันธ์ของข้อมูลได้ซับซ้อนกว่าโมเดลอ้างอิงบางตัว แต่ยังไม่เห็นว่าความซับซ้อนนั้นช่วยให้ผลลัพธ์ดีกว่าอย่างชัดเจนในการพยากรณ์หรือการประเมินทางการเงิน", "dashboard_kicker": "ภาพรวมหลักฐาน", "dashboard_title": "เมื่อเปลี่ยนมุมประเมิน ข้อสรุปก็เปลี่ยน", "dashboard_desc": "หากดูเฉพาะคะแนนการพยากรณ์ QSVM ยังดูแข่งขันได้ แต่เมื่อพิจารณาผลตอบแทน ความเสี่ยง และโครงสร้างของโมเดลร่วมกัน ขอบเขตของข้อสรุปจะชัดเจนขึ้น", "chart1_title": "หลักฐานจากการพยากรณ์ทิศทางราคา", "chart1_desc": "ค่า F1 เฉลี่ยของแต่ละโมเดลในระยะพยากรณ์ต่าง ๆ", "chart1_sowhat": "<strong>แปลว่าอะไร:</strong> QSVM ยังไม่ควรถูกตัดออกจากการพิจารณา เพราะยังทำผลงานได้ดีในการพยากรณ์ทิศทางราคา แต่ผลนี้เป็นเพียงหลักฐานชั้นแรก ยังไม่ใช่ข้อสรุปสุดท้ายของงานด้านการเงิน", "chart2_title": "หลักฐานจากผลตอบแทนและความเสี่ยง", "chart2_desc": "ค่า Sharpe ใช้ดูผลตอบแทนเมื่อเทียบกับความเสี่ยงของแต่ละโมเดล", "chart2_sowhat": "<strong>แปลว่าอะไร:</strong> เมื่อเปลี่ยนจากการดูคะแนนการพยากรณ์ไปสู่การประเมินผลตอบแทนและความเสี่ยง ภาพรวมเปลี่ยนไปอย่างชัดเจน โดย RBF_FULL ให้หลักฐานที่แข็งแรงกว่าในระยะ 7 วันและ 30 วัน", "gap_title": "ช่องว่างของ QSVM ในระยะ 1 วัน", "gap_desc": "คะแนนการพยากรณ์ที่ดูดี ไม่ได้แปลว่าจะให้ผลลัพธ์ทางการเงินที่ดีเสมอไป", "gap_sowhat": "<strong>แปลว่าอะไร:</strong> จุดนี้คือบทเรียนสำคัญของงาน QSVM ดูน่าสนใจจากค่า F1 แต่เมื่อนำผลทำนายไปจำลองในมุมการซื้อขาย ผลลัพธ์ถูกลดทอนจากการเปลี่ยนสถานะบ่อยและต้นทุนแฝง", "metric_f1": "ค่า F1 เฉลี่ย", "metric_sharpe": "Sharpe จากการจำลองผลตอบแทน", "metric_return": "ผลตอบแทนรวม", "metric_turnover": "จำนวนครั้งที่เปลี่ยนสถานะซื้อ/ขาย", "diag_title": "โมเดลควอนตัมซับซ้อนกว่า แล้วช่วยได้จริงหรือไม่", "diag_desc": "โมเดลควอนตัมจับรูปแบบความสัมพันธ์ของข้อมูลได้ซับซ้อนกว่า แต่ยังไม่เพียงพอจะสรุปว่าให้ผลลัพธ์ที่ดีกว่า", "diag_sowhat": "<strong>แปลว่าอะไร:</strong> QSVM จับความสัมพันธ์ของข้อมูลได้แตกต่างและซับซ้อนกว่า แต่คำถามสำคัญคือความซับซ้อนนั้นช่วยให้พยากรณ์โจทย์นี้ได้ดีขึ้นจริงหรือไม่ ซึ่งหลักฐานยังไม่ชี้ชัด", "decision_kicker": "ข้อสรุปเชิงตัดสินใจ", "decision_title": "QSVM เป็นโมเดลที่ควรศึกษา แต่ไม่ควรถูกอ้างเกินหลักฐาน", "decision_text": "จุดแข็งที่สุดของงานนี้ไม่ใช่การพิสูจน์ว่าโมเดลควอนตัมชนะโมเดลแบบดั้งเดิม แต่คือการวางกรอบการทดสอบที่เข้มพอจะบอกได้ว่า โมเดลควอนตัมมีคุณค่าตรงไหน โมเดลแบบดั้งเดิมยังแข็งแรงกว่าตรงไหน และทำไมงานด้านการเงินต้องประเมินมากกว่าคะแนนการพยากรณ์เพียงตัวเดียว", "claim_kicker": "ขอบเขตของข้อสรุป", "claim_title": "อะไรที่สรุปได้ อะไรที่ต้องระวัง และอะไรที่ยังสรุปไม่ได้", "claim_desc": "ส่วนนี้แยกข้อสรุปที่หลักฐานสนับสนุนออกจากข้อกล่าวอ้างที่ยังเกินกว่าผลการทดลอง", "claim_supported_title": "หลักฐานสนับสนุน", "claim_qualified_title": "ต้องตีความอย่างระมัดระวัง", "claim_not_title": "ยังไม่สนับสนุน", "claim_supported_html": "<li>QSVM ยังแข่งขันได้ในการพยากรณ์ทิศทางราคา Bitcoin</li><li>โมเดลควอนตัมสามารถจับความสัมพันธ์ของข้อมูลได้แตกต่างและซับซ้อนกว่าโมเดลอ้างอิงบางตัว</li><li>RBF_FULL ให้หลักฐานด้านผลตอบแทนและความเสี่ยงที่แข็งแรงกว่าในระยะกลางและระยะยาว</li><li>กรอบการทดลองช่วยลดความเสี่ยงจากข้อมูลรั่ว และทำให้การเปรียบเทียบโมเดลมีความยุติธรรมมากขึ้น</li>", "claim_qualified_html": "<li>คะแนนการพยากรณ์ที่ดี ไม่ใช่ข้อสรุปว่าโมเดลดีที่สุดโดยรวม</li><li>ผลด้านการซื้อขายในงานนี้เป็นการประเมินเชิงทดลอง ไม่ใช่ระบบซื้อขายที่พร้อมใช้งานจริง</li><li>โมเดลที่ซับซ้อนกว่าไม่ได้แปลว่ามีประโยชน์มากกว่าเสมอ</li><li>ผลลัพธ์นี้ขึ้นอยู่กับชุดข้อมูล ช่วงเวลา ตัวแปร และวิธีการประเมินที่ใช้ในงานนี้</li>", "claim_not_html": "<li>ยังไม่สามารถสรุปได้ว่า QSVM เหนือกว่าโมเดลแบบดั้งเดิมโดยรวม</li><li>ยังไม่สามารถสรุปได้ว่า QSVM เหนือกว่าในเชิงผลตอบแทนและความเสี่ยง</li><li>ยังไม่สามารถสรุปได้ว่าเกิดความได้เปรียบจากโมเดลควอนตัมที่มีประโยชน์ต่อโจทย์นี้อย่างชัดเจน</li><li>งานนี้ไม่ใช่การรับรองว่าระบบพร้อมใช้ซื้อขายจริงหรือสามารถรับประกันกำไรได้</li>", "appendix_kicker": "หลักฐานประกอบ", "appendix_title": "ตารางผลลัพธ์ที่ตรวจสอบย้อนกลับได้", "appendix_desc": "ตารางด้านล่างเก็บไว้สำหรับตรวจสอบรายละเอียดและใช้ตอบคำถามเชิงหลักฐาน ไม่ใช่ส่วนหลักของการนำเสนอ", "table_classification": "ตารางผลการพยากรณ์ทิศทางราคา", "table_trading": "ตารางผลตอบแทนและความเสี่ยง", "table_decision": "ตารางสรุปการตัดสินใจจากผลลัพธ์", "table_diagnostic": "ตารางวิเคราะห์โครงสร้างโมเดลควอนตัม", "table_verdict": "ตารางข้อสรุปสุดท้าย", "axis_f1": "ค่า F1 เฉลี่ย", "axis_sharpe": "Sharpe", "axis_rank": "Effective rank", "diag_annotation": "Kernel correlation ≈ 0.6808 · target alignment difference ≈ 0.0022", "footer": "Final bilingual finance-grade showcase · ใช้เพื่อสรุปและแสดงผลเท่านั้น · ไม่มีการทดลองใหม่"}};
+
+
+const tableHTML = {
+  "en": {
+    "classification": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Horizon</th><th>Model</th><th>Mean F1</th><th>Std F1</th><th>Worst F1</th><th>Rank</th></tr></thead>\n        <tbody><nav><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>0.475</td><td>0.062</td><td>0.321</td><td>1</td></tr></nav><tr><td>1</td><td>RBF_PCA</td><td>0.437</td><td>0.067</td><td>0.27</td><td>2</td></tr><tr><td>1</td><td>RBF_FULL</td><td>0.427</td><td>0.079</td><td>0.258</td><td>3</td></tr><tr class=\"highlight-row\"><td>7</td><td>QSVM</td><td>0.456</td><td>0.094</td><td>0.308</td><td>1</td></tr><tr><td>7</td><td>RBF_FULL</td><td>0.429</td><td>0.093</td><td>0.261</td><td>2</td></tr><tr><td>7</td><td>RBF_PCA</td><td>0.428</td><td>0.089</td><td>0.244</td><td>3</td></tr><tr class=\"highlight-row\"><td>30</td><td>QSVM</td><td>0.455</td><td>0.138</td><td>0.147</td><td>1</td></tr><tr><td>30</td><td>RBF_FULL</td><td>0.43</td><td>0.155</td><td>0.161</td><td>2</td></tr><tr><td>30</td><td>RBF_PCA</td><td>0.429</td><td>0.207</td><td>0.011</td><td>3</td></tr></tbody>\n      </table>\n    </div>\n    ", 
+    "trading": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Horizon</th><th>Model</th><th>Total Return</th><th>Sharpe</th><th>Max Drawdown</th><th>Turnover</th><th>Rank</th></tr></thead>\n        <tbody><tr><td>1</td><td>RBF_PCA</td><td>-64.0%</td><td>-0.24</td><td>-92.8%</td><td>587.0</td><td>1</td></tr><tr><td>1</td><td>RBF_FULL</td><td>-67.4%</td><td>-0.26</td><td>-92.6%</td><td>671.0</td><td>2</td></tr><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>-94.1%</td><td>-0.67</td><td>-97.1%</td><td>1315.0</td><td>3</td></tr><tr class=\"highlight-row\"><td>7</td><td>RBF_FULL</td><td>1932.4%</td><td>0.66</td><td>-68.1%</td><td>157.0</td><td>1</td></tr><tr><td>7</td><td>RBF_PCA</td><td>1362.5%</td><td>0.58</td><td>-63.6%</td><td>157.0</td><td>2</td></tr><tr><td>7</td><td>QSVM</td><td>383.5%</td><td>0.34</td><td>-68.0%</td><td>245.0</td><td>3</td></tr><tr class=\"highlight-row\"><td>30</td><td>RBF_FULL</td><td>8558.2%</td><td>0.77</td><td>-64.4%</td><td>77.0</td><td>1</td></tr><tr><td>30</td><td>RBF_PCA</td><td>1980.8%</td><td>0.52</td><td>-80.8%</td><td>77.0</td><td>2</td></tr><tr><td>30</td><td>QSVM</td><td>657.2%</td><td>0.34</td><td>-86.4%</td><td>89.0</td><td>3</td></tr></tbody>\n      </table>\n    </div>\n    ", 
+    "decision": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Horizon</th><th>Model</th><th>Nested F1</th><th>Total Return</th><th>Sharpe</th><th>Final Role</th><th>Interpretation</th></tr></thead>\n        <tbody><tr><td>1</td><td>RBF_PCA</td><td>0.437</td><td>-64.0%</td><td>-0.24</td><td>Dimensionality-controlled classical comparator</td><td>Useful PCA-controlled comparator; instability appears in some long-horizon folds</td></tr><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>0.475</td><td>-94.1%</td><td>-0.67</td><td>Quantum-kernel benchmark; competitive but not overall superior</td><td>Classification strength; trading weakness due to turnover/cost</td></tr><tr><td>1</td><td>RBF_FULL</td><td>0.427</td><td>-67.4%</td><td>-0.26</td><td>Strongest practical trading/risk classical baseline</td><td>Robust classical baseline</td></tr><tr class=\"highlight-row\"><td>7</td><td>RBF_FULL</td><td>0.429</td><td>1932.4%</td><td>0.66</td><td>Strongest practical trading/risk classical baseline</td><td>Strongest trading/risk profile</td></tr><tr><td>7</td><td>RBF_PCA</td><td>0.428</td><td>1362.5%</td><td>0.58</td><td>Dimensionality-controlled classical comparator</td><td>Useful PCA-controlled comparator; instability appears in some long-horizon folds</td></tr><tr><td>7</td><td>QSVM</td><td>0.456</td><td>383.5%</td><td>0.34</td><td>Quantum-kernel benchmark; competitive but not overall superior</td><td>Competitive classification; weaker trading/risk than RBF_FULL</td></tr><tr class=\"highlight-row\"><td>30</td><td>RBF_FULL</td><td>0.43</td><td>8558.2%</td><td>0.77</td><td>Strongest practical trading/risk classical baseline</td><td>Strongest trading/risk profile</td></tr><tr><td>30</td><td>QSVM</td><td>0.455</td><td>657.2%</td><td>0.34</td><td>Quantum-kernel benchmark; competitive but not overall superior</td><td>Competitive classification; weaker trading/risk than RBF_FULL</td></tr><tr><td>30</td><td>RBF_PCA</td><td>0.429</td><td>1980.8%</td><td>0.52</td><td>Dimensionality-controlled classical comparator</td><td>Useful PCA-controlled comparator; instability appears in some long-horizon folds</td></tr></tbody>\n      </table>\n    </div>\n    ", 
+    "diagnostic": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Diagnostic</th><th>Result</th><th>Meaning</th><th>Presentation Level</th></tr></thead>\n        <tbody><tr><td>Kernel similarity</td><td>0.6808</td><td>QSVM and RBF_PCA kernels are meaningfully different, not identical.</td><td>main_ladder</td></tr><tr class=\"highlight-row\"><td>Target alignment</td><td>0.0022</td><td>No clear QSVM target-alignment advantage for binary direction labels.</td><td>main_ladder</td></tr><tr class=\"highlight-row\"><td>Effective rank</td><td>QSVM 147.8 vs RBF_PCA 35.9</td><td>QSVM has richer spectral complexity, but richness alone does not imply advantage.</td><td>main_ladder</td></tr><tr><td>Volatility-regime alignment</td><td>-0.0077</td><td>Exploratory probe does not show QSVM regime-alignment advantage over RBF_PCA.</td><td>evidence_mode</td></tr></tbody>\n      </table>\n    </div>\n    ", 
+    "verdict": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Question</th><th>Answer</th><th>Explanation</th></tr></thead>\n        <tbody><tr><td>Does QSVM beat classical ML overall?</td><td><span class=\"badge-focus red\">No</span></td><td>Evidence does not support overall superiority across horizons, stability, and trading/risk metrics.</td></tr><tr><td>Is QSVM useless?</td><td>No</td><td>QSVM remains competitive in selected classification settings and is scientifically meaningful as a quantum-kernel benchmark.</td></tr><tr><td>What is the main contribution?</td><td>Rigorous benchmark</td><td>The study provides a leakage-safe, multi-horizon, stability-aware, trading-aware evaluation framework.</td></tr><tr><td>What is the final boundary?</td><td><span class=\"badge-focus gold\">Expressivity ≠ advantage</span></td><td>Quantum expressivity is observable, but task-relevant quantum advantage is not established.</td></tr></tbody>\n      </table>\n    </div>\n    "
+  },
+  "th": {
+    "classification": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ระยะเวลา (Days)</th><th>โมเดล</th><th>ความแม่นยำเฉลี่ย (Mean F1)</th><th>ความผันผวน (Std F1)</th><th>กรณีเลวร้ายสุด (Worst F1)</th><th>อันดับ</th></tr></thead>\n        <tbody><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>0.475</td><td>0.062</td><td>0.321</td><td>1</td></tr><tr><td>1</td><td>RBF_PCA</td><td>0.437</td><td>0.067</td><td>0.270</td><td>2</td></tr><tr><td>1</td><td>RBF_FULL</td><td>0.427</td><td>0.079</td><td>0.258</td><td>3</td></tr><tr class=\"highlight-row\"><td>7</td><td>QSVM</td><td>0.456</td><td>0.094</td><td>0.308</td><td>1</td></tr><tr><td>7</td><td>RBF_FULL</td><td>0.429</td><td>0.093</td><td>0.261</td><td>2</td></tr><tr><td>7</td><td>RBF_PCA</td><td>0.428</td><td>0.089</td><td>0.244</td><td>3</td></tr><tr class=\"highlight-row\"><td>30</td><td>QSVM</td><td>0.455</td><td>0.138</td><td>0.147</td><td>1</td></tr><tr><td>30</td><td>RBF_FULL</td><td>0.430</td><td>0.155</td><td>0.161</td><td>2</td></tr><tr><td>30</td><td>RBF_PCA</td><td>0.429</td><td>0.207</td><td>0.011</td><td>3</td></tr></tbody>\n      </table>\n    </div>\n    ", 
+    "trading": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ระยะเวลา (Days)</th><th>โมเดล</th><th>ผลตอบแทนรวมสะสม</th><th>Sharpe Ratio</th><th>สัดส่วนขาดทุนสูงสุด (Max Drawdown)</th><th>รอบการซื้อขาย (Turnover)</th><th>อันดับ</th></tr></thead>\n        <tbody><tr><td>1</td><td>RBF_PCA</td><td>-64.0%</td><td>-0.24</td><td>-92.8%</td><td>587.0</td><td>1</td></tr><tr><td>1</td><td>RBF_FULL</td><td>-67.4%</td><td>-0.26</td><td>-92.6%</td><td>671.0</td><td>2</td></tr><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>-94.1%</td><td>-0.67</td><td>-97.1%</td><td>1315.0</td><td>3</td></tr><tr class=\"highlight-row\"><td>7</td><td>RBF_FULL</td><td>1932.4%</td><td>0.66</td><td>-68.1%</td><td>157.0</td><td>1</td></tr><tr><td>7</td><td>RBF_PCA</td><td>1362.5%</td><td>0.58</td><td>-63.6%</td><td>157.0</td><td>2</td></tr><tr><td>7</td><td>QSVM</td><td>383.5%</td><td>0.34</td><td>-68.0%</td><td>245.0</td><td>3</td></tr><tr class=\"highlight-row\"><td>30</td><td>RBF_FULL</td><td>8558.2%</td><td>0.77</td><td>-64.4%</td><td>77.0</td><td>1</td></tr><tr><td>30</td><td>RBF_PCA</td><td>1980.8%</td><td>0.52</td><td>-80.8%</td><td>77.0</td><td>2</td></tr><tr><td>30</td><td>QSVM</td><td>657.2%</td><td>0.34</td><td>-86.4%</td><td>89.0</td><td>3</td></tr></tbody>\n      </table>\n    </div>\n    ", 
+    "decision": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ระยะเวลา (Days)</th><th>โมเดล</th><th>ความแม่นยำ (Nested F1)</th><th>ผลตอบแทนรวม</th><th>Sharpe Ratio</th><th>บทบาทที่เหมาะสมเชิงนโยบาย</th><th>ข้อสังเกตเพิ่มเติม</th></tr></thead>\n        <tbody><tr><td>1</td><td>RBF_PCA</td><td>0.437</td><td>-64.0%</td><td>-0.24</td><td>โมเดลพื้นฐานสำหรับเปรียบเทียบมิติข้อมูล</td><td>เกิดความไม่เสถียรในกรอบเวลาที่ยาวขึ้น</td></tr><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>0.475</td><td>-94.1%</td><td>-0.67</td><td>โมเดลควอนตัมทางเลือก (คู่แข่งที่น่าสนใจแต่ไม่ชนะเด็ดขาด)</td><td>ทำนายแม่นยำ แต่มีจุดอ่อนร้ายแรงเรื่องต้นทุนการทำธุรกรรม</td></tr><tr><td>1</td><td>RBF_FULL</td><td>0.427</td><td>-67.4%</td><td>-0.26</td><td>โมเดลมาตรฐานเพื่อจัดการความเสี่ยง (ปลอดภัยที่สุด)</td><td>รับมือกับปัจจัยเสี่ยงและต้นทุนแฝงได้ดี</td></tr><tr class=\"highlight-row\"><td>7</td><td>RBF_FULL</td><td>0.429</td><td>1932.4%</td><td>0.66</td><td>โมเดลมาตรฐานเพื่อจัดการความเสี่ยง (ปลอดภัยที่สุด)</td><td>ให้โปรไฟล์ผลตอบแทนเทียบความเสี่ยงดีที่สุด</td></tr><tr><td>7</td><td>RBF_PCA</td><td>0.428</td><td>1362.5%</td><td>0.58</td><td>โมเดลพื้นฐานสำหรับเปรียบเทียบมิติข้อมูล</td><td>เกิดความไม่เสถียรในกรอบเวลาที่ยาวขึ้น</td></tr><tr><td>7</td><td>QSVM</td><td>0.456</td><td>383.5%</td><td>0.34</td><td>โมเดลควอนตัมทางเลือก (คู่แข่งที่น่าสนใจแต่ไม่ชนะเด็ดขาด)</td><td>พยากรณ์ดี แต่ยังให้ผลลัพธ์การลงทุนสู้ RBF_FULL ไม่ได้</td></tr><tr class=\"highlight-row\"><td>30</td><td>RBF_FULL</td><td>0.430</td><td>8558.2%</td><td>0.77</td><td>โมเดลมาตรฐานเพื่อจัดการความเสี่ยง (ปลอดภัยที่สุด)</td><td>ให้โปรไฟล์ผลตอบแทนเทียบความเสี่ยงดีที่สุด</td></tr><tr><td>30</td><td>QSVM</td><td>0.455</td><td>657.2%</td><td>0.34</td><td>โมเดลควอนตัมทางเลือก (คู่แข่งที่น่าสนใจแต่ไม่ชนะเด็ดขาด)</td><td>พยากรณ์ดี แต่ยังให้ผลลัพธ์การลงทุนสู้ RBF_FULL ไม่ได้</td></tr><tr><td>30</td><td>RBF_PCA</td><td>0.429</td><td>1980.8%</td><td>0.52</td><td>โมเดลพื้นฐานสำหรับเปรียบเทียบมิติข้อมูล</td><td>เกิดความไม่เสถียรในกรอบเวลาที่ยาวขึ้น</td></tr></tbody>\n      </table>\n    </div>\n    ", 
+    "diagnostic": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ตัวชี้วัด (Diagnostic)</th><th>ผลประเมิน</th><th>ความหมายเชิงสถิติ</th><th>ระดับความสำคัญ</th></tr></thead>\n        <tbody><tr><td>ความแตกต่างของ Kernel</td><td>0.6808</td><td>QSVM และ RBF_PCA สกัดโครงสร้างข้อมูลที่แตกต่างกันอย่างมีนัยสำคัญ</td><td>ระดับสูง</td></tr><tr class=\"highlight-row\"><td>ความสอดคล้องกับเป้าหมาย</td><td>0.0022</td><td>ยังไม่พบข้อได้เปรียบที่ชัดเจนของ QSVM ในการนำมาวิเคราะห์ทิศทางไบนารี</td><td>ระดับสูง</td></tr><tr class=\"highlight-row\"><td>ความซับซ้อนเชิงมิติ (Effective Rank)</td><td>QSVM 147.8 vs RBF_PCA 35.9</td><td>QSVM มีความซับซ้อนเชิงสเปกตรัมสูงกว่า แต่ความซับซ้อนไม่ได้แปลว่าได้เปรียบ</td><td>ระดับสูง</td></tr><tr><td>ความทนทานต่อสภาวะตลาดผันผวน</td><td>-0.0077</td><td>ผลทดสอบเบื้องต้นยังไม่ชี้ชัดว่า QSVM ทนทานต่อ Regime ความผันผวนได้ดีกว่า</td><td>ระดับรอง</td></tr></tbody>\n      </table>\n    </div>\n    ", 
+    "verdict": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ประเด็นคำถามการวิจัย (Research Question)</th><th>คำตอบหลัก</th><th>คำอธิบายประกอบ</th></tr></thead>\n        <tbody><tr><td>QSVM เอาชนะโมเดลมาตรฐาน (Classical ML) ได้เบ็ดเสร็จหรือไม่?</td><td><span class=\"badge-focus red\">ไม่ใช่ (No)</span></td><td>หลักฐานเชิงประจักษ์ยังไม่สนับสนุนว่า QSVM เหนือกว่าเมื่อประเมินจากความเสถียรและผลตอบแทนเทียบความเสี่ยง</td></tr><tr><td>แล้ว QSVM ไร้ประโยชน์เลยหรือไม่?</td><td>ไม่ใช่ (No)</td><td>QSVM ยังทำผลงานได้ทัดเทียมในด่านพยากรณ์ และมีประโยชน์อย่างยิ่งในการเป็นกรณีศึกษาเชิงควอนตัม</td></tr><tr><td>อะไรคือคุณค่าหลักของงานวิจัยชิ้นนี้?</td><td>สร้างกรอบการทดสอบมาตรฐาน (Rigorous Benchmark)</td><td>งานนี้เสนอกรอบการประเมินแบบ Leakage-safe ที่ครอบคลุมทั้งมิติเวลา ความผันผวน และต้นทุนแฝง</td></tr><tr><td>บทสรุปสุดท้ายคืออะไร?</td><td><span class=\"badge-focus gold\">ความซับซ้อน ≠ ความได้เปรียบ</span></td><td>สถาปัตยกรรมเชิงควอนตัมมีอยู่จริงและมองเห็นได้ แต่ ณ ปัจจุบัน 'Quantum Advantage' ยังไม่ถูกพิสูจน์ว่าใช้งานได้จริงกับโจทย์นี้</td></tr></tbody>\n      </table>\n    </div>\n    "
+  }
+};
+
+const classificationData = [{"horizon": "1", "model": "QSVM", "mean_f1": 0.4754082368, "std_f1": 0.0616132147, "worst_f1": 0.3211864407}, {"horizon": "1", "model": "RBF_PCA", "mean_f1": 0.4374709226, "std_f1": 0.0666770917, "worst_f1": 0.2704918033}, {"horizon": "1", "model": "RBF_FULL", "mean_f1": 0.4271445676, "std_f1": 0.0794675529, "worst_f1": 0.2583333333}, {"horizon": "7", "model": "QSVM", "mean_f1": 0.4555661314, "std_f1": 0.0936909942, "worst_f1": 0.3075647404}, {"horizon": "7", "model": "RBF_FULL", "mean_f1": 0.4287765688, "std_f1": 0.0933453472, "worst_f1": 0.2608577263}, {"horizon": "7", "model": "RBF_PCA", "mean_f1": 0.4279076636, "std_f1": 0.0886140814, "worst_f1": 0.2436951754}, {"horizon": "30", "model": "QSVM", "mean_f1": 0.4551214141, "std_f1": 0.1382256704, "worst_f1": 0.1472556894}, {"horizon": "30", "model": "RBF_FULL", "mean_f1": 0.4296151532, "std_f1": 0.1545369718, "worst_f1": 0.1605640479}, {"horizon": "30", "model": "RBF_PCA", "mean_f1": 0.4294557192, "std_f1": 0.2065535524, "worst_f1": 0.0111111111}];
+const tradingData = [{"horizon": "1", "model": "RBF_PCA", "sharpe": -0.2410999924, "total_return": -0.6395849733, "max_drawdown": -0.9283611797, "total_turnover": 587.0}, {"horizon": "1", "model": "RBF_FULL", "sharpe": -0.2645604792, "total_return": -0.6738587047, "max_drawdown": -0.9263054564, "total_turnover": 671.0}, {"horizon": "1", "model": "QSVM", "sharpe": -0.6691284914, "total_return": -0.9411552737, "max_drawdown": -0.9713909622, "total_turnover": 1315.0}, {"horizon": "7", "model": "RBF_FULL", "sharpe": 0.6556764965, "total_return": 19.3243467875, "max_drawdown": -0.6808406592, "total_turnover": 157.0}, {"horizon": "7", "model": "RBF_PCA", "sharpe": 0.5836922409, "total_return": 13.6247711628, "max_drawdown": -0.6355973476, "total_turnover": 157.0}, {"horizon": "7", "model": "QSVM", "sharpe": 0.3417169401, "total_return": 3.8347594075, "max_drawdown": -0.6796473773, "total_turnover": 245.0}, {"horizon": "30", "model": "RBF_FULL", "sharpe": 0.7675353511, "total_return": 85.5821555478, "max_drawdown": -0.6439249329, "total_turnover": 77.0}, {"horizon": "30", "model": "RBF_PCA", "sharpe": 0.5155196246, "total_return": 19.8075256831, "max_drawdown": -0.8081431265, "total_turnover": 77.0}, {"horizon": "30", "model": "QSVM", "sharpe": 0.3415175292, "total_return": 6.5721672121, "max_drawdown": -0.864497361, "total_turnover": 89.0}];
+const diagnosticData = [{"model": "QSVM", "effective_rank": 147.8}, {"model": "RBF_PCA", "effective_rank": 35.9}];
+const models = ["QSVM", "RBF_FULL", "RBF_PCA"];
+
+const plotConfig = { responsive: true, displayModeBar: false };
+let currentLang = 'en';
+
+// Premium "Precious Metals" Palette สำหรับกราฟ
+const baseColors = [
+  '#E5C37A', /* 1. QSVM: Metallic Gold (ทองคำแพลตินัม สว่างและเด่นที่สุด เข้ากับชื่อแบรนด์) */
+  '#B0B0B8', /* 2. RBF_FULL: Metallic Platinum (เงินแพลตินัม ดูนิ่ง มั่นคง เป็นมาตรฐาน) */
+  '#C68B59', /* 3. RBF_PCA: Metallic Copper (ทองแดง/โรสโกลด์ หรูหราแต่ไม่แย่งซีนพระเอก) */
+  '#FF453A'  /* 4. สีสำรอง (เผื่อไว้) */
+];
+
+function baseLayout(lang) {
+  const t = i18n[lang];
+  return {
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
+    font: { color: '#F3F4F1', family: 'Inter, Arial, sans-serif' },
+    margin: { l: 54, r: 24, t: 12, b: 54 },
+    legend: {
+      orientation: 'h',
+      y: -0.20,
+      font: { color: '#B3BCC9' }
+    },
+    xaxis: {
+      gridcolor: '#2A3442',
+      zerolinecolor: '#2A3442',
+      tickfont: { color: '#B3BCC9' }
+    },
+    yaxis: {
+      gridcolor: '#2A3442',
+      zerolinecolor: '#2A3442',
+      tickfont: { color: '#B3BCC9' }
+    },
+    colorway: baseColors
+  };
+}
+
+function tracesByModel(data, metric, decimals) {
+  return models.map(model => {
+    const rows = data
+      .filter(d => d.model === model)
+      .sort((a, b) => Number(a.horizon) - Number(b.horizon));
+
+    return {
+      type: 'bar',
+      name: model,
+      x: rows.map(d => 'h=' + d.horizon),
+      y: rows.map(d => d[metric]),
+      text: rows.map(d => Number(d[metric]).toFixed(decimals)),
+      textposition: 'auto',
+      hovertemplate: '%{x}<br>' + model + '<br>%{y:.3f}<extra></extra>'
+    };
+  });
+}
+
+function renderCharts(lang) {
+  const t = i18n[lang];
+  const layout = baseLayout(lang);
+
+  Plotly.react(
+    'chart_classification',
+    tracesByModel(classificationData, 'mean_f1', 3),
+    {
+      ...layout,
+      barmode: 'group',
+      yaxis: {
+        ...layout.yaxis,
+        title: { text: t.axis_f1, font: { color: '#B3BCC9' } },
+        range: [0, 0.60]
+      }
+    },
+    plotConfig
+  );
+
+  Plotly.react(
+    'chart_trading',
+    tracesByModel(tradingData, 'sharpe', 2),
+    {
+      ...layout,
+      barmode: 'group',
+      yaxis: {
+        ...layout.yaxis,
+        title: { text: t.axis_sharpe, font: { color: '#B3BCC9' } }
+      },
+      shapes: [{
+        type: 'line',
+        xref: 'paper',
+        x0: 0,
+        x1: 1,
+        yref: 'y',
+        y0: 0,
+        y1: 0,
+        line: { color: '#B3BCC9', width: 1, dash: 'dot' }
+      }]
+    },
+    plotConfig
+  );
+
+  Plotly.react(
+    'chart_diagnostic',
+    [{
+      type: 'bar',
+      x: diagnosticData.map(d => d.model),
+      y: diagnosticData.map(d => d.effective_rank),
+      text: diagnosticData.map(d => Number(d.effective_rank).toFixed(1)),
+      textposition: 'auto',
+      /* เปลี่ยนสีตรงบรรทัดนี้: ทอง QSVM (#E5C37A) และ ทองแดง RBF_PCA (#C68B59) */
+      marker: { color: ['#E5C37A', '#C68B59'] }, 
+      hovertemplate: '%{x}<br>Effective rank: %{y:.1f}<extra></extra>'
+    }],
+    {
+      ...layout,
+      showlegend: false,
+      margin: { l: 54, r: 24, t: 38, b: 44 },
+      yaxis: {
+        ...layout.yaxis,
+        title: { text: t.axis_rank, font: { color: '#B3BCC9' } }
+      },
+      annotations: [{
+        text: t.diag_annotation,
+        xref: 'paper',
+        yref: 'paper',
+        x: 0.5,
+        y: 1.18,
+        showarrow: false,
+        font: { color: '#E5C37A', size: 12 } /* เปลี่ยนสีตัวอักษร Annotation เป็นสีทองใหม่ด้วย */
+      }]
+    },
+    plotConfig
+  );
+}
+
+function setLanguage(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang === 'th' ? 'th' : 'en';
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[lang][key] !== undefined) {
+      el.innerHTML = i18n[lang][key];
+    }
+  });
+
+  document.getElementById('table_classification_container').innerHTML = tableHTML[lang].classification;
+  document.getElementById('table_trading_container').innerHTML = tableHTML[lang].trading;
+  document.getElementById('table_decision_container').innerHTML = tableHTML[lang].decision;
+  document.getElementById('table_diagnostic_container').innerHTML = tableHTML[lang].diagnostic;
+  document.getElementById('table_verdict_container').innerHTML = tableHTML[lang].verdict;
+
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-th').classList.toggle('active', lang === 'th');
+
+  renderCharts(lang);
+}
+
+window.addEventListener('load', () => {
+  setLanguage('en');
+});
+
+// 1. Plotly Premium Hover Theme (ใส่เพิ่มในฟังก์ชัน baseLayout)
+// ให้ค้นหาฟังก์ชัน baseLayout เดิม แล้วแก้ท่อน return ให้มี hoverlabel แบบนี้ครับ:
+/*
+  return {
+    ... (โค้ดเดิม) ...
+    hoverlabel: {
+      bgcolor: '#161E28',
+      font: { family: 'Inter', color: '#F8F9FA' },
+      bordercolor: '#E5C37A'
+    },
+    colorway: baseColors
+  };
+*/
+
+// 2. Scroll Reveal Effect
+function reveal() {
+  var reveals = document.querySelectorAll(".reveal");
+  for (var i = 0; i < reveals.length; i++) {
+    var windowHeight = window.innerHeight;
+    var elementTop = reveals[i].getBoundingClientRect().top;
+    var elementVisible = 100;
+    if (elementTop < windowHeight - elementVisible) {
+      reveals[i].classList.add("active");
+    }
+  }
+}
+window.addEventListener("scroll", reveal);
+
+// 3. Number Counter Animation สำหรับกล่อง KPI
+function animateValue(obj, start, end, duration) {
+  let startTimestamp = null;
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    // ใช้ easeOut effect
+    const easeProgress = 1 - Math.pow(1 - progress, 3);
+    obj.innerHTML = Math.floor(easeProgress * (end - start) + start);
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    } else {
+      obj.innerHTML = end; // รับประกันเลขจบเป๊ะ
+    }
+  };
+  window.requestAnimationFrame(step);
+}
+
+// Trigger Animations เมื่อโหลดเว็บ
+window.addEventListener('load', () => {
+  setLanguage('en');
+  setTimeout(reveal, 100); // ดึง reveal ให้ทำงานรอบแรก
+  
+  // รันเลข KPI เมื่อเปิดเว็บ
+  const kpis = document.querySelectorAll('.kpi-number');
+  if(kpis.length >= 3) {
+    animateValue(kpis[0], 0, 27, 1500); // 27 Folds
+    animateValue(kpis[1], 0, 3, 1000);  // 3 Horizons
+    animateValue(kpis[2], 0, 4, 1200);  // 4 Layers
+  }
+});
+
+</script>
+</body>
+</html>
