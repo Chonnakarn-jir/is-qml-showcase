@@ -11,13 +11,13 @@
 
 <style>
 :root {
-  /* Apple Pro Dark Mode Palette */
+ 
   --bg: #000000; /* ดำสนิทแบบจอ OLED */
-  --surface: rgba(28, 28, 30, 0.5); /* สีเทากระจกของ Apple */
+  --surface: rgba(28, 28, 30, 0.5); 
   --surface2: rgba(44, 44, 46, 0.5);
   --surface3: rgba(58, 58, 60, 0.5);
   --text: #F5F5F7; /* ขาวนวลสบายตา */
-  --text-muted: #D2D2D7; /* เทา Apple Gray */
+  --text-muted: #D2D2D7; /* เทา Gray */
   --line: rgba(255, 255, 255, 0.12);
   --line-strong: rgba(255, 255, 255, 0.24);
   
@@ -27,9 +27,9 @@
   --accent-line: rgba(242, 210, 136, 0.25);
   --accent-glow: 0 0 32px rgba(242, 210, 136, 0.15);
   
-  --blue: #2997FF; /* Apple Blue */
-  --green: #30D158; /* Apple Green */
-  --red: #FF453A; /* Apple Red */
+  --blue: #2997FF; /*   Blue */
+  --green: #30D158; /*   Green */
+  --red: #FF453A; /*   Red */
   
   --shadow-base: 0 20px 40px rgba(0, 0, 0, 0.5);
   --shadow-lift: 0 30px 60px rgba(0, 0, 0, 0.7);
@@ -52,7 +52,7 @@ body {
     radial-gradient(circle at 100% 50%, rgba(41, 151, 255, 0.03), transparent 40%);
   background-attachment: fixed;
   color: var(--text);
-  font-family: "Inter", "Prompt", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Inter", "Prompt", - -system, BlinkMacSystemFont, sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -64,7 +64,7 @@ header {
   top: 0;
   z-index: 100;
   
-  /* 1. กระจกฝ้าโปร่งแสง (Glassmorphism) สไตล์ Apple */
+  /* 1. กระจกฝ้าโปร่งแสง (Glassmorphism) สไตล์   */
   background: rgba(10, 10, 12, 0.65);
   backdrop-filter: saturate(200%) blur(24px);
   -webkit-backdrop-filter: saturate(200%) blur(24px);
@@ -204,7 +204,7 @@ main { max-width: 1240px; margin: 0 auto; padding: 60px 24px 100px; }
   margin-bottom: 24px;
 }
 
-/* Apple Metallic Gradient Text */
+/*   Metallic Gradient Text */
 h1 {
   margin: 0 0 20px;
   font-size: clamp(28px, 3.2vw, 42px);
@@ -362,7 +362,7 @@ tr:last-child td { border-bottom: none; }
 .reveal {
   opacity: 0;
   transform: translateY(30px) scale(0.98);
-  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); /* Apple Easing */
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); /*   Easing */
 }
 .reveal.active {
   opacity: 1;
@@ -398,7 +398,7 @@ tr:last-child td { border-bottom: none; }
   opacity: 0.85; /* เพิ่มความเข้มขึ้นจากเดิมที่ตั้งไว้ 0.6 */
 }
 
-/* --- Premium Strategic Highlighting System (Apple Pro Layout) --- */
+/* --- Premium Strategic Highlighting System (  Pro Layout) --- */
 tr.highlight-row {
   background-color: rgba(242, 210, 136, 0.04) !important;
   transition: all 0.3s ease;
@@ -429,7 +429,7 @@ tr.highlight-row td:first-child {
   border: 1px solid rgba(255, 69, 58, 0.3);
   color: var(--red);
 }
-/* --- Global Apple Metallic Gradientสำหรับ หัวข้อรอง (h2) ทั้งหมด --- */
+/* --- Global   Metallic Gradientสำหรับ หัวข้อรอง (h2) ทั้งหมด --- */
 h2 {
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -483,7 +483,6 @@ h2 {
         <h2 data-i18n="final_answer_title"></h2>
         <p data-i18n="final_answer_text"></p>
       </div>
-      <div class="answer-footer" data-i18n="scope_note"></div>
     </aside>
   </section>
 
@@ -681,7 +680,7 @@ const i18n = {"en": {"nav_dashboard": "Dashboard", "nav_summary": "Summary", "na
 
 const tableHTML = {
   "en": {
-    "classification": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Horizon</th><th>Model</th><th>Mean F1</th><th>Std F1</th><th>Worst F1</th><th>Rank</th></tr></thead>\n        <tbody><nav><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>0.475</td><td>0.062</td><td>0.321</td><td>1</td></tr></nav><tr><td>1</td><td>RBF_PCA</td><td>0.437</td><td>0.067</td><td>0.27</td><td>2</td></tr><tr><td>1</td><td>RBF_FULL</td><td>0.427</td><td>0.079</td><td>0.258</td><td>3</td></tr><tr class=\"highlight-row\"><td>7</td><td>QSVM</td><td>0.456</td><td>0.094</td><td>0.308</td><td>1</td></tr><tr><td>7</td><td>RBF_FULL</td><td>0.429</td><td>0.093</td><td>0.261</td><td>2</td></tr><tr><td>7</td><td>RBF_PCA</td><td>0.428</td><td>0.089</td><td>0.244</td><td>3</td></tr><tr class=\"highlight-row\"><td>30</td><td>QSVM</td><td>0.455</td><td>0.138</td><td>0.147</td><td>1</td></tr><tr><td>30</td><td>RBF_FULL</td><td>0.43</td><td>0.155</td><td>0.161</td><td>2</td></tr><tr><td>30</td><td>RBF_PCA</td><td>0.429</td><td>0.207</td><td>0.011</td><td>3</td></tr></tbody>\n      </table>\n    </div>\n    ", 
+    "classification": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Horizon</th><th>Model</th><th>Mean F1</th><th>Std F1</th><th>Worst F1</th><th>Rank</th></tr></thead>\n        <tbody><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>0.475</td><td>0.062</td><td>0.321</td><td>1</td></tr><tr><td>1</td><td>RBF_PCA</td><td>0.437</td><td>0.067</td><td>0.27</td><td>2</td></tr><tr><td>1</td><td>RBF_FULL</td><td>0.427</td><td>0.079</td><td>0.258</td><td>3</td></tr><tr class=\"highlight-row\"><td>7</td><td>QSVM</td><td>0.456</td><td>0.094</td><td>0.308</td><td>1</td></tr><tr><td>7</td><td>RBF_FULL</td><td>0.429</td><td>0.093</td><td>0.261</td><td>2</td></tr><tr><td>7</td><td>RBF_PCA</td><td>0.428</td><td>0.089</td><td>0.244</td><td>3</td></tr><tr class=\"highlight-row\"><td>30</td><td>QSVM</td><td>0.455</td><td>0.138</td><td>0.147</td><td>1</td></tr><tr><td>30</td><td>RBF_FULL</td><td>0.43</td><td>0.155</td><td>0.161</td><td>2</td></tr><tr><td>30</td><td>RBF_PCA</td><td>0.429</td><td>0.207</td><td>0.011</td><td>3</td></tr></tbody>\n      </table>\n    </div>\n    ", 
     "trading": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Horizon</th><th>Model</th><th>Total Return</th><th>Sharpe</th><th>Max Drawdown</th><th>Turnover</th><th>Rank</th></tr></thead>\n        <tbody><tr><td>1</td><td>RBF_PCA</td><td>-64.0%</td><td>-0.24</td><td>-92.8%</td><td>587.0</td><td>1</td></tr><tr><td>1</td><td>RBF_FULL</td><td>-67.4%</td><td>-0.26</td><td>-92.6%</td><td>671.0</td><td>2</td></tr><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>-94.1%</td><td>-0.67</td><td>-97.1%</td><td>1315.0</td><td>3</td></tr><tr class=\"highlight-row\"><td>7</td><td>RBF_FULL</td><td>1932.4%</td><td>0.66</td><td>-68.1%</td><td>157.0</td><td>1</td></tr><tr><td>7</td><td>RBF_PCA</td><td>1362.5%</td><td>0.58</td><td>-63.6%</td><td>157.0</td><td>2</td></tr><tr><td>7</td><td>QSVM</td><td>383.5%</td><td>0.34</td><td>-68.0%</td><td>245.0</td><td>3</td></tr><tr class=\"highlight-row\"><td>30</td><td>RBF_FULL</td><td>8558.2%</td><td>0.77</td><td>-64.4%</td><td>77.0</td><td>1</td></tr><tr><td>30</td><td>RBF_PCA</td><td>1980.8%</td><td>0.52</td><td>-80.8%</td><td>77.0</td><td>2</td></tr><tr><td>30</td><td>QSVM</td><td>657.2%</td><td>0.34</td><td>-86.4%</td><td>89.0</td><td>3</td></tr></tbody>\n      </table>\n    </div>\n    ", 
     "decision": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Horizon</th><th>Model</th><th>Nested F1</th><th>Total Return</th><th>Sharpe</th><th>Final Role</th><th>Interpretation</th></tr></thead>\n        <tbody><tr><td>1</td><td>RBF_PCA</td><td>0.437</td><td>-64.0%</td><td>-0.24</td><td>Dimensionality-controlled classical comparator</td><td>Useful PCA-controlled comparator; instability appears in some long-horizon folds</td></tr><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>0.475</td><td>-94.1%</td><td>-0.67</td><td>Quantum-kernel benchmark; competitive but not overall superior</td><td>Classification strength; trading weakness due to turnover/cost</td></tr><tr><td>1</td><td>RBF_FULL</td><td>0.427</td><td>-67.4%</td><td>-0.26</td><td>Strongest practical trading/risk classical baseline</td><td>Robust classical baseline</td></tr><tr class=\"highlight-row\"><td>7</td><td>RBF_FULL</td><td>0.429</td><td>1932.4%</td><td>0.66</td><td>Strongest practical trading/risk classical baseline</td><td>Strongest trading/risk profile</td></tr><tr><td>7</td><td>RBF_PCA</td><td>0.428</td><td>1362.5%</td><td>0.58</td><td>Dimensionality-controlled classical comparator</td><td>Useful PCA-controlled comparator; instability appears in some long-horizon folds</td></tr><tr><td>7</td><td>QSVM</td><td>0.456</td><td>383.5%</td><td>0.34</td><td>Quantum-kernel benchmark; competitive but not overall superior</td><td>Competitive classification; weaker trading/risk than RBF_FULL</td></tr><tr class=\"highlight-row\"><td>30</td><td>RBF_FULL</td><td>0.43</td><td>8558.2%</td><td>0.77</td><td>Strongest practical trading/risk classical baseline</td><td>Strongest trading/risk profile</td></tr><tr><td>30</td><td>QSVM</td><td>0.455</td><td>657.2%</td><td>0.34</td><td>Quantum-kernel benchmark; competitive but not overall superior</td><td>Competitive classification; weaker trading/risk than RBF_FULL</td></tr><tr><td>30</td><td>RBF_PCA</td><td>0.429</td><td>1980.8%</td><td>0.52</td><td>Dimensionality-controlled classical comparator</td><td>Useful PCA-controlled comparator; instability appears in some long-horizon folds</td></tr></tbody>\n      </table>\n    </div>\n    ", 
     "diagnostic": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Diagnostic</th><th>Result</th><th>Meaning</th><th>Presentation Level</th></tr></thead>\n        <tbody><tr><td>Kernel similarity</td><td>0.6808</td><td>QSVM and RBF_PCA kernels are meaningfully different, not identical.</td><td>main_ladder</td></tr><tr class=\"highlight-row\"><td>Target alignment</td><td>0.0022</td><td>No clear QSVM target-alignment advantage for binary direction labels.</td><td>main_ladder</td></tr><tr class=\"highlight-row\"><td>Effective rank</td><td>QSVM 147.8 vs RBF_PCA 35.9</td><td>QSVM has richer spectral complexity, but richness alone does not imply advantage.</td><td>main_ladder</td></tr><tr><td>Volatility-regime alignment</td><td>-0.0077</td><td>Exploratory probe does not show QSVM regime-alignment advantage over RBF_PCA.</td><td>evidence_mode</td></tr></tbody>\n      </table>\n    </div>\n    ", 
@@ -689,10 +688,10 @@ const tableHTML = {
   },
   "th": {
     "classification": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ระยะเวลา (Days)</th><th>โมเดล</th><th>ความแม่นยำเฉลี่ย (Mean F1)</th><th>ความผันผวน (Std F1)</th><th>กรณีเลวร้ายสุด (Worst F1)</th><th>อันดับ</th></tr></thead>\n        <tbody><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>0.475</td><td>0.062</td><td>0.321</td><td>1</td></tr><tr><td>1</td><td>RBF_PCA</td><td>0.437</td><td>0.067</td><td>0.270</td><td>2</td></tr><tr><td>1</td><td>RBF_FULL</td><td>0.427</td><td>0.079</td><td>0.258</td><td>3</td></tr><tr class=\"highlight-row\"><td>7</td><td>QSVM</td><td>0.456</td><td>0.094</td><td>0.308</td><td>1</td></tr><tr><td>7</td><td>RBF_FULL</td><td>0.429</td><td>0.093</td><td>0.261</td><td>2</td></tr><tr><td>7</td><td>RBF_PCA</td><td>0.428</td><td>0.089</td><td>0.244</td><td>3</td></tr><tr class=\"highlight-row\"><td>30</td><td>QSVM</td><td>0.455</td><td>0.138</td><td>0.147</td><td>1</td></tr><tr><td>30</td><td>RBF_FULL</td><td>0.430</td><td>0.155</td><td>0.161</td><td>2</td></tr><tr><td>30</td><td>RBF_PCA</td><td>0.429</td><td>0.207</td><td>0.011</td><td>3</td></tr></tbody>\n      </table>\n    </div>\n    ", 
-    "trading": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ระยะเวลา (Days)</th><th>โมเดล</th><th>ผลตอบแทนรวมสะสม</th><th>Sharpe Ratio</th><th>สัดส่วนขาดทุนสูงสุด (Max Drawdown)</th><th>รอบการซื้อขาย (Turnover)</th><th>อันดับ</th></tr></thead>\n        <tbody><tr><td>1</td><td>RBF_PCA</td><td>-64.0%</td><td>-0.24</td><td>-92.8%</td><td>587.0</td><td>1</td></tr><tr><td>1</td><td>RBF_FULL</td><td>-67.4%</td><td>-0.26</td><td>-92.6%</td><td>671.0</td><td>2</td></tr><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>-94.1%</td><td>-0.67</td><td>-97.1%</td><td>1315.0</td><td>3</td></tr><tr class=\"highlight-row\"><td>7</td><td>RBF_FULL</td><td>1932.4%</td><td>0.66</td><td>-68.1%</td><td>157.0</td><td>1</td></tr><tr><td>7</td><td>RBF_PCA</td><td>1362.5%</td><td>0.58</td><td>-63.6%</td><td>157.0</td><td>2</td></tr><tr><td>7</td><td>QSVM</td><td>383.5%</td><td>0.34</td><td>-68.0%</td><td>245.0</td><td>3</td></tr><tr class=\"highlight-row\"><td>30</td><td>RBF_FULL</td><td>8558.2%</td><td>0.77</td><td>-64.4%</td><td>77.0</td><td>1</td></tr><tr><td>30</td><td>RBF_PCA</td><td>1980.8%</td><td>0.52</td><td>-80.8%</td><td>77.0</td><td>2</td></tr><tr><td>30</td><td>QSVM</td><td>657.2%</td><td>0.34</td><td>-86.4%</td><td>89.0</td><td>3</td></tr></tbody>\n      </table>\n    </div>\n    ", 
-    "decision": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ระยะเวลา (Days)</th><th>โมเดล</th><th>ความแม่นยำ (Nested F1)</th><th>ผลตอบแทนรวม</th><th>Sharpe Ratio</th><th>บทบาทที่เหมาะสมเชิงนโยบาย</th><th>ข้อสังเกตเพิ่มเติม</th></tr></thead>\n        <tbody><tr><td>1</td><td>RBF_PCA</td><td>0.437</td><td>-64.0%</td><td>-0.24</td><td>โมเดลพื้นฐานสำหรับเปรียบเทียบมิติข้อมูล</td><td>เกิดความไม่เสถียรในกรอบเวลาที่ยาวขึ้น</td></tr><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>0.475</td><td>-94.1%</td><td>-0.67</td><td>โมเดลควอนตัมทางเลือก (คู่แข่งที่น่าสนใจแต่ไม่ชนะเด็ดขาด)</td><td>ทำนายแม่นยำ แต่มีจุดอ่อนร้ายแรงเรื่องต้นทุนการทำธุรกรรม</td></tr><tr><td>1</td><td>RBF_FULL</td><td>0.427</td><td>-67.4%</td><td>-0.26</td><td>โมเดลมาตรฐานเพื่อจัดการความเสี่ยง (ปลอดภัยที่สุด)</td><td>รับมือกับปัจจัยเสี่ยงและต้นทุนแฝงได้ดี</td></tr><tr class=\"highlight-row\"><td>7</td><td>RBF_FULL</td><td>0.429</td><td>1932.4%</td><td>0.66</td><td>โมเดลมาตรฐานเพื่อจัดการความเสี่ยง (ปลอดภัยที่สุด)</td><td>ให้โปรไฟล์ผลตอบแทนเทียบความเสี่ยงดีที่สุด</td></tr><tr><td>7</td><td>RBF_PCA</td><td>0.428</td><td>1362.5%</td><td>0.58</td><td>โมเดลพื้นฐานสำหรับเปรียบเทียบมิติข้อมูล</td><td>เกิดความไม่เสถียรในกรอบเวลาที่ยาวขึ้น</td></tr><tr><td>7</td><td>QSVM</td><td>0.456</td><td>383.5%</td><td>0.34</td><td>โมเดลควอนตัมทางเลือก (คู่แข่งที่น่าสนใจแต่ไม่ชนะเด็ดขาด)</td><td>พยากรณ์ดี แต่ยังให้ผลลัพธ์การลงทุนสู้ RBF_FULL ไม่ได้</td></tr><tr class=\"highlight-row\"><td>30</td><td>RBF_FULL</td><td>0.430</td><td>8558.2%</td><td>0.77</td><td>โมเดลมาตรฐานเพื่อจัดการความเสี่ยง (ปลอดภัยที่สุด)</td><td>ให้โปรไฟล์ผลตอบแทนเทียบความเสี่ยงดีที่สุด</td></tr><tr><td>30</td><td>QSVM</td><td>0.455</td><td>657.2%</td><td>0.34</td><td>โมเดลควอนตัมทางเลือก (คู่แข่งที่น่าสนใจแต่ไม่ชนะเด็ดขาด)</td><td>พยากรณ์ดี แต่ยังให้ผลลัพธ์การลงทุนสู้ RBF_FULL ไม่ได้</td></tr><tr><td>30</td><td>RBF_PCA</td><td>0.429</td><td>1980.8%</td><td>0.52</td><td>โมเดลพื้นฐานสำหรับเปรียบเทียบมิติข้อมูล</td><td>เกิดความไม่เสถียรในกรอบเวลาที่ยาวขึ้น</td></tr></tbody>\n      </table>\n    </div>\n    ", 
-    "diagnostic": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ตัวชี้วัด (Diagnostic)</th><th>ผลประเมิน</th><th>ความหมายเชิงสถิติ</th><th>ระดับความสำคัญ</th></tr></thead>\n        <tbody><tr><td>ความแตกต่างของ Kernel</td><td>0.6808</td><td>QSVM และ RBF_PCA สกัดโครงสร้างข้อมูลที่แตกต่างกันอย่างมีนัยสำคัญ</td><td>ระดับสูง</td></tr><tr class=\"highlight-row\"><td>ความสอดคล้องกับเป้าหมาย</td><td>0.0022</td><td>ยังไม่พบข้อได้เปรียบที่ชัดเจนของ QSVM ในการนำมาวิเคราะห์ทิศทางไบนารี</td><td>ระดับสูง</td></tr><tr class=\"highlight-row\"><td>ความซับซ้อนเชิงมิติ (Effective Rank)</td><td>QSVM 147.8 vs RBF_PCA 35.9</td><td>QSVM มีความซับซ้อนเชิงสเปกตรัมสูงกว่า แต่ความซับซ้อนไม่ได้แปลว่าได้เปรียบ</td><td>ระดับสูง</td></tr><tr><td>ความทนทานต่อสภาวะตลาดผันผวน</td><td>-0.0077</td><td>ผลทดสอบเบื้องต้นยังไม่ชี้ชัดว่า QSVM ทนทานต่อ Regime ความผันผวนได้ดีกว่า</td><td>ระดับรอง</td></tr></tbody>\n      </table>\n    </div>\n    ", 
-    "verdict": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ประเด็นคำถามการวิจัย (Research Question)</th><th>คำตอบหลัก</th><th>คำอธิบายประกอบ</th></tr></thead>\n        <tbody><tr><td>QSVM เอาชนะโมเดลมาตรฐาน (Classical ML) ได้เบ็ดเสร็จหรือไม่?</td><td><span class=\"badge-focus red\">ไม่ใช่ (No)</span></td><td>หลักฐานเชิงประจักษ์ยังไม่สนับสนุนว่า QSVM เหนือกว่าเมื่อประเมินจากความเสถียรและผลตอบแทนเทียบความเสี่ยง</td></tr><tr><td>แล้ว QSVM ไร้ประโยชน์เลยหรือไม่?</td><td>ไม่ใช่ (No)</td><td>QSVM ยังทำผลงานได้ทัดเทียมในด่านพยากรณ์ และมีประโยชน์อย่างยิ่งในการเป็นกรณีศึกษาเชิงควอนตัม</td></tr><tr><td>อะไรคือคุณค่าหลักของงานวิจัยชิ้นนี้?</td><td>สร้างกรอบการทดสอบมาตรฐาน (Rigorous Benchmark)</td><td>งานนี้เสนอกรอบการประเมินแบบ Leakage-safe ที่ครอบคลุมทั้งมิติเวลา ความผันผวน และต้นทุนแฝง</td></tr><tr><td>บทสรุปสุดท้ายคืออะไร?</td><td><span class=\"badge-focus gold\">ความซับซ้อน ≠ ความได้เปรียบ</span></td><td>สถาปัตยกรรมเชิงควอนตัมมีอยู่จริงและมองเห็นได้ แต่ ณ ปัจจุบัน 'Quantum Advantage' ยังไม่ถูกพิสูจน์ว่าใช้งานได้จริงกับโจทย์นี้</td></tr></tbody>\n      </table>\n    </div>\n    "
+    "trading": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ระยะเวลา (Days)</th><th>โมเดล</th><th>ผลตอบแทนรวมสะสมจากการจำลอง</th><th>Sharpe Ratio</th><th>สัดส่วนขาดทุนสูงสุด (Max Drawdown)</th><th>รอบการซื้อขาย (Turnover)</th><th>อันดับ</th></tr></thead>\n        <tbody><tr><td>1</td><td>RBF_PCA</td><td>-64.0%</td><td>-0.24</td><td>-92.8%</td><td>587.0</td><td>1</td></tr><tr><td>1</td><td>RBF_FULL</td><td>-67.4%</td><td>-0.26</td><td>-92.6%</td><td>671.0</td><td>2</td></tr><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>-94.1%</td><td>-0.67</td><td>-97.1%</td><td>1315.0</td><td>3</td></tr><tr class=\"highlight-row\"><td>7</td><td>RBF_FULL</td><td>1932.4%</td><td>0.66</td><td>-68.1%</td><td>157.0</td><td>1</td></tr><tr><td>7</td><td>RBF_PCA</td><td>1362.5%</td><td>0.58</td><td>-63.6%</td><td>157.0</td><td>2</td></tr><tr><td>7</td><td>QSVM</td><td>383.5%</td><td>0.34</td><td>-68.0%</td><td>245.0</td><td>3</td></tr><tr class=\"highlight-row\"><td>30</td><td>RBF_FULL</td><td>8558.2%</td><td>0.77</td><td>-64.4%</td><td>77.0</td><td>1</td></tr><tr><td>30</td><td>RBF_PCA</td><td>1980.8%</td><td>0.52</td><td>-80.8%</td><td>77.0</td><td>2</td></tr><tr><td>30</td><td>QSVM</td><td>657.2%</td><td>0.34</td><td>-86.4%</td><td>89.0</td><td>3</td></tr></tbody>\n      </table>\n    </div>\n    ", 
+    "decision": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ระยะเวลา (Days)</th><th>โมเดล</th><th>ความแม่นยำ (Nested F1)</th><th>ผลตอบแทนรวม</th><th>Sharpe Ratio</th><th>บทบาทที่เหมาะสมเชิงนโยบาย</th><th>ข้อสังเกตเพิ่มเติม</th></tr></thead>\n        <tbody><tr><td>1</td><td>RBF_PCA</td><td>0.437</td><td>-64.0%</td><td>-0.24</td><td>โมเดลพื้นฐานสำหรับเปรียบเทียบมิติข้อมูล</td><td>เกิดความไม่เสถียรในกรอบเวลาที่ยาวขึ้น</td></tr><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>0.475</td><td>-94.1%</td><td>-0.67</td><td>โมเดลควอนตัมทางเลือก (คู่แข่งที่น่าสนใจแต่ไม่ชนะเด็ดขาด)</td><td>ทำนายแม่นยำ แต่มีข้อจำกัดสำคัญเรื่องต้นทุนการทำธุรกรรม</td></tr><tr><td>1</td><td>RBF_FULL</td><td>0.427</td><td>-67.4%</td><td>-0.26</td><td>โมเดลมาตรฐานเพื่อจัดการความเสี่ยง (มีความแข็งแรงที่สุดในมุมผลตอบแทนและความเสี่ยง)</td><td>รับมือกับปัจจัยเสี่ยงและต้นทุนแฝงได้ดี</td></tr><tr class=\"highlight-row\"><td>7</td><td>RBF_FULL</td><td>0.429</td><td>1932.4%</td><td>0.66</td><td>โมเดลมาตรฐานเพื่อจัดการความเสี่ยง (มีความแข็งแรงที่สุดในมุมผลตอบแทนและความเสี่ยง)</td><td>ให้โปรไฟล์ผลตอบแทนเทียบความเสี่ยงดีที่สุด</td></tr><tr><td>7</td><td>RBF_PCA</td><td>0.428</td><td>1362.5%</td><td>0.58</td><td>โมเดลพื้นฐานสำหรับเปรียบเทียบมิติข้อมูล</td><td>เกิดความไม่เสถียรในกรอบเวลาที่ยาวขึ้น</td></tr><tr><td>7</td><td>QSVM</td><td>0.456</td><td>383.5%</td><td>0.34</td><td>โมเดลควอนตัมทางเลือก (คู่แข่งที่น่าสนใจแต่ไม่ชนะเด็ดขาด)</td><td>พยากรณ์ดี แต่ยังให้ผลลัพธ์การลงทุนสู้ RBF_FULL ไม่ได้</td></tr><tr class=\"highlight-row\"><td>30</td><td>RBF_FULL</td><td>0.430</td><td>8558.2%</td><td>0.77</td><td>โมเดลมาตรฐานเพื่อจัดการความเสี่ยง (มีความแข็งแรงที่สุดในมุมผลตอบแทนและความเสี่ยง)</td><td>ให้โปรไฟล์ผลตอบแทนเทียบความเสี่ยงดีที่สุด</td></tr><tr><td>30</td><td>QSVM</td><td>0.455</td><td>657.2%</td><td>0.34</td><td>โมเดลควอนตัมทางเลือก (คู่แข่งที่น่าสนใจแต่ไม่ชนะเด็ดขาด)</td><td>พยากรณ์ดี แต่ยังให้ผลลัพธ์การลงทุนสู้ RBF_FULL ไม่ได้</td></tr><tr><td>30</td><td>RBF_PCA</td><td>0.429</td><td>1980.8%</td><td>0.52</td><td>โมเดลพื้นฐานสำหรับเปรียบเทียบมิติข้อมูล</td><td>เกิดความไม่เสถียรในกรอบเวลาที่ยาวขึ้น</td></tr></tbody>\n      </table>\n    </div>\n    ", 
+    "diagnostic": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ตัวชี้วัด (Diagnostic)</th><th>ผลประเมิน</th><th>ความหมายเชิงสถิติ</th><th>ระดับความสำคัญ</th></tr></thead>\n        <tbody><tr><td>ความแตกต่างของ Kernel</td><td>0.6808</td><td>QSVM และ RBF_PCA สกัดโครงสร้างข้อมูลที่แตกต่างกันอย่างชัดเจนในเชิงโครงสร้าง</td><td>ระดับสูง</td></tr><tr class=\"highlight-row\"><td>ความสอดคล้องกับเป้าหมาย</td><td>0.0022</td><td>ยังไม่พบข้อได้เปรียบที่ชัดเจนของ QSVM ในการนำมาวิเคราะห์ทิศทางไบนารี</td><td>ระดับสูง</td></tr><tr class=\"highlight-row\"><td>ความซับซ้อนเชิงมิติ (Effective Rank)</td><td>QSVM 147.8 vs RBF_PCA 35.9</td><td>QSVM มีความซับซ้อนเชิงสเปกตรัมสูงกว่า แต่ความซับซ้อนไม่ได้แปลว่าได้เปรียบ</td><td>ระดับสูง</td></tr><tr><td>ความทนทานต่อสภาวะตลาดผันผวน</td><td>-0.0077</td><td>ผลทดสอบเบื้องต้นยังไม่ชี้ชัดว่า QSVM ทนทานต่อ Regime ความผันผวนได้ดีกว่า</td><td>ระดับรอง</td></tr></tbody>\n      </table>\n    </div>\n    ", 
+    "verdict": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ประเด็นคำถามการวิจัย (Research Question)</th><th>คำตอบหลัก</th><th>คำอธิบายประกอบ</th></tr></thead>\n        <tbody><tr><td>QSVM เหนือกว่า (Classical ML) โดยรวมอย่างชัดเจนหรือไม่?</td><td><span class=\"badge-focus red\">ไม่ใช่ (No)</span></td><td>หลักฐานเชิงประจักษ์ยังไม่สนับสนุนว่า QSVM เหนือกว่าเมื่อประเมินจากความเสถียรและผลตอบแทนเทียบความเสี่ยง</td></tr><tr><td>แล้ว QSVM ไร้ประโยชน์เลยหรือไม่?</td><td>ไม่ใช่ (No)</td><td>QSVM ยังทำผลงานได้ใกล้เคียงในด่านพยากรณ์ และมีประโยชน์อย่างยิ่งในการเป็นกรณีศึกษาเชิงควอนตัม</td></tr><tr><td>อะไรคือคุณค่าหลักของงานวิจัยชิ้นนี้?</td><td>สร้างกรอบการทดสอบมาตรฐาน (Rigorous Benchmark)</td><td>งานนี้เสนอกรอบการประเมินแบบ Leakage-safe ที่ครอบคลุมทั้งมิติเวลา ความผันผวน และต้นทุนแฝง</td></tr><tr><td>บทสรุปสุดท้ายคืออะไร?</td><td><span class=\"badge-focus gold\">ความซับซ้อน ≠ ความได้เปรียบ</span></td><td>โครงสร้างเชิงควอนตัมสามารถสังเกตได้จากผลวิเคราะห์ แต่ ณ ปัจจุบัน 'Quantum Advantage' ยังไม่ถูกพิสูจน์ว่าใช้งานได้จริงกับโจทย์นี้</td></tr></tbody>\n      </table>\n    </div>\n    "
   }
 };
 
@@ -855,10 +854,6 @@ function setLanguage(lang) {
 
   renderCharts(lang);
 }
-
-window.addEventListener('load', () => {
-  setLanguage('en');
-});
 
 // 1. Plotly Premium Hover Theme (ใส่เพิ่มในฟังก์ชัน baseLayout)
 // ให้ค้นหาฟังก์ชัน baseLayout เดิม แล้วแก้ท่อน return ให้มี hoverlabel แบบนี้ครับ:
