@@ -429,7 +429,22 @@ tr.highlight-row td:first-child {
   border: 1px solid rgba(255, 69, 58, 0.3);
   color: var(--red);
 }
+/* --- Global Apple Metallic Gradientสำหรับ หัวข้อรอง (h2) ทั้งหมด --- */
+h2 {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  /* ไล่เฉดสีจากขาวบริสุทธิ์ลงไปหาเทาเงินไทเทเนียมสไตล์เมทัลลิก */
+  background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block; /* เพื่อให้เนื้อสีของ Gradient คลุมพอดีเฉพาะตัวอักษร */
+  margin: 0;
+}
 
+/* ล้างค่าสีเดิมของ h2 ในกล่องเฉพาะจุดเพื่อให้เซ็ตอัปเอฟเฟกต์ทำงานได้สมบูรณ์ */
+.hero-answer h2, .section h2, .decision-box h2 {
+  color: transparent !important;
+}
 </style>
 
 </head>
