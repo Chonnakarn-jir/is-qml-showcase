@@ -1,0 +1,846 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CJ - IS QML Bitcoin Research Showcase</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/app.js" defer></script>
+</head>
+<body class="no-js">
+<canvas id="quantum-bg" aria-hidden="true"></canvas>
+<header>
+  <nav class="nav">
+    <div class="brand">CJ - IS QML Bitcoin Research Showcase</div>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#research-question" data-i18n="nav_research"></a>
+        <a href="#dataset" data-i18n="nav_dataset"></a>
+        <a href="#summary" data-i18n="nav_summary"></a>
+        <a href="#dashboard" data-i18n="nav_dashboard"></a>
+        <a href="#claims" data-i18n="nav_claims"></a>
+        <a href="#appendix" data-i18n="nav_appendix"></a>
+      </div>
+      <div class="lang-toggle" aria-label="Language toggle">
+        <button id="btn-en" class="active" data-lang="en">EN</button>
+        <button id="btn-th" data-lang="th">TH</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-main">
+      <div class="eyebrow hero-kicker-pill" data-i18n="eyebrow"></div>
+      <h1 data-i18n="hero_title"></h1>
+      <p data-i18n="hero_subtitle"></p>
+      <p data-i18n="hero_positioning"></p>
+      <div class="hero-evidence-chips" aria-label="Study design principles">
+        <span data-i18n="hero_chip_leakage"></span>
+        <span data-i18n="hero_chip_horizon"></span>
+        <span data-i18n="hero_chip_trading"></span>
+        <span data-i18n="hero_chip_diagnostic"></span>
+      </div>
+    </div>
+
+    <aside class="hero-answer">
+      <div>
+        <div class="answer-label hero-kicker-pill" data-i18n="final_answer_label"></div>
+        <h2 data-i18n="final_answer_title"></h2>
+        <p data-i18n="final_answer_text"></p>
+      </div>
+    </aside>
+  </section>
+
+  <section class="kpi-grid reveal">
+    <div class="kpi">
+      <div class="kpi-number">27</div>
+      <div class="kpi-label" data-i18n="kpi_folds_label"></div>
+      <p data-i18n="kpi_folds_note"></p>
+    </div>
+    <div class="kpi">
+      <div class="kpi-number">3</div>
+      <div class="kpi-label" data-i18n="kpi_horizons_label"></div>
+      <p data-i18n="kpi_horizons_note"></p>
+    </div>
+    <div class="kpi">
+      <div class="kpi-number">4</div>
+      <div class="kpi-label" data-i18n="kpi_layers_label"></div>
+      <p data-i18n="kpi_layers_note"></p>
+    </div>
+    <div class="kpi">
+      <div class="kpi-number" data-i18n="kpi_num"></div>
+      <div class="kpi-label" data-i18n="kpi_adv_label"></div>
+      <p data-i18n="kpi_adv_note"></p>
+    </div>
+  </section>
+
+  <section class="section story-section reveal" id="research-question">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker" data-i18n="rq_kicker"></div>
+        <h2 data-i18n="rq_title"></h2>
+      </div>
+      <p class="section-desc" data-i18n="rq_desc"></p>
+    </div>
+
+    <div class="question-frame">
+      <div class="main-question">
+        <span class="question-label" data-i18n="rq_main_label"></span>
+        <p data-i18n="rq_main_question"></p>
+      </div>
+
+      <div class="evidence-question-grid">
+        <article class="story-card">
+          <span class="card-index">01</span>
+          <h3 data-i18n="rq_card1_title"></h3>
+          <p data-i18n="rq_card1_text"></p>
+        </article>
+        <article class="story-card">
+          <span class="card-index">02</span>
+          <h3 data-i18n="rq_card2_title"></h3>
+          <p data-i18n="rq_card2_text"></p>
+        </article>
+        <article class="story-card">
+          <span class="card-index">03</span>
+          <h3 data-i18n="rq_card3_title"></h3>
+          <p data-i18n="rq_card3_text"></p>
+        </article>
+        <article class="story-card">
+          <span class="card-index">04</span>
+          <h3 data-i18n="rq_card4_title"></h3>
+          <p data-i18n="rq_card4_text"></p>
+        </article>
+      </div>
+
+      <div class="story-note" data-i18n="rq_boundary_note"></div>
+    </div>
+  </section>
+
+  <section class="section story-section reveal" id="bitcoin-stress-test">
+    <div class="section-head section-head-wide">
+      <div>
+        <div class="section-kicker" data-i18n="btc_kicker"></div>
+        <h2 data-i18n="btc_title"></h2>
+      </div>
+      <p class="section-desc" data-i18n="btc_desc"></p>
+    </div>
+
+    <div class="stress-layout">
+      <div class="narrative-panel">
+        <p data-i18n="btc_narrative"></p>
+        <div class="story-note story-note-compact" data-i18n="btc_boundary_note"></div>
+        <div class="evidence-flow" aria-label="Evidence layer sequence">
+          <span data-i18n="flow_classification"></span>
+          <span data-i18n="flow_stability"></span>
+          <span data-i18n="flow_trading"></span>
+          <span data-i18n="flow_diagnostics"></span>
+          <span data-i18n="flow_boundary"></span>
+        </div>
+      </div>
+
+      <div class="stress-card-grid">
+        <article class="story-card compact">
+          <span class="card-index">01</span>
+          <h3 data-i18n="btc_card1_title"></h3>
+          <p data-i18n="btc_card1_text"></p>
+        </article>
+        <article class="story-card compact">
+          <span class="card-index">02</span>
+          <h3 data-i18n="btc_card2_title"></h3>
+          <p data-i18n="btc_card2_text"></p>
+        </article>
+        <article class="story-card compact">
+          <span class="card-index">03</span>
+          <h3 data-i18n="btc_card3_title"></h3>
+          <p data-i18n="btc_card3_text"></p>
+        </article>
+        <article class="story-card compact">
+          <span class="card-index">04</span>
+          <h3 data-i18n="btc_card4_title"></h3>
+          <p data-i18n="btc_card4_text"></p>
+        </article>
+        <article class="story-card compact accent-card">
+          <span class="card-index">05</span>
+          <h3 data-i18n="btc_card5_title"></h3>
+          <p data-i18n="btc_card5_text"></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section story-section reveal" id="dataset">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker" data-i18n="data_kicker"></div>
+        <h2 data-i18n="data_title"></h2>
+      </div>
+      <p class="section-desc" data-i18n="data_desc"></p>
+    </div>
+
+    <div class="dataset-frame">
+      <div class="dataset-narrative">
+        <p data-i18n="data_narrative"></p>
+      </div>
+
+      <div class="snapshot-grid">
+        <div class="snapshot-item">
+          <span data-i18n="data_asset_label"></span>
+          <strong data-i18n="data_asset_value"></strong>
+        </div>
+        <div class="snapshot-item">
+          <span data-i18n="data_period_label"></span>
+          <strong data-i18n="data_period_value"></strong>
+        </div>
+        <div class="snapshot-item">
+          <span data-i18n="data_domains_label"></span>
+          <strong data-i18n="data_domains_value"></strong>
+        </div>
+        <div class="snapshot-item">
+          <span data-i18n="data_horizons_label"></span>
+          <strong data-i18n="data_horizons_value"></strong>
+        </div>
+        <div class="snapshot-item">
+          <span data-i18n="data_validation_label"></span>
+          <strong data-i18n="data_validation_value"></strong>
+        </div>
+        <div class="snapshot-item">
+          <span data-i18n="data_leakage_label"></span>
+          <strong data-i18n="data_leakage_value"></strong>
+        </div>
+      </div>
+
+      <div class="dataset-meta">
+        <div class="timeline">
+          <span>2016</span>
+          <div class="timeline-track"></div>
+          <span>2025</span>
+        </div>
+        <div class="timeline-context" aria-label="Dataset coverage context">
+          <span class="timeline-context-label" data-i18n="timeline_context_label"></span>
+          <span data-i18n="timeline_context_dataset"></span>
+          <span data-i18n="timeline_context_period"></span>
+          <span data-i18n="timeline_context_folds"></span>
+        </div>
+
+        <div class="feature-domain-grid">
+          <button class="feature-domain-card interactive-chip is-active" type="button" data-interactive-group="feature" data-interactive-key="market" aria-pressed="true">
+            <span data-i18n="data_domain1_label"></span>
+          </button>
+          <button class="feature-domain-card interactive-chip" type="button" data-interactive-group="feature" data-interactive-key="onchain" aria-pressed="false">
+            <span data-i18n="data_domain2_label"></span>
+          </button>
+          <button class="feature-domain-card interactive-chip" type="button" data-interactive-group="feature" data-interactive-key="macro" aria-pressed="false">
+            <span data-i18n="data_domain3_label"></span>
+          </button>
+        </div>
+        <div class="interactive-detail" data-interactive-detail="feature" aria-live="polite">
+          <strong data-i18n="data_domain1_label"></strong>
+          <p data-i18n="detail_feature_market"></p>
+        </div>
+
+        <div class="dataset-badge-row">
+          <div class="dataset-badges">
+            <button class="interactive-chip is-active" type="button" data-interactive-group="horizon" data-interactive-key="1d" aria-pressed="true">1D</button>
+            <button class="interactive-chip" type="button" data-interactive-group="horizon" data-interactive-key="7d" aria-pressed="false">7D</button>
+            <button class="interactive-chip" type="button" data-interactive-group="horizon" data-interactive-key="30d" aria-pressed="false">30D</button>
+          </div>
+          <div class="dataset-badges">
+            <button class="interactive-chip is-active" type="button" data-interactive-group="validation" data-interactive-key="lag" aria-pressed="true" data-i18n="data_lag_badge"></button>
+            <button class="interactive-chip" type="button" data-interactive-group="validation" data-interactive-key="folds" aria-pressed="false" data-i18n="data_folds_badge"></button>
+          </div>
+        </div>
+        <div class="interactive-detail-row">
+          <div class="interactive-detail" data-interactive-detail="horizon" aria-live="polite">
+            <strong>1D</strong>
+            <p data-i18n="detail_horizon_1d"></p>
+          </div>
+          <div class="interactive-detail" data-interactive-detail="validation" aria-live="polite">
+            <strong data-i18n="data_lag_badge"></strong>
+            <p data-i18n="detail_validation_lag"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-note" data-i18n="data_clarification_note"></div>
+    </div>
+  </section>
+
+  <section class="section story-section method-section reveal" id="experiment-pipeline">
+    <div class="section-head section-head-wide">
+      <div>
+        <div class="section-kicker" data-i18n="pipeline_kicker"></div>
+        <h2 data-i18n="pipeline_title"></h2>
+      </div>
+      <p class="section-desc" data-i18n="pipeline_desc"></p>
+    </div>
+
+    <div class="method-frame">
+      <div class="method-narrative">
+        <p data-i18n="pipeline_narrative_1"></p>
+        <p data-i18n="pipeline_narrative_2"></p>
+      </div>
+
+      <div class="pipeline-grid" aria-label="Experiment pipeline stages">
+        <article class="pipeline-step">
+          <span class="step-index">01</span>
+          <h3 data-i18n="pipeline_step1_title"></h3>
+          <p data-i18n="pipeline_step1_text"></p>
+        </article>
+        <article class="pipeline-step critical">
+          <span class="step-index">02</span>
+          <h3 data-i18n="pipeline_step2_title"></h3>
+          <p data-i18n="pipeline_step2_text"></p>
+        </article>
+        <article class="pipeline-step">
+          <span class="step-index">03</span>
+          <h3 data-i18n="pipeline_step3_title"></h3>
+          <p data-i18n="pipeline_step3_text"></p>
+        </article>
+        <article class="pipeline-step">
+          <span class="step-index">04</span>
+          <h3 data-i18n="pipeline_step4_title"></h3>
+          <p data-i18n="pipeline_step4_text"></p>
+        </article>
+        <article class="pipeline-step critical">
+          <span class="step-index">05</span>
+          <h3 data-i18n="pipeline_step5_title"></h3>
+          <p data-i18n="pipeline_step5_text"></p>
+        </article>
+        <article class="pipeline-step critical">
+          <span class="step-index">06</span>
+          <h3 data-i18n="pipeline_step6_title"></h3>
+          <p data-i18n="pipeline_step6_text"></p>
+        </article>
+        <article class="pipeline-step output-step">
+          <span class="step-index">07</span>
+          <h3 data-i18n="pipeline_step7_title"></h3>
+          <p data-i18n="pipeline_step7_text"></p>
+        </article>
+        <article class="pipeline-step">
+          <span class="step-index">08</span>
+          <h3 data-i18n="pipeline_step8_title"></h3>
+          <p data-i18n="pipeline_step8_text"></p>
+        </article>
+      </div>
+
+      <div class="method-note" data-i18n="pipeline_trust_note"></div>
+    </div>
+  </section>
+
+  <section class="section story-section method-section reveal" id="model-roles">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker" data-i18n="roles_kicker"></div>
+        <h2 data-i18n="roles_title"></h2>
+      </div>
+      <p class="section-desc" data-i18n="roles_desc"></p>
+    </div>
+
+    <div class="method-frame">
+      <div class="method-narrative">
+        <p data-i18n="roles_narrative_1"></p>
+        <p data-i18n="roles_narrative_2"></p>
+      </div>
+
+      <div class="model-role-grid">
+        <article class="model-role-card">
+          <span class="role-label">QSVM</span>
+          <h3 data-i18n="role_qsvm_title"></h3>
+          <p data-i18n="role_qsvm_text"></p>
+        </article>
+        <article class="model-role-card">
+          <span class="role-label">RBF_PCA</span>
+          <h3 data-i18n="role_rbf_pca_title"></h3>
+          <p data-i18n="role_rbf_pca_text"></p>
+        </article>
+        <article class="model-role-card">
+          <span class="role-label">RBF_FULL</span>
+          <h3 data-i18n="role_rbf_full_title"></h3>
+          <p data-i18n="role_rbf_full_text"></p>
+        </article>
+      </div>
+
+      <div class="method-note" data-i18n="roles_interpretation_rule"></div>
+    </div>
+  </section>
+
+  <section class="section story-section method-section qsvm-section reveal" id="qsvm-arrow-map">
+    <div class="section-head section-head-wide">
+      <div>
+        <div class="section-kicker" data-i18n="qsvm_kicker"></div>
+        <h2 data-i18n="qsvm_title"></h2>
+      </div>
+      <p class="section-desc" data-i18n="qsvm_desc"></p>
+    </div>
+
+    <div class="qsvm-frame">
+      <div class="method-narrative qsvm-narrative">
+        <p data-i18n="qsvm_narrative_1"></p>
+        <p data-i18n="qsvm_narrative_2"></p>
+      </div>
+
+      <div class="qsvm-map-panel">
+        <div class="qsvm-arrow-grid" aria-label="QSVM quantum kernel mechanism">
+          <article class="qsvm-flow-step">
+            <span class="qsvm-step-number">01</span>
+            <h3 data-i18n="qsvm_step1_title"></h3>
+            <p data-i18n="qsvm_step1_text"></p>
+          </article>
+          <article class="qsvm-flow-step">
+            <span class="qsvm-step-number">02</span>
+            <h3 data-i18n="qsvm_step2_title"></h3>
+            <p data-i18n="qsvm_step2_text"></p>
+          </article>
+          <article class="qsvm-flow-step">
+            <span class="qsvm-step-number">03</span>
+            <h3 data-i18n="qsvm_step3_title"></h3>
+            <p data-i18n="qsvm_step3_text"></p>
+          </article>
+          <article class="qsvm-flow-step qsvm-emphasis">
+            <span class="qsvm-step-number">04</span>
+            <h3 data-i18n="qsvm_step4_title"></h3>
+            <p data-i18n="qsvm_step4_text"></p>
+          </article>
+          <article class="qsvm-flow-step qsvm-emphasis">
+            <span class="qsvm-step-number">05</span>
+            <h3 data-i18n="qsvm_step5_title"></h3>
+            <p data-i18n="qsvm_step5_text"></p>
+          </article>
+          <article class="qsvm-flow-step qsvm-emphasis">
+            <span class="qsvm-step-number">06</span>
+            <h3 data-i18n="qsvm_step6_title"></h3>
+            <p data-i18n="qsvm_step6_text"></p>
+          </article>
+          <article class="qsvm-flow-step">
+            <span class="qsvm-step-number">07</span>
+            <h3 data-i18n="qsvm_step7_title"></h3>
+            <p data-i18n="qsvm_step7_text"></p>
+          </article>
+          <article class="qsvm-flow-step qsvm-output">
+            <span class="qsvm-step-number">08</span>
+            <h3 data-i18n="qsvm_step8_title"></h3>
+            <p data-i18n="qsvm_step8_text"></p>
+          </article>
+        </div>
+      </div>
+
+      <div class="qsvm-explain-grid">
+        <article class="qsvm-explain-card qsvm-primary-card">
+          <span class="qsvm-card-label">01</span>
+          <h3 data-i18n="qsvm_card1_title"></h3>
+          <p data-i18n="qsvm_card1_text"></p>
+        </article>
+        <article class="qsvm-explain-card qsvm-simulation-card">
+          <span class="qsvm-card-label">02</span>
+          <h3 data-i18n="qsvm_card2_title"></h3>
+          <p data-i18n="qsvm_card2_text"></p>
+        </article>
+        <article class="qsvm-explain-card">
+          <span class="qsvm-card-label">03</span>
+          <h3 data-i18n="qsvm_card3_title"></h3>
+          <p data-i18n="qsvm_card3_text"></p>
+        </article>
+        <article class="qsvm-explain-card">
+          <span class="qsvm-card-label">04</span>
+          <h3 data-i18n="qsvm_card4_title"></h3>
+          <p data-i18n="qsvm_card4_text"></p>
+        </article>
+        <article class="qsvm-explain-card qsvm-wide-card">
+          <span class="qsvm-card-label">05</span>
+          <h3 data-i18n="qsvm_card5_title"></h3>
+          <p data-i18n="qsvm_card5_text"></p>
+        </article>
+      </div>
+
+      <div class="qsvm-diagnostic-bridge" data-i18n="qsvm_diagnostic_bridge"></div>
+    </div>
+  </section>
+
+  <section class="section story-section method-section reveal" id="leakage-controls">
+    <div class="section-head section-head-wide">
+      <div>
+        <div class="section-kicker" data-i18n="leak_kicker"></div>
+        <h2 data-i18n="leak_title"></h2>
+      </div>
+      <p class="section-desc" data-i18n="leak_desc"></p>
+    </div>
+
+    <div class="method-frame">
+      <div class="method-narrative method-narrative-compact">
+        <p data-i18n="leak_narrative"></p>
+      </div>
+
+      <div class="control-matrix">
+        <article class="control-card">
+          <span class="control-index">01</span>
+          <h3 data-i18n="leak_control1_title"></h3>
+          <p data-i18n="leak_control1_text"></p>
+        </article>
+        <article class="control-card critical">
+          <span class="control-index">02</span>
+          <h3 data-i18n="leak_control2_title"></h3>
+          <p data-i18n="leak_control2_text"></p>
+        </article>
+        <article class="control-card critical">
+          <span class="control-index">03</span>
+          <h3 data-i18n="leak_control3_title"></h3>
+          <p data-i18n="leak_control3_text"></p>
+        </article>
+        <article class="control-card critical">
+          <span class="control-index">04</span>
+          <h3 data-i18n="leak_control4_title"></h3>
+          <p data-i18n="leak_control4_text"></p>
+        </article>
+        <article class="control-card critical">
+          <span class="control-index">05</span>
+          <h3 data-i18n="leak_control5_title"></h3>
+          <p data-i18n="leak_control5_text"></p>
+        </article>
+        <article class="control-card output-step">
+          <span class="control-index">06</span>
+          <h3 data-i18n="leak_control6_title"></h3>
+          <p data-i18n="leak_control6_text"></p>
+        </article>
+        <article class="control-card">
+          <span class="control-index">07</span>
+          <h3 data-i18n="leak_control7_title"></h3>
+          <p data-i18n="leak_control7_text"></p>
+        </article>
+        <article class="control-card">
+          <span class="control-index">08</span>
+          <h3 data-i18n="leak_control8_title"></h3>
+          <p data-i18n="leak_control8_text"></p>
+        </article>
+        <article class="control-card">
+          <span class="control-index">09</span>
+          <h3 data-i18n="leak_control9_title"></h3>
+          <p data-i18n="leak_control9_text"></p>
+        </article>
+      </div>
+
+      <div class="method-note" data-i18n="leak_trust_note"></div>
+    </div>
+  </section>
+
+  <section class="section story-section method-section reveal" id="evidence-ladder">
+    <div class="section-head section-head-wide">
+      <div>
+        <div class="section-kicker" data-i18n="ladder_kicker"></div>
+        <h2 data-i18n="ladder_title"></h2>
+      </div>
+      <p class="section-desc" data-i18n="ladder_desc"></p>
+    </div>
+
+    <div class="method-frame">
+      <div class="method-narrative method-narrative-compact">
+        <p data-i18n="ladder_narrative"></p>
+      </div>
+
+      <div class="evidence-ladder-list" aria-label="Evidence ladder">
+        <article class="ladder-step">
+          <span class="ladder-index">01</span>
+          <div>
+            <h3 data-i18n="ladder1_title"></h3>
+            <div class="evidence-lines">
+              <p><span data-i18n="ladder_question_label"></span><strong data-i18n="ladder1_question"></strong></p>
+              <p><span data-i18n="ladder_can_label"></span><strong data-i18n="ladder1_can"></strong></p>
+              <p><span data-i18n="ladder_cannot_label"></span><strong data-i18n="ladder1_cannot"></strong></p>
+            </div>
+          </div>
+        </article>
+        <article class="ladder-step">
+          <span class="ladder-index">02</span>
+          <div>
+            <h3 data-i18n="ladder2_title"></h3>
+            <div class="evidence-lines">
+              <p><span data-i18n="ladder_question_label"></span><strong data-i18n="ladder2_question"></strong></p>
+              <p><span data-i18n="ladder_can_label"></span><strong data-i18n="ladder2_can"></strong></p>
+              <p><span data-i18n="ladder_cannot_label"></span><strong data-i18n="ladder2_cannot"></strong></p>
+            </div>
+          </div>
+        </article>
+        <article class="ladder-step">
+          <span class="ladder-index">03</span>
+          <div>
+            <h3 data-i18n="ladder3_title"></h3>
+            <div class="evidence-lines">
+              <p><span data-i18n="ladder_question_label"></span><strong data-i18n="ladder3_question"></strong></p>
+              <p><span data-i18n="ladder_can_label"></span><strong data-i18n="ladder3_can"></strong></p>
+              <p><span data-i18n="ladder_cannot_label"></span><strong data-i18n="ladder3_cannot"></strong></p>
+            </div>
+          </div>
+        </article>
+        <article class="ladder-step">
+          <span class="ladder-index">04</span>
+          <div>
+            <h3 data-i18n="ladder4_title"></h3>
+            <div class="evidence-lines">
+              <p><span data-i18n="ladder_question_label"></span><strong data-i18n="ladder4_question"></strong></p>
+              <p><span data-i18n="ladder_can_label"></span><strong data-i18n="ladder4_can"></strong></p>
+              <p><span data-i18n="ladder_cannot_label"></span><strong data-i18n="ladder4_cannot"></strong></p>
+            </div>
+          </div>
+        </article>
+        <article class="ladder-step claim-step">
+          <span class="ladder-index">05</span>
+          <div>
+            <h3 data-i18n="ladder5_title"></h3>
+            <div class="evidence-lines">
+              <p><span data-i18n="ladder_question_label"></span><strong data-i18n="ladder5_question"></strong></p>
+              <p><span data-i18n="ladder_can_label"></span><strong data-i18n="ladder5_can"></strong></p>
+              <p><span data-i18n="ladder_cannot_label"></span><strong data-i18n="ladder5_cannot"></strong></p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="method-note" data-i18n="ladder_bridge_note"></div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="summary">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker" data-i18n="summary_kicker"></div>
+        <h2 data-i18n="summary_title"></h2>
+      </div>
+      <p class="section-desc" data-i18n="summary_desc"></p>
+    </div>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <h3 data-i18n="sum1_title"></h3>
+        <p data-i18n="sum1_text"></p>
+      </div>
+      <div class="summary-card">
+        <h3 data-i18n="sum2_title"></h3>
+        <p data-i18n="sum2_text"></p>
+      </div>
+      <div class="summary-card">
+        <h3 data-i18n="sum3_title"></h3>
+        <p data-i18n="sum3_text"></p>
+      </div>
+      <div class="summary-card">
+        <h3 data-i18n="sum4_title"></h3>
+        <p data-i18n="sum4_text"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="dashboard">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker" data-i18n="dashboard_kicker"></div>
+        <h2 data-i18n="dashboard_title"></h2>
+      </div>
+      <p class="section-desc" data-i18n="dashboard_desc"></p>
+    </div>
+
+    <div class="result-framing" data-i18n="dashboard_framing"></div>
+
+    <div class="dashboard-grid">
+      <div class="panel">
+        <h3 data-i18n="chart1_title"></h3>
+        <p data-i18n="chart1_desc"></p>
+        <div id="chart_classification" class="plot"></div>
+        <div class="statistical-note" data-i18n="classification_stat_note"></div>
+        <div class="so-what" data-i18n="chart1_sowhat"></div>
+      </div>
+
+      <div class="panel">
+        <h3 data-i18n="chart2_title"></h3>
+        <p data-i18n="chart2_desc"></p>
+        <div id="chart_trading" class="plot"></div>
+        <div class="so-what" data-i18n="chart2_sowhat"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal results-gap-section" id="classification-trading-gap">
+    <div class="section-head section-head-wide">
+      <div>
+        <div class="section-kicker" data-i18n="gap_kicker"></div>
+        <h2 data-i18n="gap_title"></h2>
+      </div>
+      <p class="section-desc" data-i18n="gap_desc"></p>
+    </div>
+
+    <div class="gap-frame">
+      <div class="gap-contrast-grid">
+        <article class="gap-contrast-card">
+          <span class="card-index">01</span>
+          <h3 data-i18n="gap_classification_label"></h3>
+          <p data-i18n="gap_classification_text"></p>
+        </article>
+        <article class="gap-contrast-card risk-card">
+          <span class="card-index">02</span>
+          <h3 data-i18n="gap_trading_label"></h3>
+          <p data-i18n="gap_trading_text"></p>
+        </article>
+      </div>
+
+      <div class="metric-row gap-metrics">
+        <div class="metric">
+          <div class="metric-value">0.4754</div>
+          <div class="metric-label" data-i18n="metric_f1"></div>
+        </div>
+        <div class="metric risk-metric">
+          <div class="metric-value">-0.6691</div>
+          <div class="metric-label" data-i18n="metric_sharpe"></div>
+        </div>
+        <div class="metric risk-metric">
+          <div class="metric-value">-0.9412</div>
+          <div class="metric-label" data-i18n="metric_return"></div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">1315</div>
+          <div class="metric-label" data-i18n="metric_turnover"></div>
+        </div>
+      </div>
+
+      <div class="so-what" data-i18n="gap_interpretation"></div>
+    </div>
+  </section>
+
+  <section class="section reveal quantum-diagnostics-section" id="quantum-diagnostics">
+    <div class="section-head section-head-wide">
+      <div>
+        <div class="section-kicker" data-i18n="diag_kicker"></div>
+        <h2 data-i18n="diag_title"></h2>
+      </div>
+      <p class="section-desc" data-i18n="diag_desc"></p>
+    </div>
+
+    <div class="diagnostic-frame">
+      <div class="diagnostic-layout">
+        <div class="diagnostic-card-grid">
+          <article class="diagnostic-card">
+            <span class="card-index">01</span>
+            <h3 data-i18n="diag_kernel_label"></h3>
+            <p data-i18n="diag_kernel_pearson"></p>
+            <p data-i18n="diag_kernel_spearman"></p>
+          </article>
+          <article class="diagnostic-card">
+            <span class="card-index">02</span>
+            <h3 data-i18n="diag_rank_label"></h3>
+            <p data-i18n="diag_rank_qsvm"></p>
+            <p data-i18n="diag_rank_rbf"></p>
+          </article>
+          <article class="diagnostic-card">
+            <span class="card-index">03</span>
+            <h3 data-i18n="diag_alignment_label"></h3>
+            <p data-i18n="diag_alignment_text"></p>
+          </article>
+        </div>
+
+        <div class="diagnostic-chart-panel">
+          <h3 data-i18n="diag_rank_label"></h3>
+          <div id="chart_diagnostic" class="plot plot--compact"></div>
+        </div>
+      </div>
+
+      <div class="so-what" data-i18n="diag_interpretation"></div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="claims">
+    <div class="section-head section-head-wide">
+      <div>
+        <div class="section-kicker" data-i18n="claim_kicker"></div>
+        <h2 data-i18n="claim_title"></h2>
+      </div>
+      <p class="section-desc" data-i18n="claim_desc"></p>
+    </div>
+
+    <div class="claim-boundary">
+      <div class="claim-boundary-main">
+        <p data-i18n="claim_boundary_text"></p>
+      </div>
+
+      <div class="claim-card-grid">
+        <article class="claim-card claim-card-supported">
+          <span data-i18n="claim_card1_status"></span>
+          <h3 data-i18n="claim_card1_title"></h3>
+          <p data-i18n="claim_card1_text"></p>
+        </article>
+        <article class="claim-card claim-card-qualified">
+          <span data-i18n="claim_card2_status"></span>
+          <h3 data-i18n="claim_card2_title"></h3>
+          <p data-i18n="claim_card2_text"></p>
+        </article>
+        <article class="claim-card claim-card-negative">
+          <span data-i18n="claim_card3_status"></span>
+          <h3 data-i18n="claim_card3_title"></h3>
+          <p data-i18n="claim_card3_text"></p>
+        </article>
+        <article class="claim-card claim-card-negative">
+          <span data-i18n="claim_card4_status"></span>
+          <h3 data-i18n="claim_card4_title"></h3>
+          <p data-i18n="claim_card4_text"></p>
+        </article>
+        <article class="claim-card claim-card-open">
+          <span data-i18n="claim_card5_status"></span>
+          <h3 data-i18n="claim_card5_title"></h3>
+          <p data-i18n="claim_card5_text"></p>
+        </article>
+      </div>
+
+      <div class="claim-boundary-note" data-i18n="claim_boundary_statement"></div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="appendix">
+    <div class="section-head section-head-wide">
+      <div>
+        <div class="section-kicker" data-i18n="appendix_kicker"></div>
+        <h2 data-i18n="appendix_title"></h2>
+      </div>
+      <p class="section-desc" data-i18n="appendix_desc"></p>
+    </div>
+
+    <div class="appendix">
+      <details>
+        <summary data-i18n="table_group1_title"></summary>
+        <p class="evidence-table-intro" data-i18n="table_group1_intro"></p>
+        <div id="table_group1_container"></div>
+        <p class="evidence-table-note" data-i18n="table_group1_note"></p>
+      </details>
+
+      <details>
+        <summary data-i18n="table_group2_title"></summary>
+        <p class="evidence-table-intro" data-i18n="table_group2_intro"></p>
+        <div id="table_group2_container"></div>
+        <p class="evidence-table-note" data-i18n="table_group2_note"></p>
+      </details>
+
+      <details>
+        <summary data-i18n="table_group3_title"></summary>
+        <p class="evidence-table-intro" data-i18n="table_group3_intro"></p>
+        <div id="table_group3_container"></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section reveal" id="final-takeaway">
+    <div class="final-takeaway">
+      <div class="section-kicker" data-i18n="final_takeaway_kicker"></div>
+      <h2 data-i18n="final_takeaway_title"></h2>
+      <p class="final-message" data-i18n="final_takeaway_message"></p>
+      <p data-i18n="final_takeaway_supporting"></p>
+      <div class="final-closing-line" data-i18n="final_takeaway_closing"></div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <span data-i18n="footer"></span> · Generated UTC: 2026-05-28T11:39:56.476827+00:00
+  </div>
+</main>
+<button class="back-to-top" type="button" aria-label="Back to top">↑</button>
+</body>
+</html>
