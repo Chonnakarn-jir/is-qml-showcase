@@ -349,7 +349,7 @@ const i18n = {
   "th": {
     "nav_dashboard": "ผลลัพธ์",
     "nav_summary": "ข้อค้นพบหลัก",
-    "nav_claims": "สรุปได้แค่ไหน",
+    "nav_claims": "สรุปงานวิจัย",
     "nav_appendix": "ผลลัพธ์ฉบับละเอียด",
     "eyebrow": "Financial ML &middot; Quantum Kernel Benchmark &middot; การพยากรณ์ทิศทาง Bitcoin",
     "hero_title": "ทดสอบ Quantum Machine Learning ด้วยการประเมินข้อมูลการเงินที่เข้มงวด",
