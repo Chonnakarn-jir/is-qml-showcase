@@ -1,653 +1,703 @@
 const i18n = {
   "en": {
-    "nav_dashboard": "Dashboard",
-    "nav_summary": "Summary",
-    "nav_claims": "Claim boundary",
-    "nav_appendix": "Evidence appendix",
-    "eyebrow": "Finance ML &middot; Quantum Kernel Benchmark &middot; BTC Forecasting",
-    "hero_title": "Testing Quantum Machine Learning Under Real Financial Validation",
-    "hero_subtitle": "A leakage-safe, multi-horizon Bitcoin forecasting study comparing Quantum Support Vector Machine with classical kernel baselines across directional prediction, trading/risk interpretation, and quantum kernel diagnostics.",
-    "hero_positioning": "This project does not assume that quantum models should outperform classical models. Instead, it asks a stricter question: when QSVM is tested under realistic financial validation, does its quantum-generated kernel provide task-relevant value beyond strong classical baselines?",
+    "nav_dashboard": "Results",
+    "nav_summary": "Key findings",
+    "nav_claims": "What we can conclude",
+    "nav_appendix": "Detailed evidence",
+    "eyebrow": "Financial ML &middot; Quantum Kernel Benchmark &middot; Bitcoin Direction Forecasting",
+    "hero_title": "Testing Quantum Machine Learning Under Rigorous Financial Validation",
+    "hero_subtitle": "A leakage-safe study of Bitcoin direction forecasting at 1-, 7-, and 30-day horizons. QSVM is compared with two classical RBF-SVM baselines using nested rolling walk-forward validation, horizon-aware purging, post-hoc trading/risk analysis, and quantum-kernel diagnostics.",
+    "hero_positioning": "The study starts from a neutral question: does a simulated quantum fidelity kernel add useful, task-relevant value beyond strong classical kernels? The design therefore keeps future information out of training, separates model selection from testing, and treats predictive, financial, and quantum-structural evidence as different questions.",
     "hero_chip_leakage": "Leakage-safe",
-    "hero_chip_horizon": "Multi-horizon",
-    "hero_chip_trading": "Trading-aware",
-    "hero_chip_diagnostic": "Diagnostically bounded",
-    "final_answer_label": "Final Answer",
-    "final_answer_title": "QSVM is meaningful, but quantum advantage is not established.",
-    "final_answer_text": "QSVM remains scientifically useful as a quantum-kernel benchmark and shows horizon-dependent competitiveness in directional classification. However, the integrated evidence does not support claims of overall QSVM superiority, trading superiority, or task-relevant quantum advantage in the tested Bitcoin forecasting setting.",
+    "hero_chip_horizon": "Three forecast horizons",
+    "hero_chip_trading": "Post-hoc trading/risk",
+    "hero_chip_diagnostic": "Quantum diagnostics",
+    "final_answer_label": "Bottom line",
+    "final_answer_title": "<span class=\"answer-highlight-main\">QSVM’s clearest advantage appears at 1 day.</span><span class=\"answer-highlight-sub\">That advantage is confined to classification.</span>",
+    "final_answer_text": "At the 1-day horizon, QSVM outperforms both classical baselines in classification and the result remains supported after the full statistical robustness checks. At 7 days, QSVM is competitive but not robustly superior; at 30 days, there is no QSVM classification advantage. The trading/risk analysis does not support QSVM trading superiority, and the richer quantum-kernel geometry does not establish quantum advantage. All quantum results come from exact statevector simulation, not physical hardware.",
     "kpi_folds_label": "Walk-forward folds",
-    "kpi_folds_note": "Rolling out-of-sample validation",
+    "kpi_folds_note": "27 matched out-of-sample test periods per horizon",
     "kpi_horizons_label": "Forecast horizons",
-    "kpi_horizons_note": "h = 1, 7, 30",
+    "kpi_horizons_note": "1, 7, and 30 days ahead",
     "kpi_layers_label": "Evidence layers",
-    "kpi_layers_note": "Prediction, trading/risk, robustness, diagnostics",
-    "kpi_num": "0",
-    "kpi_adv_label": "Unsubstantiated Overclaims",
-    "kpi_adv_note": "No superiority claim is made beyond the integrated evidence.",
-    "summary_kicker": "Executive summary",
-    "summary_title": "There is no single winner across all criteria",
-    "summary_desc": "The main finding is disciplined: QSVM remains useful as a benchmark, but it is not superior under the full financial validation protocol.",
-    "sum1_title": "QSVM remains useful for predicting price direction",
-    "sum1_text": "The evidence shows that QSVM is still worth considering for predicting Bitcoin price direction across short-, medium-, and longer-horizon tests.",
-    "sum2_title": "A good prediction score is not the same as financial usefulness",
-    "sum2_text": "The h = 1 QSVM case shows why prediction scores alone can mislead in financial ML. Strong prediction scores can be weakened once transaction costs, turnover, and risk exposure are considered.",
-    "sum3_title": "RBF_FULL is stronger in trading/risk evidence",
-    "sum3_text": "At h = 7 and h = 30, RBF_FULL provides stronger risk-adjusted trading evidence than QSVM under the tested protocol.",
-    "sum4_title": "Model complexity is not the same as advantage",
-    "sum4_text": "QSVM kernels are different and structurally richer, but a richer representation does not automatically become a useful advantage for this prediction task.",
-    "dashboard_kicker": "Main Results Dashboard",
-    "dashboard_title": "Evidence changes the interpretation",
-    "dashboard_desc": "Classification evidence makes QSVM look competitive, but trading/risk and quantum diagnostics define the final evidence boundary. The results should be read as layered evidence, not as a single leaderboard.",
-    "chart1_title": "Classification Evidence",
-    "chart1_desc": "Mean F1-score across horizons and models.",
-    "chart1_sowhat": "<strong>So what:</strong> QSVM remains worth considering for Bitcoin direction forecasting. However, this is only the first evidence layer, not the final conclusion.",
-    "chart2_title": "Trading/Risk Evidence",
-    "chart2_desc": "Sharpe ratio across horizons and models under the fixed post-hoc trading/risk interpretation.",
-    "chart2_sowhat": "<strong>So what:</strong> The trading/risk layer changes the interpretation. RBF_FULL becomes stronger at the 7-day and 30-day horizons, showing that classification strength does not directly translate into financial usefulness.",
-    "gap_title": "A promising prediction score does not automatically become financial usefulness",
-    "gap_desc": "The 1-day QSVM case shows why financial ML claims require more than a classification metric. A model may look competitive by F1-score but become fragile after turnover, transaction costs, and drawdown risk are considered.",
-    "gap_sowhat": "<strong>So what:</strong> This is the project’s turning point. QSVM looks promising by F1, but its short-horizon trading profile is weakened by turnover and transaction costs.",
+    "kpi_layers_note": "Classification, stability, trading/risk, and quantum-kernel diagnostics",
+    "kpi_num": "2",
+    "kpi_adv_label": "Classical baselines",
+    "kpi_adv_note": "RBF_PCA provides the dimension-controlled comparison; RBF_FULL provides the full-feature comparison.",
+    "summary_kicker": "Key findings",
+    "summary_title": "The answer changes with the forecast horizon",
+    "summary_desc": "There is no single winner across all horizons. The strongest result appears at 1 day, the 7-day evidence is mixed, and the 30-day result favors the dimension-controlled classical comparator descriptively.",
+    "hx_kicker": "Interactive evidence view",
+    "hx_title": "Follow the result horizon by horizon",
+    "hx_intro": "Choose a forecast horizon, then move through the evidence one layer at a time—from classification to the final claim.",
+    "hx_tab_1": "1 day",
+    "hx_tab_7": "7 days",
+    "hx_tab_30": "30 days",
+    "hx_context_role": "Evidence path",
+    "hx_classification_label": "Classification",
+    "hx_statistics_label": "Statistical robustness",
+    "hx_trading_label": "Trading / risk",
+    "hx_verdict_label": "Supported interpretation",
+    "summary_integrated_label": "Integrated takeaway",
+    "sum1_title": "1 day · Robust QSVM classification advantage",
+    "sum1_text": "QSVM reaches mean F1 = 0.4760, compared with 0.4400 for RBF_PCA and 0.4249 for RBF_FULL. The advantage over both baselines survives Holm-corrected paired tests and circular moving-block bootstrap checks.",
+    "sum2_title": "7 days · Competitive, but not robustly superior",
+    "sum2_text": "QSVM has the highest mean F1 at 0.4600, but the statistical picture is mixed. The comparison with RBF_FULL is not significant, while the result against RBF_PCA is not consistent across the paired tests and bootstrap block lengths.",
+    "sum3_title": "30 days · No QSVM classification advantage",
+    "sum3_text": "RBF_PCA has the strongest descriptive profile at this horizon, with mean F1 = 0.3977 versus 0.3832 for QSVM. Neither the paired tests nor the block-bootstrap analysis supports a QSVM advantage.",
+    "sum4_title": "Better classification does not automatically mean better finance—or quantum advantage",
+    "sum4_text": "At the central transaction cost of 0.0015 per side, every model has a negative total return and QSVM is never the best-Sharpe model. QSVM also has a much higher effective rank than RBF_PCA, but target alignment is small and horizon-dependent. The extra kernel richness is therefore structural evidence, not quantum advantage.",
+    "dashboard_kicker": "Main results",
+    "dashboard_title": "The interpretation changes as more evidence is added",
+    "dashboard_desc": "A higher F1 score tells only part of the story. We also ask whether the difference is statistically robust, whether the same out-of-sample predictions remain meaningful after trading costs and risk, and whether the quantum kernel is better aligned with the prediction target.",
+    "chart1_title": "Directional classification",
+    "chart1_desc": "Mean macro F1 across 27 matched outer walk-forward test folds for each forecast horizon.",
+    "chart1_sowhat": "<strong>What it means:</strong> QSVM leads descriptively at 1 and 7 days, but not at 30 days. After the full robustness checks, a QSVM superiority claim is supported only for the 1-day classification task.",
+    "chart2_title": "Post-hoc trading/risk interpretation",
+    "chart2_desc": "Sharpe ratio from the predefined out-of-sample trading/risk protocol at a transaction cost of 0.0015 per side.",
+    "chart2_sowhat": "<strong>What it means:</strong> The financial layer tells a different story. RBF_FULL has the best central-cost Sharpe at 1 and 7 days, while RBF_PCA is best at 30 days. All central-cost total returns are negative, so the results do not support QSVM trading superiority.",
+    "gap_title": "The 1-day classification gain does not carry over to trading performance",
+    "gap_desc": "QSVM has a statistically robust 1-day classification advantage, yet the same clean out-of-sample predictions produce weaker risk-adjusted trading results under the fixed execution rule and transaction-cost assumptions.",
+    "gap_sowhat": "<strong>Why this matters:</strong> This is the clearest example of why financial ML should not stop at a predictive metric. QSVM improves F1 at 1 day, but higher turnover and transaction costs weaken the financial interpretation of that signal.",
     "metric_f1": "Mean F1",
     "metric_sharpe": "Sharpe ratio",
     "metric_return": "Total return",
     "metric_turnover": "Turnover",
-    "diag_title": "A richer quantum kernel is not the same as task-relevant advantage",
-    "diag_desc": "The QSVM kernel is structurally different from the PCA-controlled RBF kernel and shows a richer spectral profile. However, the target-alignment evidence is small, so the diagnostic layer does not establish task-relevant quantum advantage.",
-    "diag_sowhat": "<strong>So what:</strong> The quantum kernel is different and richer, but richness alone is not enough. The evidence does not show that this richer representation is more aligned with the prediction target.",
-    "decision_kicker": "Decision takeaway",
-    "decision_title": "QSVM is worth studying, but the evidence should not be overstated",
-    "decision_text": "The strongest result of this project is not a quantum-advantage claim. It is a rigorous evidence boundary showing where quantum kernels are meaningful, where classical baselines remain stronger, and why financial ML evaluation must go beyond F1.",
-    "claim_kicker": "Claim Boundary",
-    "claim_title": "What the evidence supports - and what it does not",
-    "claim_desc": "The study does not treat the highest classification score as proof of model superiority. The final interpretation is bounded by classification evidence, stability behavior, trading/risk interpretation, and quantum diagnostics.",
-    "claim_supported_title": "Supported",
-    "claim_qualified_title": "Qualified",
+    "diag_title": "A richer quantum kernel is interesting—but it is not quantum advantage",
+    "diag_desc": "On representative early, middle, and late folds (0, 13, and 26), using the same 1,024 observations for both kernels, QSVM has a substantially higher effective rank than RBF_PCA. The kernels are related but clearly not identical, while their target-alignment differences remain small and depend on the horizon.",
+    "diag_sowhat": "<strong>What it means:</strong> QSVM creates a richer similarity geometry, but that geometry is not consistently better aligned with the direction target and does not produce consistent predictive or financial superiority. It therefore cannot be used as evidence of computational, hardware-level, or task-relevant quantum advantage.",
+    "decision_kicker": "Research takeaway",
+    "decision_title": "The strongest defensible result is the 1-day classification advantage",
+    "decision_text": "Within the tested setting, QSVM is a meaningful simulation-based quantum-kernel benchmark and has a robust classification advantage at 1 day. The evidence does not support robust superiority at 7 days, any QSVM classification advantage at 30 days, QSVM trading superiority, or quantum advantage.",
+    "claim_kicker": "Interpretation boundary",
+    "claim_title": "What the study supports—and where the evidence stops",
+    "claim_desc": "The conclusions are tied to the full set of evidence: classification, fold-level robustness, the fixed post-hoc trading/risk analysis, and simulation-based quantum-kernel diagnostics.",
+    "claim_supported_title": "Supported by the study",
+    "claim_qualified_title": "Supported with limits",
     "claim_not_title": "Not supported",
-    "claim_supported_html": "<li>QSVM is classification-competitive.</li><li>Quantum expressivity is observable.</li><li>RBF_FULL is stronger in trading/risk evidence at longer horizons.</li><li>The framework provides leakage-safe, multi-layer financial validation.</li>",
-    "claim_qualified_html": "<li>Classification evidence is not final superiority.</li><li>Trading/risk results are an evaluation layer, not a deployable trading strategy.</li><li>Higher kernel richness does not imply target usefulness.</li><li>Results are specific to this dataset, horizons, features, and validation protocol.</li>",
-    "claim_not_html": "<li>QSVM overall superiority.</li><li>QSVM trading superiority.</li><li>Task-relevant quantum advantage.</li><li>Live trading readiness or guaranteed profitability.</li>",
-    "appendix_kicker": "Evidence Tables",
-    "appendix_title": "Detailed evidence, available on demand",
-    "appendix_desc": "The main page explains the interpretation. The tables below provide the supporting evidence for readers who want to inspect the numerical basis of the claim boundary.",
-    "table_classification": "Classification evidence table",
-    "table_trading": "Trading/risk evidence table",
-    "table_decision": "Integrated decision table",
-    "table_diagnostic": "Quantum diagnostic table",
-    "table_verdict": "Final verdict table",
+    "claim_supported_html": "<li>A robust QSVM classification advantage at the 1-day horizon.</li><li>QSVM remains competitive at 7 days, but without robust superiority.</li><li>RBF_PCA has the strongest descriptive classification-stability profile at 30 days.</li><li>QSVM produces a richer simulated kernel geometry than RBF_PCA.</li>",
+    "claim_qualified_html": "<li>Classification strength is not the same as overall model superiority.</li><li>The trading/risk results are a fixed diagnostic of out-of-sample predictions, not a deployable trading strategy.</li><li>Higher effective rank shows richer geometry, not greater usefulness by itself.</li><li>The findings are specific to this dataset, feature set, forecast horizons, and validation protocol.</li>",
+    "claim_not_html": "<li>General QSVM superiority.</li><li>QSVM trading superiority or proven investment profitability.</li><li>A QSVM classification advantage at 30 days.</li><li>Quantum computational speedup, an entanglement contribution, or physical-hardware quantum advantage.</li>",
+    "appendix_kicker": "Detailed evidence",
+    "appendix_title": "Detailed result tables",
+    "appendix_desc": "These tables provide the numerical detail behind the charts and summary findings, including classification, trading/risk, and integrated evidence by forecast horizon.",
+    "table_classification": "Classification and stability table",
+    "table_trading": "Trading/risk table",
+    "table_decision": "Integrated evidence table",
+    "table_diagnostic": "Quantum-kernel diagnostics table",
+    "table_verdict": "Final interpretation table",
     "axis_f1": "Mean F1",
     "axis_sharpe": "Sharpe ratio",
     "axis_rank": "Effective rank",
-    "diag_annotation": "Kernel corr ≈ 0.6808 · target alignment diff ≈ 0.0022",
-    "footer": "Final bilingual finance-grade showcase · visualization/reporting only · No new experiment",
-    "nav_research": "Research",
-    "nav_dataset": "Dataset",
-    "rq_kicker": "Research Question",
-    "rq_title": "Not just \"which model wins?\" - but what evidence is enough?",
-    "rq_desc": "Financial QML claims should not be judged by a single average score. This study evaluates whether QSVM provides task-relevant value across four evidence layers: directional classification, fold-level stability, trading/risk interpretation, and quantum kernel diagnostics.",
-    "rq_main_label": "Main Question",
-    "rq_main_question": "Does QSVM provide task-relevant value beyond classical kernel baselines under leakage-safe, multi-horizon Bitcoin direction forecasting?",
-    "rq_card1_title": "Directional Classification",
-    "rq_card1_text": "Can QSVM predict Bitcoin direction competitively across 1-day, 7-day, and 30-day horizons?",
-    "rq_card2_title": "Stability Across Time",
-    "rq_card2_text": "Does model performance remain consistent across rolling walk-forward folds, or does it depend heavily on specific market periods?",
-    "rq_card3_title": "Trading/Risk Interpretation",
-    "rq_card3_text": "Do clean out-of-sample predictions remain meaningful when viewed through transaction costs, turnover, Sharpe ratio, return, and drawdown?",
-    "rq_card4_title": "Quantum Kernel Diagnostics",
-    "rq_card4_text": "Is the quantum-generated kernel structurally different, and does that difference appear aligned with the prediction target?\r\n\r\nBoundary Note:\r\nNo single evidence layer is sufficient to claim model superiority. Classification, stability, financial interpretation, and diagnostics must be interpreted together.",
-    "rq_boundary_note": "No single evidence layer is sufficient to claim model superiority. Classification, stability, financial interpretation, and diagnostics must be interpreted together.",
+    "chart_hover_horizon": "Horizon",
+    "chart_hover_f1": "Mean F1",
+    "chart_hover_sharpe": "Sharpe ratio",
+    "chart_hover_rank": "Effective rank",
+    "diag_annotation": "Folds 0, 13, 26 · matched n = 1,024",
+    "footer": "Bilingual research showcase · Graduate School of Applied Statistics, NIDA · Classical and quantum kernel benchmarking for Bitcoin direction forecasting",
+    "nav_research": "Research question",
+    "nav_dataset": "Data",
+    "nav_method": "Method",
+    "nav_quantum": "Quantum",
+    "deep_dive_kicker": "Technical details",
+    "deep_dive_title": "Explore the evaluation design",
+    "deep_dive_intro": "Expand this section for the model roles, QSVM kernel construction, leakage controls, and the framework used to connect each evidence layer to its interpretation.",
+    "rq_kicker": "Research question",
+    "rq_title": "The question is not simply “which model wins?”",
+    "rq_desc": "A single average score is not enough to judge a financial QML claim. The study asks whether QSVM adds task-relevant value, then checks that question through classification, stability across time, a fixed trading/risk interpretation, and quantum-kernel diagnostics.",
+    "rq_main_label": "Main question",
+    "rq_main_question": "Does QSVM provide task-relevant value beyond classical kernel baselines when Bitcoin direction is forecast under a leakage-safe, multi-horizon protocol?",
+    "rq_card1_title": "Can it predict direction better?",
+    "rq_card1_text": "Compare QSVM with RBF_PCA and RBF_FULL on 1-, 7-, and 30-day Bitcoin direction classification.",
+    "rq_card2_title": "Does the result hold across time?",
+    "rq_card2_text": "Check mean performance together with cross-fold dispersion and the worst-performing walk-forward period.",
+    "rq_card3_title": "Does the signal still make sense financially?",
+    "rq_card3_text": "Use only clean out-of-sample predictions, then examine transaction costs, turnover, Sharpe ratio, return, and drawdown under one fixed execution rule.",
+    "rq_card4_title": "What does the quantum kernel actually add?",
+    "rq_card4_text": "Compare the QSVM and RBF_PCA kernels through similarity, effective rank, and target alignment to distinguish structural difference from task-relevant advantage.",
+    "rq_boundary_note": "Each evidence layer answers a different question. Predictive performance, statistical robustness, financial interpretation, and kernel structure are therefore evaluated separately before the findings are interpreted together.",
     "btc_kicker": "Why Bitcoin?",
-    "btc_title": "A volatile stress-test for financial QML claims",
-    "btc_desc": "Bitcoin is not used here as a trading recommendation. It is used as a demanding case study because its market behavior is noisy, volatile, non-stationary, and influenced by multiple information sources.",
-    "btc_narrative": "Financial machine learning is difficult because predictive accuracy does not automatically translate into reliable financial interpretation. A model can look competitive under classification metrics while becoming fragile after transaction costs, turnover, drawdowns, or regime shifts are considered. Bitcoin makes this challenge especially visible. It trades continuously, experiences sharp volatility, and reflects market, blockchain network, and macro-financial signals at the same time. This makes it a useful stress-test for evaluating whether QSVM provides value that survives beyond a single predictive metric.",
-    "btc_boundary_note": "Bitcoin is used as a stress-test environment, not as an investment object or trading signal.",
-    "btc_card1_title": "High Volatility",
-    "btc_card1_text": "Bitcoin exposes models to rapid price changes and unstable market conditions.",
-    "btc_card2_title": "Non-Stationarity",
-    "btc_card2_text": "Patterns that appear useful in one period may weaken or reverse in another.",
-    "btc_card3_title": "Multi-Source Signals",
-    "btc_card3_text": "The dataset combines market/technical, on-chain, and macroeconomic information.",
-    "btc_card4_title": "Accuracy-Risk Gap",
-    "btc_card4_text": "Classification strength may not survive trading/risk interpretation.",
-    "btc_card5_title": "Strict Validation Needed",
-    "btc_card5_text": "A leakage-safe walk-forward protocol is essential to avoid optimistic conclusions.",
-    "flow_classification": "Directional classification",
+    "btc_title": "A difficult real-world stress test for model evaluation",
+    "btc_desc": "Bitcoin is used as a volatile financial time series—not as an investment recommendation. Its noise, non-stationarity, continuous trading, and mix of market, network, and macroeconomic signals make it a demanding setting for comparing classical and quantum kernels.",
+    "btc_narrative": "Financial forecasting can be deceptive when evaluation is too simple. A model may look stronger on a classification metric but lose that advantage once different market periods, turnover, transaction costs, or drawdowns are considered. Bitcoin makes this tension easy to see because its behavior changes sharply over time and draws information from several domains. That makes it useful for testing whether an apparent QSVM advantage survives more than one kind of evidence.",
+    "btc_boundary_note": "Bitcoin is the test environment in this study, not a recommended asset, a trading signal, or the basis of an investment claim.",
+    "btc_card1_title": "High volatility",
+    "btc_card1_text": "Large and rapid price moves make weak model assumptions easier to expose.",
+    "btc_card2_title": "Non-stationarity",
+    "btc_card2_text": "Patterns that work in one period may weaken or reverse as market conditions change.",
+    "btc_card3_title": "Multiple information sources",
+    "btc_card3_text": "The model sees market/technical, on-chain, and macroeconomic predictors rather than price information alone.",
+    "btc_card4_title": "Prediction is not the same as financial usefulness",
+    "btc_card4_text": "A classification gain may disappear once execution timing, turnover, costs, and drawdown are considered.",
+    "btc_card5_title": "Strict validation is essential",
+    "btc_card5_text": "Walk-forward testing, train-only preprocessing, and horizon-aware purging are used to reduce optimistic bias from future information.",
+    "flow_classification": "Classification",
     "flow_stability": "Stability",
     "flow_trading": "Trading/risk",
-    "flow_diagnostics": "Quantum diagnostics",
-    "flow_boundary": "Claim boundary",
-    "data_kicker": "Dataset Snapshot",
-    "data_title": "Daily Bitcoin data, multiple signals, three prediction horizons",
-    "data_desc": "The study uses a daily Bitcoin dataset aligned on a UTC calendar, combining market/technical, on-chain, and macroeconomic signals. Exogenous variables are lagged by one day to reduce look-ahead risk.",
-    "data_narrative": "Each observation represents information available at or before a given date. The model then predicts whether the Bitcoin closing price will be higher after a selected prediction horizon. The three horizons - 1-day, 7-day, and 30-day - are separate forecasting tasks, not input windows. This distinction matters because the study tests whether model behavior changes across short-, medium-, and longer-horizon prediction settings.",
-    "data_asset_label": "Asset",
-    "data_asset_value": "Bitcoin daily data",
-    "data_period_label": "Study Period",
+    "flow_diagnostics": "Kernel diagnostics",
+    "flow_boundary": "Final claim",
+    "revisit_kicker": "Evidence logic",
+    "revisit_title": "Revisit the evidence",
+    "revisit_desc": "Follow the study's evidence logic from predictive performance to the final claim.",
+    "revisit_aria": "Revisit the study evidence",
+    "data_kicker": "Dataset",
+    "data_title": "3,592 daily observations and 16 predictors across three information domains",
+    "data_desc": "The final dataset spans 31 January 2016 to 30 November 2025 on a daily UTC calendar. The same 16 predictors are used for the 1-, 7-, and 30-day direction tasks.",
+    "data_narrative": "Each horizon is a separate binary classification problem. Using information available at or before date t, the model predicts whether the Bitcoin close at t+h will be higher than the close at t. To reduce look-ahead risk, all four on-chain and five macroeconomic predictors are shifted back by exactly one day before modeling.",
+    "data_asset_label": "Data",
+    "data_asset_value": "Bitcoin daily data · 3,592 observations · UTC calendar",
+    "data_period_label": "Coverage",
     "data_period_value": "31 January 2016 to 30 November 2025",
-    "data_domains_label": "Feature Domains",
-    "data_domains_value": "Market/technical, on-chain, and macroeconomic features",
-    "data_horizons_label": "Prediction Horizons",
-    "data_horizons_value": "1-day, 7-day, and 30-day direction forecasting",
-    "data_validation_label": "Validation Design",
-    "data_validation_value": "Rolling walk-forward validation with 27 folds",
-    "data_leakage_label": "Leakage Control",
-    "data_leakage_value": "One-day lag for exogenous on-chain and macroeconomic variables",
-    "data_domain1_label": "Market / Technical",
+    "data_domains_label": "Predictors",
+    "data_domains_value": "16 total: 7 market/technical + 4 on-chain + 5 macroeconomic",
+    "data_horizons_label": "Forecast tasks",
+    "data_horizons_value": "Direction at 1, 7, and 30 days ahead",
+    "data_validation_label": "Out-of-sample design",
+    "data_validation_value": "Nested rolling walk-forward · 27 outer folds per horizon",
+    "data_leakage_label": "Timing controls",
+    "data_leakage_value": "1-day exogenous lag + horizon-aware purging at outer and inner boundaries",
+    "data_domain1_label": "Market / technical",
     "data_domain2_label": "On-chain",
     "data_domain3_label": "Macroeconomic",
     "data_lag_badge": "1-day exogenous lag",
-    "data_folds_badge": "27 folds",
-    "data_clarification_note": "The prediction horizon is the future target period. It is not the historical input window. For example, in the 7-day task, the model uses information available at date t to predict whether the Bitcoin closing price at t+7 is higher than at t.",
-    "detail_feature_market": "Price, volume, volatility, momentum, and trend-based indicators derived from Bitcoin market behavior.",
-    "detail_feature_onchain": "Blockchain network activity and transaction-related signals that may capture behavior beyond market price alone.",
-    "detail_feature_macro": "Broader financial-market context such as risk sentiment, currency strength, equity-market conditions, and interest-rate environment.",
-    "detail_horizon_1d": "Short-horizon task: use information available at date t to predict whether the Bitcoin close at t+1 is higher than at t.",
-    "detail_horizon_7d": "Medium-horizon task: use information available at date t to predict whether the Bitcoin close at t+7 is higher than at t.",
-    "detail_horizon_30d": "Longer-horizon task: use information available at date t to predict whether the Bitcoin close at t+30 is higher than at t.",
-    "detail_validation_lag": "On-chain and macroeconomic variables are shifted by one day before modeling to reduce look-ahead risk.",
-    "detail_validation_folds": "Rolling walk-forward validation evaluates models across 27 out-of-sample folds instead of relying on a random split.",
-    "timeline_context_dataset": "Daily UTC Bitcoin dataset",
-    "timeline_context_period": "31 Jan 2016 - 30 Nov 2025",
-    "timeline_context_folds": "27 rolling walk-forward folds",
-    "timeline_context_label": "Dataset coverage",
-    "pipeline_kicker": "Experiment Pipeline",
-    "pipeline_title": "From daily Bitcoin data to leakage-safe out-of-sample evidence",
-    "pipeline_desc": "The experiment is designed around one principle: every operation that could leak future information must be fitted or decided using training data only. The test fold is reserved strictly for out-of-sample evaluation.",
-    "pipeline_narrative_1": "The pipeline begins with a single daily UTC Bitcoin master dataset that combines market/technical, on-chain, and macroeconomic features. Exogenous on-chain and macroeconomic variables are lagged by one day before modeling. Independent binary directional labels are constructed for the 1-day, 7-day, and 30-day prediction horizons, and models are trained separately for each horizon-specific task.",
-    "pipeline_narrative_2": "For each walk-forward fold, preprocessing is fitted only on the training window. Scaling, PCA, hyperparameter selection, and model fitting are completed before the model sees the test fold. The resulting predictions are recorded as clean out-of-sample evidence and later interpreted through classification, stability, trading/risk, and diagnostic layers.",
-    "pipeline_step1_title": "Daily UTC Master Dataset",
-    "pipeline_step1_text": "Market, on-chain, and macroeconomic data are aligned to the Bitcoin daily calendar.",
-    "pipeline_step2_title": "One-Day Exogenous Lag",
-    "pipeline_step2_text": "On-chain and macroeconomic variables are shifted by one day to reduce look-ahead risk.",
-    "pipeline_step3_title": "Independent Horizon Labels",
-    "pipeline_step3_text": "Binary directional labels are created separately for the 1-day, 7-day, and 30-day horizon-specific tasks.",
-    "pipeline_step4_title": "Rolling Walk-Forward Folds",
-    "pipeline_step4_text": "The evaluation uses time-ordered train/test folds rather than random splitting.",
-    "pipeline_step5_title": "Train-Only Preprocessing",
-    "pipeline_step5_text": "Scaling and PCA are fitted only on the training fold, then applied to the test fold.",
-    "pipeline_step6_title": "Nested Model Selection",
-    "pipeline_step6_text": "Model settings are selected using training information only.",
-    "pipeline_step7_title": "Out-of-Sample Prediction",
-    "pipeline_step7_text": "Predictions are generated only on untouched test folds.",
-    "pipeline_step8_title": "Evidence-Layer Evaluation",
-    "pipeline_step8_text": "The OOS predictions are interpreted through classification, stability, trading/risk, and diagnostics.",
-    "pipeline_trust_note": "Each prediction horizon is treated as an independent forecasting task. The 1-day, 7-day, and 30-day models are not trained as a single multi-task model. The test fold is never used to fit preprocessing, select parameters, define model transformations, or optimize trading rules.",
-    "roles_kicker": "Model Roles",
-    "roles_title": "Not all baselines answer the same question",
-    "roles_desc": "The model suite is designed for role-based benchmarking. QSVM is not treated as a presumed winner. It is evaluated against classical kernel baselines that provide different comparison boundaries.",
-    "roles_narrative_1": "This study focuses on kernel-based comparison because QSVM preserves the SVM classification framework but replaces the classical similarity function with a quantum-generated kernel. To interpret QSVM fairly, it must be compared against more than one classical reference.",
-    "roles_narrative_2": "RBF_PCA is the dimension-controlled comparator because it uses a PCA-reduced feature representation similar to the QSVM input constraint. RBF_FULL is the full-feature classical kernel reference. QSVM is the quantum-kernel benchmark that tests whether quantum-generated similarity produces task-relevant value under the same validation protocol.",
-    "role_qsvm_title": "QSVM - Quantum-Kernel Benchmark",
-    "role_qsvm_text": "Uses a quantum-generated kernel to construct pairwise similarity before SVM classification. Its role is to test whether quantum-kernel representation provides task-relevant value, not to assume quantum superiority.",
-    "role_rbf_pca_title": "RBF_PCA - Dimension-Controlled Classical Comparator",
-    "role_rbf_pca_text": "Uses a classical RBF kernel on PCA-reduced features. It is the closest structural comparator to QSVM because both operate under constrained dimensionality.",
-    "role_rbf_full_title": "RBF_FULL - Full-Feature Classical Kernel Reference",
-    "role_rbf_full_text": "Uses a classical RBF kernel with the full feature representation. It acts as the unconstrained classical kernel reference for assessing whether dimensionality reduction required by the quantum-capacity setting may sacrifice task-relevant information.",
-    "roles_interpretation_rule": "If QSVM outperforms RBF_PCA but not RBF_FULL, the safe interpretation is dimension-controlled competitiveness, not overall classical superiority.",
-    "leak_kicker": "Leakage-Safe Controls",
-    "leak_title": "The test fold stays untouched until evaluation",
-    "leak_desc": "Financial time-series experiments can look stronger than they really are when future information enters preprocessing, model selection, or trading interpretation. This study separates training decisions from out-of-sample evaluation.",
+    "data_folds_badge": "27 outer folds",
+    "data_clarification_note": "A forecast horizon is the number of days ahead being predicted—not the historical input window. In the 7-day task, for example, information available at date t is used to predict whether the Bitcoin close at t+7 will be higher than the close at t.",
+    "detail_feature_market": "7 predictors: log return, 30-day rolling volatility, ATR14, RSI14, MACD, the SMA7/SMA30 ratio, and trading volume.",
+    "detail_feature_onchain": "4 predictors: active address count, transaction count, hash rate, and mean transaction fee in native units. Each is lagged by exactly one day before modeling.",
+    "detail_feature_macro": "5 predictors: U.S. Dollar Index (DXY), gold price, S&P 500, VIX, and U.S. 10-year Treasury yield. Each is lagged by exactly one day before modeling.",
+    "detail_horizon_1d": "Short horizon: use information available at date t to predict whether the Bitcoin close at t+1 will be higher than at t.",
+    "detail_horizon_7d": "Medium horizon: use information available at date t to predict whether the Bitcoin close at t+7 will be higher than at t.",
+    "detail_horizon_30d": "Longer horizon: use information available at date t to predict whether the Bitcoin close at t+30 will be higher than at t.",
+    "detail_validation_lag": "Every on-chain and macroeconomic predictor is lagged by one day. Training observations are also removed whenever their h-step target would extend into the next validation or test period.",
+    "detail_validation_folds": "Each horizon uses the same 27 outer test folds: a 3-year rolling candidate training window followed by a 3-month test window, advancing 3 months at a time. Model selection inside each outer fold uses three chronological inner validation splits, each 3 months long.",
+    "timeline_context_dataset": "Daily UTC Bitcoin data",
+    "timeline_context_period": "31 Jan 2016 – 30 Nov 2025",
+    "timeline_context_folds": "27 rolling out-of-sample folds per horizon",
+    "timeline_context_label": "Study coverage",
+    "pipeline_kicker": "Evaluation pipeline",
+    "pipeline_title": "Every step is designed to keep future information out of training",
+    "pipeline_desc": "Chronological splitting alone is not enough for multi-horizon labels. The protocol also removes training observations whose future target endpoint would cross into the next validation or test period.",
+    "pipeline_narrative_1": "The pipeline starts from one daily UTC dataset with 3,592 observations and 16 predictors. Separate binary direction labels are built for 1, 7, and 30 days ahead, and all on-chain and macroeconomic inputs are lagged by one day.",
+    "pipeline_narrative_2": "Within each outer fold, horizon-aware purging is applied before any data-dependent fitting. Scaling and PCA are learned from training data only. Hyperparameter selection is carried out inside three chronological inner validation splits using the same purge rule, and the outer test fold stays untouched until the final prediction.",
+    "pipeline_step1_title": "Daily UTC dataset",
+    "pipeline_step1_text": "3,592 observations and 16 predictors covering 31 Jan 2016 to 30 Nov 2025.",
+    "pipeline_step2_title": "Lag exogenous inputs",
+    "pipeline_step2_text": "Shift every on-chain and macroeconomic predictor back by exactly one day.",
+    "pipeline_step3_title": "Build each horizon separately",
+    "pipeline_step3_text": "Create y = 1[Close(t+h) > Close(t)] independently for h = 1, 7, and 30 days.",
+    "pipeline_step4_title": "Roll forward and purge target overlap",
+    "pipeline_step4_text": "Use a 3-year candidate training window, a 3-month test window, and a 3-month step; remove any training row whose target reaches into the next evaluation period.",
+    "pipeline_step5_title": "Fit preprocessing on training data only",
+    "pipeline_step5_text": "Estimate standardization and, where needed, the fixed 8-component PCA using only the eligible training partition.",
+    "pipeline_step6_title": "Select C inside the training fold",
+    "pipeline_step6_text": "Choose C from {0.1, 1.0, 10.0} using three chronological 3-month inner validation splits with the same horizon-aware purge.",
+    "pipeline_step7_title": "Predict the untouched test fold",
+    "pipeline_step7_text": "Refit the selected pipeline on eligible outer-training data, then evaluate it once on the held-out outer test period.",
+    "pipeline_step8_title": "Use OOS predictions only for evaluation",
+    "pipeline_step8_text": "Store the out-of-sample predictions for classification and the fixed post-hoc trading/risk analysis. Quantum diagnostics are computed separately on predefined folds.",
+    "pipeline_trust_note": "RBF_FULL and RBF_PCA use all eligible training observations. Because exact quantum-kernel construction is expensive, QSVM uses at most the 1,024 most recent eligible observations after purging. A separate matched-1,024 classical control checks whether that smaller training set alone explains the short-horizon result; it does not replace the primary classical baselines.",
+    "roles_kicker": "Model roles",
+    "roles_title": "Each baseline answers a different comparison question",
+    "roles_desc": "QSVM is not treated as the expected winner. The classical baselines are chosen so that one controls for input dimensionality and the other represents a strong full-feature kernel model.",
+    "roles_narrative_1": "QSVM stays within the SVM framework but changes how similarity is computed: a quantum-generated fidelity kernel replaces the classical RBF kernel. That makes kernel-based classical models the most direct reference points.",
+    "roles_narrative_2": "RBF_PCA controls the representation dimension by using the same eight-component PCA input as QSVM. RBF_FULL keeps all 16 predictors and acts as the full-feature classical benchmark. Together, the two baselines help separate a quantum-kernel effect from a dimensionality or feature-set effect.",
+    "role_qsvm_title": "QSVM · Quantum-kernel benchmark",
+    "role_qsvm_text": "Uses the same eight-component train-fitted PCA representation as RBF_PCA, then computes a precomputed quantum fidelity kernel with exact statevector simulation. Each training partition is capped at the 1,024 most recent eligible observations.",
+    "role_rbf_pca_title": "RBF_PCA · Dimension-controlled comparator",
+    "role_rbf_pca_text": "Uses a classical RBF kernel on the same eight-component PCA representation as QSVM, making it the closest structural classical comparison.",
+    "role_rbf_full_title": "RBF_FULL · Full-feature classical benchmark",
+    "role_rbf_full_text": "Uses a classical RBF kernel on all 16 predictors and all eligible training observations.",
+    "roles_interpretation_rule": "All three SVMs use class_weight = balanced and the same C grid {0.1, 1.0, 10.0}; the two RBF models use gamma = scale. The matched-1,024 classical analysis is a fairness check, not a replacement for the main full-eligible classical baselines.",
+    "leak_kicker": "Leakage controls",
+    "leak_title": "Protecting both the feature timeline and the future target boundary",
+    "leak_desc": "The final protocol controls more than train/test order. It also prevents target overlap near every outer and inner boundary and keeps preprocessing, model selection, trading interpretation, and diagnostics from using the outer test period.",
     "leak_narrative_1": "The protocol is designed so that information flows forward in time. Data alignment, feature lagging, label construction, train/test splitting, preprocessing, PCA, model selection, and OOS prediction all follow this principle. Any transformation that learns from the data is fitted only inside the training fold. The test fold is used only after the model and transformations are fixed.",
-    "leak_narrative": "The protocol is designed so that information flows forward in time. Data alignment, feature lagging, label construction, train/test splitting, preprocessing, PCA, model selection, and OOS prediction all follow this principle. Any transformation that learns from the data is fitted only inside the training fold. The test fold is used only after the model and transformations are fixed.",
-    "leak_control1_title": "No Random Split",
-    "leak_control1_text": "Time order is preserved through rolling walk-forward validation.",
-    "leak_control2_title": "One-Day Exogenous Lag",
-    "leak_control2_text": "On-chain and macroeconomic variables are shifted before modeling.",
-    "leak_control3_title": "Train-Only Scaling",
-    "leak_control3_text": "Scalers are fitted only on the training fold.",
-    "leak_control4_title": "Train-Only PCA",
-    "leak_control4_text": "Dimensionality reduction is fitted only on the training fold.",
-    "leak_control5_title": "Train-Only Model Selection",
-    "leak_control5_text": "Hyperparameters are selected without using the outer test fold.",
-    "leak_control6_title": "Untouched OOS Test Fold",
-    "leak_control6_text": "Final predictions are generated only after training decisions are fixed.",
-    "leak_control7_title": "OOS-Only Trading/Risk Layer",
-    "leak_control7_text": "Trading/risk interpretation uses clean out-of-sample predictions only, with a fixed transaction-cost assumption. No trading rule or cost parameter is optimized on the test fold.",
-    "leak_control8_title": "Hardcoded Transaction Cost",
-    "leak_control8_text": "The post-hoc trading/risk layer includes a fixed transaction cost, c = 0.0015, to reduce the risk of overstating high-turnover prediction behavior.",
-    "leak_control9_title": "Diagnostics Separated from Selection",
-    "leak_control9_text": "Quantum diagnostics are used for interpretation, not model selection.",
-    "leak_trust_note": "This design does not guarantee better performance. It makes the evidence harder to overstate by forcing predictive, financial, and diagnostic claims to remain separated.",
-    "ladder_kicker": "Evidence Ladder",
-    "ladder_title": "Each evidence layer answers a different question",
-    "ladder_desc": "The study does not rank models from a single chart. It builds an evidence ladder from classification to stability, from financial interpretation to quantum diagnostics, and finally to a bounded claim.",
-    "ladder_narrative_1": "A high mean F1-score can support classification competitiveness, but it cannot prove financial usefulness. A richer quantum kernel can support representational difference, but it cannot prove task-relevant quantum advantage. Worst-fold behavior is treated as important because a model with an acceptable average score may still fail sharply during difficult market periods. The evidence ladder prevents these different claims from being mixed together.",
-    "ladder_narrative": "A high mean F1-score can support classification competitiveness, but it cannot prove financial usefulness. A richer quantum kernel can support representational difference, but it cannot prove task-relevant quantum advantage. Worst-fold behavior is treated as important because a model with an acceptable average score may still fail sharply during difficult market periods. The evidence ladder prevents these different claims from being mixed together.",
+    "leak_narrative": "For an observation dated t with forecast horizon h, the row is allowed into a training set only if the future price needed to form its label at t+h is fully realized before the next validation or test period begins. The same rule is applied at outer and inner boundaries. Only after this purge are scaling, PCA, kernel centering, and model fitting learned from the remaining training data.",
+    "leak_control1_title": "Chronological walk-forward testing",
+    "leak_control1_text": "27 outer folds per horizon, using a 3-year candidate training window, a 3-month test window, and a 3-month step.",
+    "leak_control2_title": "One-day lag for exogenous data",
+    "leak_control2_text": "All on-chain and macroeconomic predictors are shifted by exactly one day before they enter the models.",
+    "leak_control3_title": "Outer horizon-aware purge",
+    "leak_control3_text": "Remove any outer-training row whose h-step target would reach or cross the start of the outer test period.",
+    "leak_control4_title": "Inner horizon-aware purge",
+    "leak_control4_text": "Apply the same target-endpoint rule at every inner training–validation boundary during hyperparameter selection.",
+    "leak_control5_title": "Train-only preprocessing and tuning",
+    "leak_control5_text": "Fit scaling, the fixed eight-component PCA where applicable, and C selection using eligible training data only.",
+    "leak_control6_title": "Untouched outer test fold",
+    "leak_control6_text": "Use the outer test period only after preprocessing and model choices have been fixed.",
+    "leak_control7_title": "QSVM cap and kernel centering",
+    "leak_control7_text": "Apply the 1,024-observation QSVM cap only after purging, choose the most recent eligible rows, and derive centering statistics from the training kernel only.",
+    "leak_control8_title": "Fixed post-hoc trading protocol",
+    "leak_control8_text": "Use clean OOS predictions only; enter at Open(t+1), exit at Open(t+h+1), enforce one global non-overlapping sequence across folds, and evaluate predefined transaction-cost scenarios.",
+    "leak_control9_title": "Diagnostics stay post-hoc",
+    "leak_control9_text": "Kernel diagnostics use predefined folds 0, 13, and 26 with matched samples. They never influence preprocessing, tuning, or model selection.",
+    "leak_trust_note": "The final checks found no target-overlap violations at outer or inner boundaries and no inner validation period crossing into the corresponding outer test period. Dates, labels, and return fields were also aligned across models before paired statistical comparisons.",
+    "ladder_kicker": "How the evidence is read",
+    "ladder_title": "Each layer answers a different question",
+    "ladder_desc": "The study does not turn one chart into a broad superiority claim. It moves from prediction to robustness, then to financial interpretation and kernel diagnostics, before deciding what can safely be concluded.",
+    "ladder_narrative_1": "A higher mean F1 can show stronger classification, but it cannot by itself prove financial usefulness. A richer quantum kernel can show a different representation, but it cannot by itself prove quantum advantage. Looking at dispersion and the worst fold also matters because an acceptable average can hide sharp failures in difficult market periods.",
+    "ladder_narrative": "A higher mean F1 can show stronger classification, but it cannot by itself prove financial usefulness. A richer quantum kernel can show a different representation, but it cannot by itself prove quantum advantage. Looking at dispersion and the worst fold also matters because an acceptable average can hide sharp failures in difficult market periods.",
     "ladder1_title": "Classification",
-    "ladder1_question": "Can the model predict direction competitively?",
-    "ladder1_can": "directional competitiveness",
-    "ladder1_cannot": "trading superiority or quantum advantage",
-    "ladder2_title": "Stability",
-    "ladder2_question": "How severe is performance degradation in the worst-performing walk-forward fold?",
-    "ladder2_can": "temporal robustness and downside stability",
-    "ladder2_cannot": "profitability, live deployment readiness, or hardware-level advantage",
-    "ladder3_title": "Trading/Risk",
-    "ladder3_question": "Do OOS predictions remain meaningful under transaction costs and risk metrics?",
-    "ladder3_can": "financial interpretation under a fixed protocol",
-    "ladder3_cannot": "live trading readiness or investment advice",
-    "ladder4_title": "Quantum Diagnostics",
-    "ladder4_question": "Is the QSVM kernel structurally different and target-relevant?",
-    "ladder4_can": "representational evidence",
-    "ladder4_cannot": "quantum advantage by itself",
-    "ladder5_title": "Claim Boundary",
-    "ladder5_question": "What can safely be concluded from all evidence together?",
-    "ladder5_can": "bounded interpretation",
-    "ladder5_cannot": "overclaiming beyond the tested setting",
-    "ladder_bridge_note": "The results should be read from bottom to top: first as evidence, then as interpretation, and only then as a claim.",
+    "ladder1_question": "Which model predicts direction better?",
+    "ladder1_can": "Relative predictive performance",
+    "ladder1_cannot": "Trading superiority or quantum advantage",
+    "ladder2_title": "Stability across time",
+    "ladder2_question": "How consistent is performance across folds, and how weak is the worst fold?",
+    "ladder2_can": "Temporal consistency and downside stability",
+    "ladder2_cannot": "Profitability, deployment readiness, or hardware advantage",
+    "ladder3_title": "Trading/risk interpretation",
+    "ladder3_question": "What happens when the same OOS predictions face execution timing, costs, turnover, and drawdown?",
+    "ladder3_can": "Economic interpretation under the fixed protocol",
+    "ladder3_cannot": "Live-trading readiness or investment advice",
+    "ladder4_title": "Quantum-kernel diagnostics",
+    "ladder4_question": "Is the QSVM kernel structurally different, and is that difference useful for the target?",
+    "ladder4_can": "Evidence about representation geometry",
+    "ladder4_cannot": "Quantum advantage on its own",
+    "ladder5_title": "Final interpretation",
+    "ladder5_question": "What remains true after all four layers are considered together?",
+    "ladder5_can": "A bounded, horizon-specific conclusion",
+    "ladder5_cannot": "Claims beyond the tested setting",
+    "ladder_bridge_note": "The evidence is interpreted in sequence: first the observed performance, then its robustness, then its practical and structural meaning, and finally the claim that the combined evidence can support.",
     "ladder_question_label": "Question:",
-    "ladder_can_label": "Can support:",
-    "ladder_cannot_label": "Cannot support:",
-    "qsvm_kicker": "QSVM Kernel Mechanism",
-    "qsvm_title": "From features to quantum similarity",
-    "qsvm_desc": "QSVM keeps the support vector machine classification logic, but replaces the classical similarity function with a quantum-generated kernel. The key change is not the classifier itself, but how the model measures similarity between observations.",
-    "qsvm_narrative_1": "In a classical RBF-SVM, similarity is computed through a classical kernel function. In QSVM, the input features are first reduced to a feasible quantum embedding dimension, then encoded through a quantum feature map. The resulting quantum states are compared through pairwise state overlap, producing a quantum kernel matrix that is passed into the SVM classifier.",
-    "qsvm_narrative_2": "This study uses PennyLane's default.qubit statevector simulator to compute the quantum kernel deterministically. It does not use physical quantum hardware. Therefore, the experiment isolates representational behavior under simulation, not hardware speedup, shot noise, decoherence, or device calibration effects.",
+    "ladder_can_label": "Can tell us:",
+    "ladder_cannot_label": "Cannot establish:",
+    "qsvm_kicker": "How the QSVM kernel is built",
+    "qsvm_title": "From eight PCA features to quantum similarity",
+    "qsvm_desc": "QSVM keeps the SVM classifier but replaces the classical RBF similarity with a precomputed fidelity kernel derived from eight-qubit RY angle encoding. The kernel is evaluated deterministically with a statevector simulator, not on physical quantum hardware.",
+    "qsvm_narrative_1": "Inside each training partition, standardization and the fixed eight-component PCA are fitted from training data only. Each PCA component controls one RY rotation. A fixed nearest-neighbor CNOT chain is then applied, and the kernel value between two samples is the squared overlap of their encoded states.",
+    "qsvm_narrative_2": "The CNOT chain is the same for every input and is applied after the data-dependent RY rotations. Because the same unitary acts on both states, it preserves their inner product and does not change the fidelity kernel. The observed QSVM result is therefore attributed to the tested angle-encoded fidelity representation—not to an entanglement contribution. The kernel is computed with PennyLane default.qubit exact statevectors.",
     "qsvm_loop_badge": "Auto-loop explainer",
     "qsvm_loop_title": "How one quantum-kernel similarity value is formed",
     "qsvm_loop_caption": "Two observations are mapped into quantum states, compared by fidelity, and converted into one kernel entry before the full matrix is passed to a classical SVM.",
     "qsvm_detail_summary": "View the detailed 8-step QSVM mechanism",
-    "qsvm_card1_title": "What changes?",
-    "qsvm_card1_text": "QSVM changes the similarity construction mechanism, not the entire SVM learning framework.",
-    "qsvm_card2_title": "What is simulated?",
-    "qsvm_card2_text": "The quantum kernel is evaluated using PennyLane default.qubit statevector simulation, not physical quantum hardware.",
-    "qsvm_card3_title": "What is excluded?",
-    "qsvm_card3_text": "Statevector simulation does not include shot noise, measurement noise, decoherence, or device-specific calibration effects.",
-    "qsvm_card4_title": "What does not follow automatically?",
-    "qsvm_card4_text": "A structurally different or richer quantum kernel does not automatically imply quantum advantage.",
-    "qsvm_card5_title": "How should diagnostics be read?",
-    "qsvm_card5_text": "Higher kernel richness or effective rank should be interpreted as representational evidence, not proof of task-relevant superiority.",
-    "qsvm_diagnostic_bridge": "Later diagnostics show that the QSVM kernel is structurally different from the PCA-controlled RBF kernel: Pearson kernel correlation is approximately 0.6808 and Spearman kernel correlation is approximately 0.5054. QSVM also shows a higher effective rank, approximately 147.79 compared with approximately 35.90 for RBF_PCA. However, target-alignment differences are small: 0.0025, 0.0044, and -0.0002. This means the kernel is different and richer, but the evidence is not sufficient to claim task-relevant quantum advantage.",
-    "qsvm_step1_title": "Input Features",
-    "qsvm_step1_text": "Market/technical, on-chain, and macroeconomic signals after leakage-safe preparation.",
-    "qsvm_step2_title": "PCA-Reduced Features",
-    "qsvm_step2_text": "Features are reduced to match the feasible quantum embedding dimension.",
-    "qsvm_step3_title": "Quantum Feature Map",
-    "qsvm_step3_text": "Classical feature values are encoded into a quantum representation.",
-    "qsvm_step4_title": "Quantum State / Statevector Simulation",
-    "qsvm_step4_text": "The encoded data are represented as simulated quantum states using default.qubit.",
-    "qsvm_step5_title": "Pairwise State Overlap",
-    "qsvm_step5_text": "Similarity between two observations is computed from the overlap of their quantum states.",
-    "qsvm_step6_title": "Quantum Kernel Matrix",
-    "qsvm_step6_text": "All pairwise similarities form the kernel matrix used by the classifier.",
-    "qsvm_step7_title": "SVM Classifier",
-    "qsvm_step7_text": "The SVM uses the quantum kernel matrix for margin-based classification.",
-    "qsvm_step8_title": "Direction Prediction",
-    "qsvm_step8_text": "The model predicts whether Bitcoin's future closing price direction is up or not for each horizon-specific task.",
-    "dashboard_framing": "The classification layer shows that QSVM remains meaningful as a quantum-kernel benchmark across the tested horizons. However, the dashboard is intentionally paired with trading/risk evidence because financial machine learning cannot be judged by predictive scores alone.",
-    "classification_stat_note": "<span class=\"badge-focus gold evidence-badge\">Holm-limited</span><br>Statistical note: QSVM has the highest Mean F1 across the tested horizons, but Holm-corrected statistical support is observed only for QSVM vs RBF_FULL at the 1-day horizon. Other QSVM comparisons are descriptive or not significant after correction.",
-    "gap_kicker": "Classification-to-Trading Gap",
-    "gap_classification_label": "Classification Layer",
-    "gap_classification_text": "QSVM shows the strongest 1-day Mean F1 among the compared kernel models.",
-    "gap_trading_label": "Trading/Risk Layer",
-    "gap_trading_text": "The same 1-day QSVM signal is weakened by high turnover and transaction-cost sensitivity.",
-    "gap_interpretation": "This is not a failure of QSVM as a scientific benchmark. It is the reason the study uses layered evaluation. Classification competitiveness can be real, while financial usefulness remains unsupported under a trading/risk interpretation.",
-    "diag_kicker": "Quantum Diagnostics",
-    "diag_interpretation": "The quantum kernel is different and richer, but richness alone is not enough. To support task-relevant advantage, the representation must also align with the prediction target and improve integrated evidence across classification, trading/risk, and diagnostics. That condition is not established in this study.",
-    "diag_kernel_label": "Kernel Similarity",
-    "diag_kernel_pearson": "Pearson kernel correlation ≈ 0.6808",
-    "diag_kernel_spearman": "Spearman kernel correlation ≈ 0.5054",
-    "diag_rank_label": "Effective Rank",
-    "diag_alignment_label": "Target Alignment",
-    "diag_alignment_text": "Target-alignment differences are small: 0.0025, 0.0044, -0.0002",
-    "diag_rank_qsvm": "QSVM effective rank ≈ 147.79",
-    "diag_rank_rbf": "RBF_PCA effective rank ≈ 35.90",
-    "claim_boundary_text": "The evidence supports a careful conclusion: QSVM is a meaningful quantum-kernel benchmark and remains competitive in selected classification settings. However, the integrated evidence does not support stronger claims of overall QSVM superiority, trading superiority, live trading readiness, or task-relevant quantum advantage.",
+    "qsvm_card1_title": "What changes from a classical SVM?",
+    "qsvm_card1_text": "The SVM learning framework remains; the similarity function is replaced by a quantum-generated fidelity kernel.",
+    "qsvm_card2_title": "What is actually simulated?",
+    "qsvm_card2_text": "PennyLane default.qubit computes exact statevectors and their fidelity kernel. No physical quantum processor is used.",
+    "qsvm_card3_title": "What hardware effects are absent?",
+    "qsvm_card3_text": "There is no finite-shot sampling, gate or measurement noise, decoherence, device calibration, or hardware execution latency.",
+    "qsvm_card4_title": "What cannot be inferred from a richer kernel?",
+    "qsvm_card4_text": "A different or higher-rank kernel does not automatically imply better prediction, better trading results, computational speedup, or quantum advantage.",
+    "qsvm_card5_title": "What are the diagnostics for?",
+    "qsvm_card5_text": "Effective rank, kernel correlation, and target alignment describe the learned similarity structure after the fact. They are not used to select models and cannot establish an advantage on their own.",
+    "qsvm_diagnostic_bridge": "Across predefined folds 0, 13, and 26, using the same 1,024 observations for both kernels, QSVM effective rank is about 142.4–143.9 versus 36.0–36.2 for RBF_PCA. Pearson correlations are about 0.7065–0.7123 and Spearman correlations 0.5341–0.5490. Direction-alignment differences are small and become negative for QSVM at 30 days, so the richer geometry is not evidence of quantum advantage.",
+    "qsvm_step1_title": "Input predictors",
+    "qsvm_step1_text": "Market/technical features plus one-day-lagged on-chain and macroeconomic predictors.",
+    "qsvm_step2_title": "Train-fitted PCA · 8 dimensions",
+    "qsvm_step2_text": "Standardize and reduce to eight components using training data only. RBF_PCA uses this same representation.",
+    "qsvm_step3_title": "RY angle encoding",
+    "qsvm_step3_text": "Encode each PCA component with an RY rotation on the corresponding qubit.",
+    "qsvm_step4_title": "Fixed CNOT chain",
+    "qsvm_step4_text": "Apply the same nearest-neighbor CNOT chain after the data-dependent rotations; because it is common to both states, it does not change pairwise fidelity.",
+    "qsvm_step5_title": "Squared state overlap",
+    "qsvm_step5_text": "Define similarity as the squared overlap between the two encoded statevectors.",
+    "qsvm_step6_title": "Leakage-safe kernel matrix",
+    "qsvm_step6_text": "Build the kernel from at most the 1,024 most recent eligible training observations and derive centering statistics from the training kernel only.",
+    "qsvm_step7_title": "SVM classifier",
+    "qsvm_step7_text": "Pass the centered precomputed fidelity kernel to the SVM using the same restricted C grid as the classical models.",
+    "qsvm_step8_title": "Out-of-sample direction prediction",
+    "qsvm_step8_text": "Generate binary direction predictions for the untouched test fold at each horizon.",
+    "dashboard_framing": "The headline result is deliberately narrow: QSVM has a robust classification advantage at 1 day, remains competitive without robust superiority at 7 days, and has no classification advantage at 30 days. The trading/risk and quantum-diagnostic layers narrow the interpretation further.",
+    "classification_stat_note": "<span class=\"badge-focus gold evidence-badge\">Robust only at 1 day</span><br>At 1 day, QSVM remains significant against both RBF_FULL and RBF_PCA after Holm correction for both paired t-tests and Wilcoxon tests. The same advantage is supported by circular moving-block bootstrap checks at block lengths 2, 3, and 4. The 7-day evidence is mixed and not robust; at 30 days there is no QSVM advantage.",
+    "gap_kicker": "Classification vs financial interpretation",
+    "gap_classification_label": "Classification result",
+    "gap_classification_text": "At 1 day, QSVM has mean F1 = 0.4760, compared with 0.4400 for RBF_PCA and 0.4249 for RBF_FULL, with robust statistical support over both baselines.",
+    "gap_trading_label": "Trading/risk result",
+    "gap_trading_text": "At the central cost of 0.0015 per side, QSVM has Sharpe = -0.5012, total return = -0.9685, and aggregate turnover = 1330. RBF_FULL has the least negative 1-day Sharpe at -0.3906.",
+    "gap_interpretation": "The 1-day finding is therefore a classification result, not a trading claim. Under the fixed post-hoc protocol, better directional prediction does not translate into better risk-adjusted financial performance.",
+    "diag_kicker": "Quantum-kernel diagnostics",
+    "diag_interpretation": "The diagnostics confirm that QSVM creates a different and richer representation, but not a consistently more useful one. Higher effective rank is not accompanied by consistently better target alignment, classification, or economic performance.",
+    "diag_kernel_label": "How similar are the two kernels?",
+    "diag_kernel_pearson": "Pearson correlation: 0.7065 (1D), 0.7084 (7D), 0.7123 (30D)",
+    "diag_kernel_spearman": "Spearman correlation: 0.5341 (1D), 0.5378 (7D), 0.5490 (30D)",
+    "diag_rank_label": "How rich is the spectrum?",
+    "diag_alignment_label": "How well does the kernel align with the target?",
+    "diag_alignment_text": "Direction alignment (QSVM / RBF_PCA): 0.009073 / 0.006742 (1D), 0.025196 / 0.021750 (7D), and 0.071702 / 0.075119 (30D). The differences are +0.002331, +0.003446, and -0.003417. QSVM also has lower volatility-regime alignment than RBF_PCA at all three horizons.",
+    "diag_rank_qsvm": "QSVM effective rank: 142.4 (1D), 143.2 (7D), 143.9 (30D)",
+    "diag_rank_rbf": "RBF_PCA effective rank: 36.0 (1D), 36.0 (7D), 36.2 (30D)",
+    "claim_boundary_text": "Taken together, the results support a robust 1-day QSVM classification advantage, qualified competitiveness at 7 days, and no QSVM classification advantage at 30 days. They do not support QSVM trading superiority or quantum advantage, and all quantum evidence is simulation-based.",
     "claim_card1_status": "Supported",
-    "claim_card1_title": "Meaningful quantum-kernel benchmark",
-    "claim_card1_text": "QSVM remains scientifically meaningful as a quantum-kernel benchmark and is classification-competitive in the tested multi-horizon Bitcoin setting.",
-    "claim_card2_status": "Qualified",
-    "claim_card2_title": "Classification competitiveness",
-    "claim_card2_text": "QSVM shows the highest Mean F1 across the tested horizons, but corrected statistical support is limited. Classification competitiveness should be interpreted together with fold stability and trading/risk evidence.",
-    "claim_card3_status": "Not Supported",
-    "claim_card3_title": "Overall model superiority",
-    "claim_card3_text": "The evidence does not establish overall QSVM superiority over classical kernel baselines.",
-    "claim_card4_status": "Not Supported",
-    "claim_card4_title": "Trading superiority or deployment readiness",
-    "claim_card4_text": "The trading/risk layer does not establish QSVM trading superiority or live deployment readiness.",
-    "claim_card5_status": "Not Established",
-    "claim_card5_title": "Task-relevant quantum advantage",
-    "claim_card5_text": "Quantum diagnostics show kernel difference and richer spectral structure, but not task-relevant quantum advantage.",
-    "claim_boundary_statement": "The safest conclusion is not \"QSVM wins.\" The safer conclusion is that QSVM is worth studying under strict financial QML evaluation, and that its claims must be bounded by multiple evidence layers.",
-    "table_group1_title": "Classification and Stability Summary",
-    "table_group1_intro": "Fold-level classification evidence shows that QSVM has the highest Mean F1 across the tested horizons, but statistical and stability interpretation must remain bounded.",
-    "table_group1_note": "<span class=\"badge-focus gold evidence-badge\">Holm-limited</span><br>Holm-corrected statistical support is observed only for QSVM vs RBF_FULL at the 1-day horizon. Other QSVM comparisons are descriptive or not significant after correction.",
-    "table_group2_title": "Trading/Risk Summary",
-    "table_group2_intro": "The trading/risk layer uses clean out-of-sample predictions under a fixed post-hoc interpretation. It does not represent a deployable trading strategy.",
-    "table_group2_note": "Turnover denotes aggregate turnover across evaluated out-of-sample folds, not daily turnover. These results are for interpretation only and are not investment advice.",
-    "table_group3_title": "Quantum Diagnostics and Claim Boundary",
-    "table_group3_intro": "Quantum diagnostics evaluate whether the QSVM kernel differs structurally from the PCA-controlled RBF kernel and whether that difference is task-relevant.",
-    "final_takeaway_kicker": "Final Takeaway",
-    "final_takeaway_title": "What this study actually found",
-    "final_takeaway_message": "<span class=\"final-message-line final-message-lead\">QSVM is not a guaranteed winner, but it is not a cosmetic benchmark either.</span><span class=\"final-message-line\">Across the tested horizons, QSVM delivers the <span class=\"final-finding-highlight\">strongest Mean F1 profile</span> and remains especially meaningful when compared against the <span class=\"final-finding-highlight\">PCA-controlled classical kernel baseline</span>. Its quantum-generated kernel is <span class=\"final-finding-highlight\">structurally different from RBF_PCA and shows a richer spectral profile</span>, suggesting that the quantum representation is doing something non-trivial.</span><span class=\"final-message-line final-message-boundary\">The boundary is equally important: this representational difference does not yet translate into broad statistical superiority, trading superiority, or task-relevant quantum advantage. The result is therefore not \"QSVM wins.\" The result is stronger and more useful: QSVM is empirically meaningful, diagnostically distinct, and worth studying further - but only under careful evidence boundaries.</span>",
+    "claim_card1_title": "Robust 1-day classification advantage",
+    "claim_card1_text": "QSVM has the highest 1-day mean F1 (0.4760), and its advantage over both RBF_FULL and RBF_PCA survives Holm-corrected paired tests plus circular moving-block bootstrap checks at block lengths 2, 3, and 4.",
+    "claim_card2_status": "Supported with limits",
+    "claim_card2_title": "7-day competitiveness, not robust superiority",
+    "claim_card2_text": "QSVM has the highest 7-day mean F1 (0.4600), but the statistical result is not consistent across both baselines, both paired tests, and all bootstrap block lengths. A robust superiority claim is therefore not supported.",
+    "claim_card3_status": "Not supported",
+    "claim_card3_title": "A 30-day QSVM classification advantage",
+    "claim_card3_text": "RBF_PCA has the strongest descriptive classification-stability profile at 30 days, and neither the paired tests nor the block-bootstrap analysis supports a QSVM advantage.",
+    "claim_card4_status": "Not supported",
+    "claim_card4_title": "QSVM trading superiority",
+    "claim_card4_text": "At the central transaction cost, QSVM is not the best-Sharpe model at any horizon and every model has a negative total return. This trading/risk layer is a predefined diagnostic, not an optimized or deployable strategy.",
+    "claim_card5_status": "Not established",
+    "claim_card5_title": "Quantum advantage or real-hardware evidence",
+    "claim_card5_text": "QSVM has a higher effective rank, but that does not establish predictive, economic, or computational quantum advantage. The kernel is evaluated with exact statevector simulation, and the fixed post-RY CNOT chain does not change the fidelity kernel, so the result is not attributed to entanglement.",
+    "claim_boundary_statement": "Final boundary: robust QSVM classification advantage at 1 day only; competitive but not robustly superior at 7 days; no QSVM classification advantage at 30 days; no QSVM trading superiority; and no established quantum advantage, computational speedup, entanglement contribution, or physical-hardware evidence.",
+    "table_group1_title": "Classification and stability",
+    "table_group1_intro": "Macro F1 results from the 27 matched outer walk-forward folds. The descriptive numbers are shown here, while any superiority claim is based on the paired tests and the temporal block-bootstrap checks.",
+    "table_group1_note": "<span class=\"badge-focus gold evidence-badge\">Robust only at 1 day</span><br>The 1-day QSVM advantage is supported against both baselines by Holm-corrected paired t-tests and Wilcoxon tests and by circular moving-block bootstrap checks at block lengths 2, 3, and 4. The 7-day result is mixed and not robust; at 30 days there is no QSVM advantage.",
+    "table_group2_title": "Trading/risk results",
+    "table_group2_intro": "Post-hoc results at the central transaction cost of 0.0015 per side. The analysis uses clean OOS predictions, enters at Open(t+1), exits at Open(t+h+1), and enforces one global non-overlapping trade sequence across the full OOS period.",
+    "table_group2_note": "Every model has a negative total return at the central cost. Turnover is the aggregate turnover over the evaluated OOS period. These numbers are an economic diagnostic of the predictions—not an optimized trading strategy or an investment claim.",
+    "table_group3_title": "Integrated evidence and final interpretation",
+    "table_group3_intro": "This table puts the predictive, statistical, financial, and quantum-diagnostic results side by side so the final conclusion can be read horizon by horizon without mixing the evidence layers.",
+    "final_takeaway_kicker": "Final takeaway",
+    "final_takeaway_title": "What the study actually shows",
+    "final_takeaway_message": "<span class=\"final-message-line final-message-lead\">QSVM has a robust classification advantage only at the 1-day horizon.</span><span class=\"final-message-line\">At 7 days, QSVM remains competitive, but the superiority evidence is not robust across the full statistical checks. At 30 days, there is no QSVM classification advantage and RBF_PCA has the strongest descriptive profile.</span><span class=\"final-message-line\">The predefined post-hoc trading/risk analysis does not support QSVM trading superiority, and every model has a negative total return at the central transaction cost.</span><span class=\"final-message-line\">QSVM has a substantially higher effective rank than RBF_PCA, but target alignment is small and horizon-dependent. The richer geometry therefore does not establish quantum advantage.</span><span class=\"final-message-line final-message-boundary\">All quantum evidence comes from exact statevector simulation, not physical quantum hardware. The study does not claim computational speedup, hardware advantage, an entanglement contribution, or general QSVM superiority.</span>",
     "final_chip_leakage": "Leakage-safe",
-    "final_chip_horizon": "Horizon-aware",
-    "final_chip_trading": "Trading-aware",
-    "final_chip_diagnostic": "Diagnostically bounded",
+    "final_chip_horizon": "Horizon-specific",
+    "final_chip_trading": "Trading/risk separated",
+    "final_chip_diagnostic": "Simulation-bounded",
     "final_takeaway_supporting": "",
     "final_takeaway_closing": ""
   },
   "th": {
-    "nav_dashboard": "ภาพรวมผลลัพธ์",
-    "nav_summary": "สรุปใจความ",
-    "nav_claims": "ขอบเขตข้อสรุป",
-    "nav_appendix": "หลักฐานประกอบ",
-    "eyebrow": "Finance ML &middot; Quantum Kernel Benchmark &middot; Bitcoin Forecasting",
-    "hero_title": "ทดสอบ Quantum Machine Learning ภายใต้การประเมินทางการเงินจริง",
-    "hero_subtitle": "งานนี้เปรียบเทียบ Quantum Support Vector Machine กับ classical kernel baselines ในโจทย์พยากรณ์ทิศทางราคา Bitcoin หลายช่วงเวลา โดยพิจารณาทั้งผลการพยากรณ์ ความเสี่ยงทางการเงิน และหลักฐานเชิงโครงสร้างของ quantum kernel",
-    "hero_positioning": "โครงการนี้ไม่ได้เริ่มจากสมมติฐานว่าโมเดลควอนตัมต้องชนะโมเดลแบบดั้งเดิม แต่ตั้งคำถามที่เข้มงวดกว่า คือ เมื่อ QSVM ถูกทดสอบภายใต้เงื่อนไข financial validation ที่ป้องกันข้อมูลรั่วและประเมินหลายมิติ quantum-generated kernel ให้คุณค่าเพิ่มที่เกี่ยวข้องกับโจทย์จริงหรือไม่",
-    "hero_chip_leakage": "ป้องกัน leakage",
-    "hero_chip_horizon": "หลาย horizon",
-    "hero_chip_trading": "มี trading/risk layer",
-    "hero_chip_diagnostic": "มี diagnostic boundary",
-    "final_answer_label": "คำตอบหลัก",
-    "final_answer_title": "QSVM มีคุณค่าเชิงวิจัย แต่ยังไม่อาจสรุปได้ว่าเกิด quantum advantage",
-    "final_answer_text": "QSVM ยังมีความหมายในฐานะ quantum-kernel benchmark และมีความสามารถในการแข่งขันในชั้นการพยากรณ์ทิศทางราคา อย่างไรก็ตาม เมื่อพิจารณาหลักฐานรวมจาก classification, trading/risk และ quantum diagnostics แล้ว งานนี้ยังไม่สนับสนุนข้อสรุปว่า QSVM เหนือกว่าโดยรวม เหนือกว่าด้านการเงิน หรือแสดง task-relevant quantum advantage ในบริบทที่ทดสอบ",
-    "kpi_folds_label": "รอบทดสอบแบบเลื่อนเวลา",
-    "kpi_folds_note": "ประเมินจากข้อมูลอนาคตที่โมเดลยังไม่เคยเห็น",
+    "nav_dashboard": "ผลลัพธ์",
+    "nav_summary": "ข้อค้นพบหลัก",
+    "nav_claims": "สรุปงานวิจัย",
+    "nav_appendix": "ผลลัพธ์ฉบับละเอียด",
+    "eyebrow": "Financial ML &middot; Quantum Kernel Benchmark &middot; การพยากรณ์ทิศทาง Bitcoin",
+    "hero_title": "ทดสอบ Quantum Machine Learning ด้วยการประเมินข้อมูลการเงินที่เข้มงวด",
+    "hero_subtitle": "งานวิจัยนี้พยากรณ์ทิศทาง Bitcoin ที่ระยะ 1, 7 และ 30 วัน โดยเปรียบเทียบ QSVM กับ RBF_PCA และ RBF_FULL ภายใต้ nested rolling walk-forward validation พร้อม horizon-aware purging การวิเคราะห์ trading/risk แบบ post-hoc และ quantum-kernel diagnostics",
+    "hero_positioning": "จุดตั้งต้นของงานไม่ใช่สมมติฐานว่า quantum ต้องดีกว่า classical แต่เป็นคำถามว่า quantum fidelity kernel ที่คำนวณด้วย simulation ให้ประโยชน์ที่เกี่ยวข้องกับโจทย์จริงเพิ่มขึ้นหรือไม่ การทดลองจึงแยกข้อมูลอนาคตออกจากการฝึกโมเดล ควบคุมการเลือกโมเดล และแยกหลักฐานด้านการพยากรณ์ การเงิน และโครงสร้าง quantum kernel ออกจากกันอย่างชัดเจน",
+    "hero_chip_leakage": "ควบคุม data leakage",
+    "hero_chip_horizon": "3 ระยะพยากรณ์",
+    "hero_chip_trading": "วิเคราะห์ trading/risk ภายหลัง",
+    "hero_chip_diagnostic": "ตรวจโครงสร้าง quantum kernel",
+    "final_answer_label": "คำตอบสั้นที่สุด",
+    "final_answer_title": "<span class=\"answer-highlight-main\">จุดที่ QSVM เด่นชัดที่สุดอยู่ที่ระยะ 1 วัน</span><span class=\"answer-highlight-sub\">ข้อได้เปรียบนั้นเกิดขึ้นเฉพาะด้าน classification</span>",
+    "final_answer_text": "ที่ระยะ 1 วัน QSVM ให้ผล classification ดีกว่า classical baselines ทั้งสอง และข้อได้เปรียบนี้ยังคงได้รับการสนับสนุนหลังการตรวจสอบความ robust ทางสถิติครบชุด ที่ 7 วัน QSVM ยังแข่งขันได้ แต่หลักฐานยังไม่ robust พอที่จะสรุปว่าเหนือกว่า ส่วนที่ 30 วันไม่มีหลักฐานว่า QSVM ได้เปรียบด้าน classification นอกจากนี้ trading/risk analysis ไม่สนับสนุน QSVM trading superiority และ quantum kernel ที่มีโครงสร้างหลากหลายกว่าก็ยังไม่ใช่หลักฐานของ quantum advantage ผล quantum ทั้งหมดมาจาก exact statevector simulation ไม่ใช่ quantum hardware จริง",
+    "kpi_folds_label": "Walk-forward folds",
+    "kpi_folds_note": "27 ช่วงทดสอบแบบ out-of-sample ต่อระยะพยากรณ์",
     "kpi_horizons_label": "ระยะพยากรณ์",
-    "kpi_horizons_note": "1 วัน, 7 วัน, 30 วัน",
-    "kpi_layers_label": "มุมประเมินผล",
-    "kpi_layers_note": "การพยากรณ์, ผลตอบแทน/ความเสี่ยง, ความทนทาน, โครงสร้างโมเดล",
-    "kpi_num": "0",
-    "kpi_adv_label": "การอ้างเกินหลักฐาน",
-    "kpi_adv_note": "ไม่มีการสรุปว่าโมเดลควอนตัมเหนือกว่า หากหลักฐานรวมยังไม่ชัดเจน",
-    "summary_kicker": "สรุปใจความสำคัญ",
-    "summary_title": "ผลลัพธ์ไม่ได้มีผู้ชนะเพียงมิติเดียว",
-    "summary_desc": "ผลการทดลองชี้ว่า QSVM ยังมีคุณค่าในเชิงการพยากรณ์ แต่เมื่อประเมินร่วมกับผลตอบแทน ความเสี่ยง และต้นทุนจากการซื้อขายแล้ว หลักฐานโดยรวมยังไม่สนับสนุนว่า QSVM เหนือกว่าโมเดลแบบดั้งเดิม",
-    "sum1_title": "QSVM ยังมีศักยภาพในการพยากรณ์ทิศทางราคา",
-    "sum1_text": "ผลการทดลองแสดงว่า QSVM ยังทำผลงานได้ดีพอแข่งขันในการพยากรณ์ทิศทางราคา Bitcoin ทั้งในระยะสั้น ระยะกลาง และระยะยาว",
-    "sum2_title": "คะแนนการพยากรณ์ที่ดี อาจยังไม่พอในงานการเงิน",
-    "sum2_text": "กรณีระยะ 1 วันของ QSVM แสดงให้เห็นว่า คะแนนการพยากรณ์ที่ดูดีอาจลดความน่าเชื่อถือลง เมื่อนำไปพิจารณาร่วมกับต้นทุนการซื้อขาย ความเสี่ยง และการเปลี่ยนสถานะซื้อขายบ่อยครั้ง",
-    "sum3_title": "RBF_FULL ให้หลักฐานด้านผลตอบแทนและความเสี่ยงที่แข็งแรงกว่า",
-    "sum3_text": "ในการทดสอบระยะ 7 วันและ 30 วัน โมเดล RBF_FULL ให้ผลตอบแทนเมื่อเทียบกับความเสี่ยงดีกว่า QSVM ภายใต้กรอบการทดสอบเดียวกัน",
-    "sum4_title": "โมเดลที่ซับซ้อนกว่า ไม่ได้แปลว่าใช้งานได้ดีกว่าเสมอ",
-    "sum4_text": "QSVM สามารถจับความสัมพันธ์ของข้อมูลได้ซับซ้อนกว่าโมเดลอ้างอิงบางตัว แต่ยังไม่เห็นว่าความซับซ้อนนั้นช่วยให้ผลลัพธ์ดีกว่าอย่างชัดเจนในการพยากรณ์หรือการประเมินทางการเงิน",
-    "dashboard_kicker": "แดชบอร์ดผลลัพธ์หลัก",
-    "dashboard_title": "หลักฐานแต่ละชั้นเปลี่ยนการตีความ",
-    "dashboard_desc": "ผล classification ทำให้ QSVM ดูแข่งขันได้ แต่ trading/risk และ quantum diagnostics เป็นตัวกำหนดขอบเขตข้อสรุปสุดท้าย ผลลัพธ์จึงควรถูกอ่านเป็นหลักฐานหลายชั้น ไม่ใช่ leaderboard เดียว",
-    "chart1_title": "หลักฐานด้าน Classification",
-    "chart1_desc": "ค่า Mean F1-score across horizons และ models",
-    "chart1_sowhat": "<strong>แปลว่าอะไร:</strong> QSVM ยังควรถูกพิจารณาในโจทย์ Bitcoin direction forecasting อย่างไรก็ตาม นี่เป็นเพียง evidence layer แรก ไม่ใช่ข้อสรุปสุดท้าย",
-    "chart2_title": "หลักฐานด้าน Trading/Risk",
-    "chart2_desc": "ค่า Sharpe ratio across horizons และ models ภายใต้ post-hoc trading/risk interpretation ที่กำหนดไว้ล่วงหน้า",
-    "chart2_sowhat": "<strong>แปลว่าอะไร:</strong> ชั้น trading/risk เปลี่ยนการตีความอย่างชัดเจน โดย RBF_FULL แข็งแรงกว่าใน horizon 7 วัน และ 30 วัน สะท้อนว่า classification strength ไม่ได้แปลเป็น financial usefulness โดยตรง",
-    "gap_title": "คะแนนทำนายที่ดูดีไม่ได้แปลเป็นประโยชน์ทางการเงินโดยอัตโนมัติ",
-    "gap_desc": "กรณี QSVM ที่ horizon 1 วัน แสดงให้เห็นว่าข้อกล่าวอ้างด้าน financial ML ต้องมีมากกว่า classification metric โมเดลอาจดูแข่งขันได้จาก F1-score แต่ผลอาจอ่อนลงเมื่อพิจารณา turnover, transaction costs และ drawdown risk",
-    "gap_sowhat": "<strong>แปลว่าอะไร:</strong> จุดนี้คือบทเรียนสำคัญของงาน QSVM ดูน่าสนใจจากค่า F1 แต่เมื่อนำผลทำนายไปจำลองในมุมการซื้อขาย ผลลัพธ์ถูกลดทอนจากการเปลี่ยนสถานะบ่อยและต้นทุนแฝง",
+    "kpi_horizons_note": "ล่วงหน้า 1, 7 และ 30 วัน",
+    "kpi_layers_label": "ด้านของหลักฐาน",
+    "kpi_layers_note": "Classification, stability, trading/risk และ quantum-kernel diagnostics",
+    "kpi_num": "2",
+    "kpi_adv_label": "ตัวเปรียบเทียบแบบคลาสสิก",
+    "kpi_adv_note": "RBF_PCA ใช้เปรียบเทียบภายใต้มิติเดียวกับ QSVM ส่วน RBF_FULL ใช้ชุดคุณลักษณะเต็ม",
+    "summary_kicker": "ข้อค้นพบหลัก",
+    "summary_title": "คำตอบเปลี่ยนไปตามระยะพยากรณ์ ไม่มีโมเดลเดียวชนะทุกช่วง",
+    "summary_desc": "ผลที่แข็งแรงที่สุดอยู่ที่ระยะ 1 วัน ขณะที่ 7 วันให้หลักฐานที่ยังไม่สม่ำเสมอ และที่ 30 วัน RBF_PCA มีผลเชิงพรรณนาโดยรวมดีที่สุด",
+    "hx_kicker": "มุมมองแบบโต้ตอบ",
+    "hx_title": "ดูผลทีละระยะพยากรณ์ แล้วตามหลักฐานไปจนถึงข้อสรุป",
+    "hx_intro": "เลือกระยะพยากรณ์ แล้วไล่ดูหลักฐานทีละชั้น ตั้งแต่ผล classification ไปจนถึงข้อสรุปสุดท้าย",
+    "hx_tab_1": "1 วัน",
+    "hx_tab_7": "7 วัน",
+    "hx_tab_30": "30 วัน",
+    "hx_context_role": "เส้นทางของหลักฐาน",
+    "hx_classification_label": "ผล Classification",
+    "hx_statistics_label": "ความ robust ทางสถิติ",
+    "hx_trading_label": "Trading / Risk",
+    "hx_verdict_label": "ข้อสรุปที่หลักฐานรองรับ",
+    "summary_integrated_label": "ข้อสรุปรวม",
+    "sum1_title": "1 วัน · QSVM ได้เปรียบด้าน classification อย่าง robust",
+    "sum1_text": "QSVM ได้ mean F1 = 0.4760 เทียบกับ RBF_PCA = 0.4400 และ RBF_FULL = 0.4249 และข้อได้เปรียบเหนือทั้งสอง baseline ยังคงอยู่หลัง Holm-corrected paired tests และ circular moving-block bootstrap",
+    "sum2_title": "7 วัน · แข่งขันได้ แต่ยังไม่ robustly superior",
+    "sum2_text": "QSVM มี mean F1 สูงสุดที่ 0.4600 แต่ภาพทางสถิติยังไม่เป็นไปในทิศทางเดียวกัน การเทียบกับ RBF_FULL ไม่ significant ส่วนการเทียบกับ RBF_PCA ไม่ได้ให้ผลสม่ำเสมอเมื่อดูทั้ง paired tests และ bootstrap ในหลาย block lengths",
+    "sum3_title": "30 วัน · ไม่มี QSVM classification advantage",
+    "sum3_text": "RBF_PCA มีผลเชิงพรรณนาโดยรวมแข็งแรงที่สุด โดย mean F1 = 0.3977 เทียบกับ QSVM = 0.3832 และทั้ง paired tests กับ block-bootstrap analysis ไม่สนับสนุนข้อได้เปรียบของ QSVM",
+    "sum4_title": "ผล classification ที่ดีขึ้น ไม่ได้แปลว่าดีกว่าด้านการเงินหรือเป็น quantum advantage",
+    "sum4_text": "ที่ transaction cost กลาง 0.0015 ต่อ side ทุกโมเดลมี total return ติดลบ และ QSVM ไม่เคยเป็นโมเดลที่มี Sharpe ratio ดีที่สุดในทั้งสามระยะ แม้ QSVM จะมี effective rank สูงกว่า RBF_PCA มาก แต่ target alignment ต่างกันเพียงเล็กน้อยและเปลี่ยนไปตาม horizon ดังนั้นโครงสร้าง kernel ที่หลากหลายกว่าเป็นหลักฐานเชิงโครงสร้าง ไม่ใช่ quantum advantage",
+    "dashboard_kicker": "ผลลัพธ์หลัก",
+    "dashboard_title": "เมื่อเพิ่มหลักฐานแต่ละชั้น การตีความก็เปลี่ยนไป",
+    "dashboard_desc": "ค่า F1 ที่สูงกว่าเป็นเพียงส่วนหนึ่งของเรื่อง งานนี้จึงตรวจต่อว่าความแตกต่างนั้น robust ทางสถิติหรือไม่ ผลทำนายชุดเดียวกันยังมีความหมายเมื่อคำนึงถึงต้นทุนและความเสี่ยงหรือไม่ และ quantum kernel align กับ target ได้ดีขึ้นจริงหรือเปล่า",
+    "chart1_title": "ผลการจำแนกทิศทาง",
+    "chart1_desc": "ค่า macro F1 เฉลี่ยจาก 27 matched outer walk-forward test folds ในแต่ละระยะพยากรณ์",
+    "chart1_sowhat": "<strong>ความหมาย:</strong> QSVM นำเชิง descriptive ที่ 1 และ 7 วัน แต่ไม่ได้นำที่ 30 วัน เมื่อรวมการตรวจสอบความ robust ทั้งหมดแล้ว ข้อสรุปว่า QSVM เหนือกว่าสนับสนุนได้เฉพาะงาน classification ที่ระยะ 1 วัน",
+    "chart2_title": "การตีความด้าน Trading/Risk",
+    "chart2_desc": "Sharpe ratio จาก predefined post-hoc trading/risk protocol ที่ transaction cost = 0.0015 ต่อ side",
+    "chart2_sowhat": "<strong>ความหมาย:</strong> เมื่อมองด้านการเงิน ภาพเปลี่ยนไป RBF_FULL มี Sharpe ratio ดีที่สุดที่ 1 และ 7 วัน ส่วน RBF_PCA ดีที่สุดที่ 30 วัน และ total return ของทุกโมเดลยังติดลบที่ central cost จึงไม่มีหลักฐานสนับสนุน QSVM trading superiority",
+    "gap_title": "ข้อได้เปรียบด้าน classification ที่ 1 วัน ไม่ได้ส่งต่อไปเป็น trading superiority",
+    "gap_desc": "แม้ QSVM จะมีข้อได้เปรียบด้าน classification ที่ 1 วันอย่าง robust แต่เมื่อนำ out-of-sample predictions ชุดเดียวกันไปตีความด้วย execution rule และ transaction cost ที่กำหนดไว้ล่วงหน้า ผลด้าน risk-adjusted trading กลับอ่อนกว่า",
+    "gap_sowhat": "<strong>ทำไมจุดนี้สำคัญ:</strong> นี่คือภาพที่ชัดที่สุดว่าการประเมิน Financial ML ไม่ควรหยุดที่ predictive metric เพียงตัวเดียว QSVM ทำ F1 ได้ดีขึ้นที่ 1 วัน แต่ turnover ที่สูงและ transaction costs ทำให้ความหมายทางการเงินของสัญญาณอ่อนลง",
     "metric_f1": "Mean F1",
     "metric_sharpe": "Sharpe ratio",
     "metric_return": "Total return",
     "metric_turnover": "Turnover",
-    "diag_title": "Quantum kernel ที่ richer ไม่ได้เท่ากับ task-relevant advantage",
-    "diag_desc": "QSVM kernel มีโครงสร้างแตกต่างจาก PCA-controlled RBF kernel และมี spectral profile ที่ richer กว่า อย่างไรก็ตาม target-alignment evidence มีขนาดเล็ก ดังนั้น diagnostic layer ยังไม่สนับสนุนข้อสรุปว่าเกิด task-relevant quantum advantage",
-    "diag_sowhat": "<strong>แปลว่าอะไร:</strong> QSVM จับความสัมพันธ์ของข้อมูลได้แตกต่างและซับซ้อนกว่า แต่คำถามสำคัญคือความซับซ้อนนั้นช่วยให้พยากรณ์โจทย์นี้ได้ดีขึ้นจริงหรือไม่ ซึ่งหลักฐานยังไม่ชี้ชัด",
-    "decision_kicker": "ข้อสรุปเชิงตัดสินใจ",
-    "decision_title": "QSVM เป็นโมเดลที่ควรศึกษา แต่ไม่ควรถูกอ้างเกินหลักฐาน",
-    "decision_text": "จุดแข็งที่สุดของงานนี้ไม่ใช่การพิสูจน์ว่าโมเดลควอนตัมชนะโมเดลแบบดั้งเดิม แต่คือการวางกรอบการทดสอบที่เข้มพอจะบอกได้ว่า โมเดลควอนตัมมีคุณค่าตรงไหน โมเดลแบบดั้งเดิมยังแข็งแรงกว่าตรงไหน และทำไมงานด้านการเงินต้องประเมินมากกว่าคะแนนการพยากรณ์เพียงตัวเดียว",
-    "claim_kicker": "ขอบเขตของข้อสรุป",
-    "claim_title": "หลักฐานสนับสนุนอะไร - และยังไม่สนับสนุนอะไร",
-    "claim_desc": "งานนี้ไม่ตีความคะแนน classification ที่สูงที่สุดว่าเป็นหลักฐานของ model superiority โดยตรง ข้อสรุปสุดท้ายถูกจำกัดด้วย classification evidence, stability behavior, trading/risk interpretation และ quantum diagnostics",
-    "claim_supported_title": "หลักฐานสนับสนุน",
-    "claim_qualified_title": "ต้องตีความอย่างระมัดระวัง",
-    "claim_not_title": "ยังไม่สนับสนุน",
-    "claim_supported_html": "<li>QSVM ยังแข่งขันได้ในการพยากรณ์ทิศทางราคา Bitcoin</li><li>โมเดลควอนตัมสามารถจับความสัมพันธ์ของข้อมูลได้แตกต่างและซับซ้อนกว่าโมเดลอ้างอิงบางตัว</li><li>RBF_FULL ให้หลักฐานด้านผลตอบแทนและความเสี่ยงที่แข็งแรงกว่าในระยะกลางและระยะยาว</li><li>กรอบการทดลองช่วยลดความเสี่ยงจากข้อมูลรั่ว และทำให้การเปรียบเทียบโมเดลมีความยุติธรรมมากขึ้น</li>",
-    "claim_qualified_html": "<li>คะแนนการพยากรณ์ที่ดี ไม่ใช่ข้อสรุปว่าโมเดลดีที่สุดโดยรวม</li><li>ผลด้านการซื้อขายในงานนี้เป็นการประเมินเชิงทดลอง ไม่ใช่ระบบซื้อขายที่พร้อมใช้งานจริง</li><li>โมเดลที่ซับซ้อนกว่าไม่ได้แปลว่ามีประโยชน์มากกว่าเสมอ</li><li>ผลลัพธ์นี้ขึ้นอยู่กับชุดข้อมูล ช่วงเวลา ตัวแปร และวิธีการประเมินที่ใช้ในงานนี้</li>",
-    "claim_not_html": "<li>ยังไม่สามารถสรุปได้ว่า QSVM เหนือกว่าโมเดลแบบดั้งเดิมโดยรวม</li><li>ยังไม่สามารถสรุปได้ว่า QSVM เหนือกว่าในเชิงผลตอบแทนและความเสี่ยง</li><li>ยังไม่สามารถสรุปได้ว่าเกิดความได้เปรียบจากโมเดลควอนตัมที่มีประโยชน์ต่อโจทย์นี้อย่างชัดเจน</li><li>งานนี้ไม่ใช่การรับรองว่าระบบพร้อมใช้ซื้อขายจริงหรือสามารถรับประกันกำไรได้</li>",
-    "appendix_kicker": "ตารางหลักฐาน",
-    "appendix_title": "รายละเอียดหลักฐานสำหรับตรวจสอบเพิ่มเติม",
-    "appendix_desc": "หน้าเว็บหลักอธิบายการตีความ ส่วนตารางด้านล่างเปิดให้ผู้อ่านที่ต้องการตรวจสอบตัวเลขและหลักฐานเบื้องหลัง claim boundary ดูเพิ่มเติมได้",
-    "table_classification": "ตารางผลการพยากรณ์ทิศทางราคา",
-    "table_trading": "ตารางผลตอบแทนและความเสี่ยง",
-    "table_decision": "ตารางสรุปการตัดสินใจจากผลลัพธ์",
-    "table_diagnostic": "ตารางวิเคราะห์โครงสร้างโมเดลควอนตัม",
-    "table_verdict": "ตารางข้อสรุปสุดท้าย",
+    "diag_title": "Quantum kernel มีโครงสร้างที่หลากหลายกว่า แต่ยังไม่ใช่ quantum advantage",
+    "diag_desc": "บน representative folds 0, 13 และ 26 โดยใช้ observations ชุดเดียวกัน 1,024 ตัวสำหรับทั้งสอง kernels QSVM มี effective rank สูงกว่า RBF_PCA อย่างมาก ทั้งสอง kernels มีความสัมพันธ์กันแต่ไม่ได้เหมือนกัน และความแตกต่างด้าน target alignment ยังมีขนาดเล็กและเปลี่ยนไปตามระยะพยากรณ์",
+    "diag_sowhat": "<strong>ความหมาย:</strong> QSVM สร้าง similarity geometry ที่หลากหลายกว่า แต่โครงสร้างนี้ไม่ได้ align กับ direction target ได้ดีกว่าอย่างสม่ำเสมอ และไม่ได้ทำให้ผลการพยากรณ์หรือผลทางการเงินเหนือกว่าอย่างสม่ำเสมอ จึงยังใช้เป็นหลักฐานของ task-relevant, computational หรือ hardware-level quantum advantage ไม่ได้",
+    "decision_kicker": "ข้อสรุปจากงานวิจัย",
+    "decision_title": "ข้อสรุปที่แข็งแรงที่สุดคือ QSVM ได้เปรียบด้าน classification ที่ 1 วัน",
+    "decision_text": "ภายใต้เงื่อนไขที่ทดสอบ QSVM เป็น quantum-kernel benchmark ที่ประเมินด้วย simulation และมีความหมายเชิงวิจัย โดยมี robust classification advantage ที่ 1 วัน แต่หลักฐานยังไม่รองรับความเหนือกว่าแบบ robust ที่ 7 วัน, QSVM classification advantage ที่ 30 วัน, QSVM trading superiority หรือ quantum advantage",
+    "claim_kicker": "ขอบเขตการตีความ",
+    "claim_title": "งานนี้สรุปอะไรได้ และหลักฐานหยุดอยู่ตรงไหน",
+    "claim_desc": "ข้อสรุปทุกข้อผูกกับหลักฐานครบทั้งสี่ด้าน ได้แก่ classification, ความ robust ระหว่าง folds, trading/risk analysis แบบกำหนดไว้ล่วงหน้า และ quantum-kernel diagnostics จาก simulation",
+    "claim_supported_title": "หลักฐานรองรับ",
+    "claim_qualified_title": "รองรับ แต่มีขอบเขต",
+    "claim_not_title": "หลักฐานยังไม่รองรับ",
+    "claim_supported_html": "<li>QSVM มี robust classification advantage ที่ระยะ 1 วัน</li><li>ที่ 7 วัน QSVM ยังแข่งขันได้ แต่หลักฐานยังไม่ robust พอที่จะสรุปว่าเหนือกว่า</li><li>ที่ 30 วัน RBF_PCA มีผลเชิงพรรณนาด้าน classification-stability แข็งแรงที่สุด</li><li>QSVM มี simulated kernel geometry ที่หลากหลายกว่า RBF_PCA</li>",
+    "claim_qualified_html": "<li>ผล classification ที่ดีกว่า ไม่เท่ากับโมเดลเหนือกว่าโดยรวม</li><li>ผล trading/risk เป็นการวิเคราะห์ out-of-sample predictions ภายใต้กติกาที่กำหนดไว้ ไม่ใช่ trading strategy ที่พร้อมใช้งานจริง</li><li>Effective rank ที่สูงกว่าแสดงถึง geometry ที่หลากหลายกว่า แต่ไม่ได้แปลว่ามีประโยชน์กับ target มากกว่าโดยอัตโนมัติ</li><li>ผลทั้งหมดผูกกับ dataset, feature set, horizons และ validation protocol ที่ใช้ในงานนี้</li>",
+    "claim_not_html": "<li>QSVM เหนือกว่า classical models โดยทั่วไป</li><li>QSVM trading superiority หรือหลักฐานว่าทำกำไรได้จริง</li><li>QSVM classification advantage ที่ระยะ 30 วัน</li><li>Quantum computational speedup, ผลจาก entanglement หรือ physical-hardware quantum advantage</li>",
+    "appendix_kicker": "ผลลัพธ์ฉบับละเอียด",
+    "appendix_title": "ตารางผลลัพธ์ฉบับละเอียด",
+    "appendix_desc": "ตารางส่วนนี้แสดงรายละเอียดตัวเลขที่อยู่เบื้องหลังกราฟและข้อสรุปหลัก ทั้งผล classification, trading/risk และหลักฐานแบบบูรณาการในแต่ละระยะพยากรณ์",
+    "table_classification": "ตาราง Classification และ Stability",
+    "table_trading": "ตาราง Trading/Risk",
+    "table_decision": "ตารางสรุปหลักฐานทั้งหมด",
+    "table_diagnostic": "ตาราง Quantum-Kernel Diagnostics",
+    "table_verdict": "ตารางขอบเขตข้อสรุป",
     "axis_f1": "ค่า F1 เฉลี่ย",
     "axis_sharpe": "Sharpe",
     "axis_rank": "Effective rank",
-    "diag_annotation": "Kernel correlation ≈ 0.6808 · target alignment difference ≈ 0.0022",
-    "footer": "Final bilingual finance-grade showcase · ใช้เพื่อสรุปและแสดงผลเท่านั้น · ไม่มีการทดลองใหม่",
+    "chart_hover_horizon": "ระยะพยากรณ์",
+    "chart_hover_f1": "ค่า F1 เฉลี่ย",
+    "chart_hover_sharpe": "Sharpe ratio",
+    "chart_hover_rank": "Effective rank",
+    "diag_annotation": "Folds 0, 13, 26 · matched n = 1,024",
+    "footer": "Research showcase สองภาษา · Graduate School of Applied Statistics, NIDA · เปรียบเทียบ classical และ quantum kernels สำหรับการพยากรณ์ทิศทาง Bitcoin",
     "nav_research": "คำถามวิจัย",
-    "nav_dataset": "ข้อมูลที่ใช้ในการศึกษา",
+    "nav_dataset": "ข้อมูล",
+    "nav_method": "วิธีทดลอง",
+    "nav_quantum": "Quantum",
+    "deep_dive_kicker": "รายละเอียดเชิงเทคนิค",
+    "deep_dive_title": "ดูรายละเอียดการออกแบบการทดลอง",
+    "deep_dive_intro": "เปิดส่วนนี้เพื่อดูบทบาทของแต่ละโมเดล วิธีสร้าง QSVM kernel การควบคุม data leakage และกรอบที่ใช้เชื่อมหลักฐานแต่ละด้านเข้ากับการตีความผล",
     "rq_kicker": "คำถามวิจัย",
-    "rq_title": "ไม่ใช่แค่ “โมเดลไหนชนะ” แต่คือหลักฐานแบบใดจึงเพียงพอ",
-    "rq_desc": "ข้อกล่าวอ้างเกี่ยวกับ Financial QML ไม่ควรถูกตัดสินจากค่าเฉลี่ยของ metric เดียว งานนี้จึงประเมิน QSVM ผ่านหลักฐาน 4 ชั้น ได้แก่ การพยากรณ์ทิศทางราคา ความเสถียร across folds การตีความด้าน trading/risk และ quantum kernel diagnostics",
-    "rq_main_label": "คำถามวิจัย",
-    "rq_main_question": "QSVM ให้คุณค่าเพิ่มที่เกี่ยวข้องกับโจทย์จริงเหนือ classical kernel baselines หรือไม่ ภายใต้การพยากรณ์ทิศทาง Bitcoin แบบ leakage-safe และ multi-horizon?",
-    "rq_card1_title": "Directional Classification",
-    "rq_card1_text": "QSVM สามารถพยากรณ์ทิศทางราคา Bitcoin ได้แข่งขันกับ classical baselines หรือไม่ ใน horizon 1 วัน, 7 วัน และ 30 วัน?",
-    "rq_card2_title": "Stability Across Time",
-    "rq_card2_text": "ผลลัพธ์ของโมเดลเสถียร across rolling walk-forward folds หรือขึ้นอยู่กับบางช่วงเวลาของตลาดมากเกินไป?",
-    "rq_card3_title": "Trading/Risk Interpretation",
-    "rq_card3_text": "เมื่อใช้เฉพาะ out-of-sample predictions แล้วนำไปตีความผ่าน transaction costs, turnover, Sharpe ratio, return และ drawdown ผลลัพธ์ยังมีความหมายทางการเงินหรือไม่?",
-    "rq_card4_title": "Quantum Kernel Diagnostics",
-    "rq_card4_text": "Quantum-generated kernel มีโครงสร้างแตกต่างจาก classical kernel จริงหรือไม่ และความแตกต่างนั้นเกี่ยวข้องกับ target prediction หรือไม่?\r\n\r\nBoundary Note:\r\nไม่มี evidence layer ใดเพียงชั้นเดียวที่เพียงพอสำหรับสรุปว่าโมเดลหนึ่งเหนือกว่าอีกโมเดลหนึ่ง ต้องตีความ classification, stability, financial interpretation และ diagnostics ร่วมกัน",
-    "rq_boundary_note": "ไม่มี evidence layer ใดเพียงชั้นเดียวที่เพียงพอสำหรับสรุปว่าโมเดลหนึ่งเหนือกว่าอีกโมเดลหนึ่ง ต้องตีความ classification, stability, financial interpretation และ diagnostics ร่วมกัน",
-    "btc_kicker": "ทำไมต้อง Bitcoin?",
-    "btc_title": "สนามทดสอบที่ผันผวนสำหรับ Financial QML",
-    "btc_desc": "งานนี้ไม่ได้ใช้ Bitcoin เพื่อเสนอการลงทุนหรือระบบซื้อขาย แต่ใช้เป็น case study ที่ท้าทาย เพราะข้อมูลมีความผันผวนสูง ไม่คงที่ และได้รับอิทธิพลจากหลายแหล่งข้อมูล",
-    "btc_narrative": "งานด้าน financial machine learning ยากกว่างานทำนายทั่วไป เพราะคะแนนการพยากรณ์ที่ดีไม่ได้แปลว่าจะตีความทางการเงินได้ดีเสมอไป โมเดลอาจดูแข่งขันได้เมื่อวัดด้วย classification metrics แต่ผลลัพธ์อาจอ่อนลงเมื่อพิจารณา transaction costs, turnover, drawdowns หรือ regime shifts Bitcoin ทำให้ปัญหานี้ชัดเจน เพราะเป็นสินทรัพย์ที่ซื้อขายต่อเนื่อง มีความผันผวนสูง และสะท้อนทั้งข้อมูลตลาด กิจกรรมบน blockchain และสภาพแวดล้อมทางการเงินมหภาคพร้อมกัน จึงเหมาะสำหรับใช้เป็น stress-test ว่า QSVM ให้คุณค่าเพิ่มจริงหรือไม่เมื่อประเมินมากกว่า metric เดียว",
-    "btc_boundary_note": "งานนี้ไม่ได้ใช้ Bitcoin เพื่อเสนอการลงทุนหรือระบบซื้อขาย แต่ใช้เป็น case study ที่ท้าทาย เพราะข้อมูลมีความผันผวนสูง ไม่คงที่ และได้รับอิทธิพลจากหลายแหล่งข้อมูล",
-    "btc_card1_title": "High Volatility",
-    "btc_card1_text": "Bitcoin ทำให้โมเดลต้องเผชิญกับการเปลี่ยนแปลงของราคาที่รวดเร็วและไม่เสถียร",
-    "btc_card2_title": "Non-Stationarity",
-    "btc_card2_text": "รูปแบบที่ดูมีประโยชน์ในช่วงหนึ่ง อาจอ่อนลงหรือเปลี่ยนทิศทางในอีกช่วงหนึ่ง",
-    "btc_card3_title": "Multi-Source Signals",
-    "btc_card3_text": "ชุดข้อมูลรวม market/technical, on-chain และ macroeconomic features",
-    "btc_card4_title": "Accuracy-Risk Gap",
-    "btc_card4_text": "คะแนน classification ที่ดีอาจไม่แปลเป็นผลลัพธ์ทางการเงินที่ดี",
-    "btc_card5_title": "Strict Validation Needed",
-    "btc_card5_text": "ต้องใช้ leakage-safe walk-forward protocol เพื่อหลีกเลี่ยงข้อสรุปที่ดูดีเกินจริง",
-    "flow_classification": "Directional classification",
+    "rq_title": "คำถามไม่ได้มีแค่ว่า “โมเดลไหนชนะ”",
+    "rq_desc": "การประเมิน Financial QML จากค่าเฉลี่ยเพียงตัวเดียวอาจทำให้สรุปเกินจริง งานนี้จึงถามว่า QSVM ให้ประโยชน์ที่เกี่ยวข้องกับโจทย์จริงเพิ่มขึ้นหรือไม่ แล้วตรวจคำตอบผ่านผล classification ความเสถียรตามเวลา การตีความด้าน trading/risk และ quantum-kernel diagnostics",
+    "rq_main_label": "คำถามหลัก",
+    "rq_main_question": "เมื่อพยากรณ์ทิศทาง Bitcoin ด้วย protocol แบบ leakage-safe และหลายระยะ QSVM ให้ task-relevant value เพิ่มขึ้นเหนือ classical kernel baselines หรือไม่?",
+    "rq_card1_title": "ทำนายทิศทางได้ดีกว่าหรือไม่?",
+    "rq_card1_text": "เปรียบเทียบ QSVM กับ RBF_PCA และ RBF_FULL ในงานจำแนกทิศทาง Bitcoin ที่ระยะ 1, 7 และ 30 วัน",
+    "rq_card2_title": "ผลลัพธ์คงเส้นคงวาตามเวลาหรือไม่?",
+    "rq_card2_text": "ดูทั้งค่าเฉลี่ย ความกระจายของผลระหว่าง walk-forward folds และผลใน fold ที่แย่ที่สุด",
+    "rq_card3_title": "เมื่อตีความด้านการเงิน ผลยังมีความหมายหรือไม่?",
+    "rq_card3_text": "ใช้เฉพาะ clean out-of-sample predictions แล้วพิจารณา transaction costs, turnover, Sharpe ratio, return และ drawdown ภายใต้ execution rule เดียวกัน",
+    "rq_card4_title": "Quantum kernel เพิ่มอะไรให้กับโจทย์นี้จริง?",
+    "rq_card4_text": "เปรียบเทียบ QSVM กับ RBF_PCA ผ่าน kernel similarity, effective rank และ target alignment เพื่อแยกความแตกต่างเชิงโครงสร้างออกจาก task-relevant advantage",
+    "rq_boundary_note": "หลักฐานแต่ละด้านตอบคำถามคนละเรื่อง งานจึงประเมินผลการพยากรณ์ ความ robust ทางสถิติ ความหมายด้านการเงิน และโครงสร้าง kernel แยกจากกัน ก่อนนำผลทั้งหมดมาตีความร่วมกัน",
+    "btc_kicker": "ทำไมเลือก Bitcoin?",
+    "btc_title": "สนามทดสอบที่ยากและสะท้อนปัญหาจริงของ Financial ML",
+    "btc_desc": "Bitcoin ถูกใช้เป็น financial time series ที่มีความผันผวนสูง ไม่ใช่สินทรัพย์ที่งานนี้แนะนำให้ลงทุน ตลาดซื้อขายตลอดเวลา มี non-stationarity สูง และได้รับอิทธิพลจากทั้งข้อมูลตลาด กิจกรรมบน blockchain และปัจจัยมหภาค จึงเหมาะสำหรับทดสอบว่า classical และ quantum kernels รับมือกับโจทย์ที่เปลี่ยนไปตามเวลาได้อย่างไร",
+    "btc_narrative": "งานพยากรณ์ทางการเงินอาจดูดีเกินจริงได้ง่าย หากประเมินเพียง metric เดียว โมเดลหนึ่งอาจได้คะแนน classification สูงกว่า แต่ความได้เปรียบนั้นอาจหายไปเมื่อมองหลายช่วงเวลา หรือเมื่อคำนึงถึง turnover, transaction costs และ drawdown Bitcoin ทำให้ช่องว่างนี้เห็นชัด เพราะพฤติกรรมตลาดเปลี่ยนเร็วและข้อมูลสำคัญมาจากหลายแหล่ง จึงเป็น stress test ที่เหมาะสำหรับดูว่า QSVM ยังมีข้อได้เปรียบอยู่หรือไม่เมื่อเพิ่มหลักฐานด้านอื่นเข้ามา",
+    "btc_boundary_note": "Bitcoin ในงานนี้เป็นสภาพแวดล้อมสำหรับทดสอบโมเดล ไม่ใช่คำแนะนำการลงทุน ไม่ใช่ trading signal และไม่ใช่หลักฐานว่ากลยุทธ์ใดทำกำไรได้จริง",
+    "btc_card1_title": "ความผันผวนสูง",
+    "btc_card1_text": "การเปลี่ยนแปลงของราคาที่รวดเร็วช่วยเปิดให้เห็นจุดอ่อนของสมมติฐานหรือโมเดลได้ชัดขึ้น",
+    "btc_card2_title": "รูปแบบเปลี่ยนตามเวลา",
+    "btc_card2_text": "Pattern ที่ใช้ได้ในช่วงหนึ่งอาจอ่อนลงหรือกลับทิศเมื่อสภาวะตลาดเปลี่ยน",
+    "btc_card3_title": "ข้อมูลมาจากหลายแหล่ง",
+    "btc_card3_text": "ตัวแปรที่ใช้ครอบคลุม market/technical, on-chain และ macroeconomic information ไม่ได้พึ่งราคาย้อนหลังเพียงอย่างเดียว",
+    "btc_card4_title": "ทำนายดี ไม่ได้แปลว่ามีประโยชน์ทางการเงิน",
+    "btc_card4_text": "ข้อได้เปรียบด้าน classification อาจหายไปเมื่อคิด execution timing, turnover, transaction costs และ drawdown",
+    "btc_card5_title": "ต้องใช้การประเมินที่เข้มงวด",
+    "btc_card5_text": "Walk-forward testing, train-only preprocessing และ horizon-aware purging ช่วยลดความเสี่ยงที่ข้อมูลอนาคตจะทำให้ผลดูดีเกินจริง",
+    "flow_classification": "Classification",
     "flow_stability": "Stability",
-    "flow_trading": "Trading/risk",
-    "flow_diagnostics": "Quantum diagnostics",
-    "flow_boundary": "Claim boundary",
-    "data_kicker": "ข้อมูลที่ใช้ในการศึกษา",
-    "data_title": "ข้อมูล Bitcoin รายวัน หลายกลุ่มสัญญาณ และ 3 ระยะพยากรณ์",
-    "data_desc": "งานนี้ใช้ชุดข้อมูล Bitcoin รายวันบน UTC calendar โดยรวมสัญญาณจาก market/technical, on-chain และ macroeconomic features พร้อม lag ข้อมูล exogenous 1 วันเพื่อลดความเสี่ยงของ look-ahead bias",
-    "data_narrative": "แต่ละ observation แทนข้อมูลที่มีอยู่ ณ วันนั้นหรือก่อนหน้า จากนั้นโมเดลทำนายว่าราคาปิดของ Bitcoin ในอนาคตจะสูงกว่าราคาปัจจุบันหรือไม่ Horizon ทั้ง 3 ระยะ ได้แก่ 1 วัน, 7 วัน และ 30 วัน เป็น prediction tasks คนละงาน ไม่ใช่ input windows จุดนี้สำคัญเพราะงานต้องการตรวจสอบว่าพฤติกรรมของโมเดลเปลี่ยนไปอย่างไรเมื่อโจทย์เปลี่ยนจากระยะสั้นไปสู่ระยะกลางและระยะยาว",
-    "data_asset_label": "Asset",
-    "data_asset_value": "ข้อมูล Bitcoin รายวัน",
-    "data_period_label": "Study Period",
+    "flow_trading": "Trading/Risk",
+    "flow_diagnostics": "Kernel diagnostics",
+    "flow_boundary": "ข้อสรุปสุดท้าย",
+    "revisit_kicker": "ตรรกะของหลักฐาน",
+    "revisit_title": "ย้อนดูหลักฐาน",
+    "revisit_desc": "ย้อนตามตรรกะการประเมิน ตั้งแต่ผลการพยากรณ์ไปจนถึงขอบเขตของข้อสรุปสุดท้าย",
+    "revisit_aria": "ย้อนดูหลักฐานของงานวิจัย",
+    "data_kicker": "ชุดข้อมูล",
+    "data_title": "ข้อมูลรายวัน 3,592 observations และ predictors 16 ตัวจาก 3 กลุ่มข้อมูล",
+    "data_desc": "ชุดข้อมูลสุดท้ายครอบคลุมช่วง 31 มกราคม 2016 ถึง 30 พฤศจิกายน 2025 บนปฏิทินรายวันแบบ UTC และใช้ predictors 16 ตัวชุดเดียวกันกับงานพยากรณ์ระยะ 1, 7 และ 30 วัน",
+    "data_narrative": "แต่ละระยะเป็น binary classification task แยกกัน โดยใช้ข้อมูลที่มี ณ หรือก่อนวัน t เพื่อทำนายว่าราคาปิด Bitcoin ที่ t+h จะสูงกว่าราคาปิดที่ t หรือไม่ เพื่อช่วยลด look-ahead risk ตัวแปร on-chain ทั้ง 4 ตัวและ macroeconomic ทั้ง 5 ตัวถูกเลื่อนย้อนหลัง 1 วันก่อนเข้าโมเดล",
+    "data_asset_label": "ข้อมูลหลัก",
+    "data_asset_value": "Bitcoin รายวัน · 3,592 observations · UTC calendar",
+    "data_period_label": "ช่วงเวลา",
     "data_period_value": "31 มกราคม 2016 ถึง 30 พฤศจิกายน 2025",
-    "data_domains_label": "Feature Domains",
-    "data_domains_value": "Market/technical, on-chain และ macroeconomic features",
-    "data_horizons_label": "Prediction Horizons",
-    "data_horizons_value": "พยากรณ์ทิศทางราคาในระยะ 1 วัน, 7 วัน และ 30 วัน",
-    "data_validation_label": "Validation Design",
-    "data_validation_value": "Rolling walk-forward validation จำนวน 27 folds",
-    "data_leakage_label": "Leakage Control",
-    "data_leakage_value": "Lag ข้อมูล on-chain และ macroeconomic variables 1 วันก่อนนำเข้าโมเดล",
+    "data_domains_label": "Predictors",
+    "data_domains_value": "รวม 16 ตัว: market/technical 7 + on-chain 4 + macroeconomic 5",
+    "data_horizons_label": "โจทย์พยากรณ์",
+    "data_horizons_value": "ทิศทางราคาในอีก 1, 7 และ 30 วัน",
+    "data_validation_label": "การทดสอบแบบ OOS",
+    "data_validation_value": "Nested rolling walk-forward · 27 outer folds ต่อ horizon",
+    "data_leakage_label": "การควบคุมเวลา",
+    "data_leakage_value": "Lag exogenous data 1 วัน + horizon-aware purging ที่ outer และ inner boundaries",
     "data_domain1_label": "Market / Technical",
     "data_domain2_label": "On-chain",
     "data_domain3_label": "Macroeconomic",
-    "data_lag_badge": "1-day exogenous lag",
-    "data_folds_badge": "27 folds",
-    "data_clarification_note": "Prediction horizon หมายถึงช่วงเวลาในอนาคตที่ต้องการทำนาย ไม่ใช่จำนวนวันย้อนหลังที่ใช้เป็น input เช่น ในโจทย์ 7 วัน โมเดลใช้ข้อมูลที่มี ณ วัน t เพื่อทำนายว่าราคาปิด Bitcoin ณ วัน t+7 จะสูงกว่าวัน t หรือไม่",
-    "detail_feature_market": "ตัวแปรจากราคา ปริมาณซื้อขาย ความผันผวน momentum และ trend ที่สะท้อนพฤติกรรมตลาดของ Bitcoin",
-    "detail_feature_onchain": "สัญญาณจากกิจกรรมบนเครือข่าย blockchain และธุรกรรม ซึ่งอาจสะท้อนพฤติกรรมที่อยู่นอกเหนือจากราคาตลาดเพียงอย่างเดียว",
-    "detail_feature_macro": "บริบททางการเงินมหภาค เช่น risk sentiment ค่าเงิน สภาวะตลาดหุ้น และสภาพแวดล้อมด้านอัตราดอกเบี้ย",
-    "detail_horizon_1d": "งานพยากรณ์ระยะสั้น ใช้ข้อมูล ณ วัน t เพื่อทำนายว่าราคาปิด Bitcoin ณ วัน t+1 สูงกว่าวัน t หรือไม่",
-    "detail_horizon_7d": "งานพยากรณ์ระยะกลาง ใช้ข้อมูล ณ วัน t เพื่อทำนายว่าราคาปิด Bitcoin ณ วัน t+7 สูงกว่าวัน t หรือไม่",
-    "detail_horizon_30d": "งานพยากรณ์ระยะยาว ใช้ข้อมูล ณ วัน t เพื่อทำนายว่าราคาปิด Bitcoin ณ วัน t+30 สูงกว่าวัน t หรือไม่",
-    "detail_validation_lag": "ข้อมูล on-chain และ macroeconomic variables ถูกเลื่อนย้อนหลัง 1 วันก่อนนำเข้าโมเดล เพื่อลดความเสี่ยงของ look-ahead bias",
-    "detail_validation_folds": "ใช้ rolling walk-forward validation จำนวน 27 folds เพื่อประเมินโมเดลแบบ out-of-sample แทนการสุ่มแบ่งข้อมูล",
-    "timeline_context_dataset": "ข้อมูล Bitcoin รายวัน / UTC calendar",
-    "timeline_context_period": "31 มกราคม 2016 ถึง 30 พฤศจิกายน 2025",
-    "timeline_context_folds": "Rolling walk-forward validation จำนวน 27 folds",
-    "timeline_context_label": "ขอบเขตข้อมูล",
-    "pipeline_kicker": "กระบวนการทดลอง",
-    "pipeline_title": "จากข้อมูล Bitcoin รายวันสู่หลักฐาน out-of-sample ที่ป้องกัน leakage",
-    "pipeline_desc": "การทดลองนี้ยึดหลักสำคัญข้อเดียว คือ ทุกขั้นตอนที่อาจทำให้ข้อมูลอนาคตรั่วเข้าสู่โมเดล ต้องถูก fit หรือตัดสินใจจาก training data เท่านั้น ส่วน test fold ถูกใช้เพื่อ out-of-sample evaluation เท่านั้น",
-    "pipeline_narrative_1": "กระบวนการเริ่มจาก master dataset รายวันของ Bitcoin บน UTC calendar ซึ่งรวม market/technical, on-chain และ macroeconomic features จากนั้นข้อมูล exogenous เช่น on-chain และ macroeconomic variables ถูก lag 1 วันก่อนนำเข้าโมเดล จากนั้นจึงสร้าง binary directional labels และฝึกสอนโมเดลแยกจากกันสำหรับแต่ละโจทย์ horizon ได้แก่ 1 วัน, 7 วัน และ 30 วัน",
-    "pipeline_narrative_2": "ในแต่ละ walk-forward fold ขั้นตอน preprocessing จะ fit จาก training window เท่านั้น ไม่ว่าจะเป็น scaling, PCA, hyperparameter selection หรือ model fitting ทั้งหมดต้องเสร็จก่อนที่โมเดลจะถูกประเมินบน test fold ผลทำนายที่ได้จึงถูกเก็บเป็น clean out-of-sample evidence และนำไปตีความต่อผ่าน classification, stability, trading/risk และ diagnostic layers",
-    "pipeline_step1_title": "Daily UTC Master Dataset",
-    "pipeline_step1_text": "จัดข้อมูล market, on-chain และ macroeconomic variables ให้อยู่บน BTC daily calendar เดียวกัน",
-    "pipeline_step2_title": "One-Day Exogenous Lag",
-    "pipeline_step2_text": "เลื่อนข้อมูล on-chain และ macroeconomic variables ย้อนหลัง 1 วันเพื่อลด look-ahead risk",
-    "pipeline_step3_title": "Independent Horizon Labels",
-    "pipeline_step3_text": "สร้าง binary directional labels แยกสำหรับโจทย์ horizon 1 วัน, 7 วัน และ 30 วัน",
-    "pipeline_step4_title": "Rolling Walk-Forward Folds",
-    "pipeline_step4_text": "ใช้การแบ่ง train/test ตามลำดับเวลา ไม่ใช้ random split",
-    "pipeline_step5_title": "Train-Only Preprocessing",
-    "pipeline_step5_text": "fit scaling และ PCA จาก training fold เท่านั้น แล้วจึง apply ไปยัง test fold",
-    "pipeline_step6_title": "Nested Model Selection",
-    "pipeline_step6_text": "เลือก model settings จากข้อมูล training เท่านั้น",
-    "pipeline_step7_title": "Out-of-Sample Prediction",
-    "pipeline_step7_text": "สร้าง predictions บน test folds ที่โมเดลยังไม่เคยเห็น",
-    "pipeline_step8_title": "Evidence-Layer Evaluation",
-    "pipeline_step8_text": "นำ OOS predictions ไปตีความผ่าน classification, stability, trading/risk และ diagnostics",
-    "pipeline_trust_note": "แต่ละ prediction horizon ถูกปฏิบัติเป็นโจทย์พยากรณ์แยกจากกัน โมเดลสำหรับ 1 วัน, 7 วัน และ 30 วันไม่ได้ถูกฝึกเป็น multi-task model เดียวกัน และ test fold ไม่ถูกใช้เพื่อ fit preprocessing, เลือก parameters, สร้าง transformations หรือ optimize trading rules",
+    "data_lag_badge": "Lag exogenous data 1 วัน",
+    "data_folds_badge": "27 outer folds",
+    "data_clarification_note": "Prediction horizon คือจำนวนวันข้างหน้าที่ต้องการทำนาย ไม่ใช่จำนวนวันย้อนหลังที่ป้อนให้โมเดล ตัวอย่างเช่น โจทย์ 7 วันใช้ข้อมูลที่มี ณ วัน t เพื่อทำนายว่าราคาปิด Bitcoin ที่ t+7 จะสูงกว่าราคาปิดที่ t หรือไม่",
+    "detail_feature_market": "7 predictors ได้แก่ log return, 30-day rolling volatility, ATR14, RSI14, MACD, SMA7/SMA30 ratio และ trading volume",
+    "detail_feature_onchain": "4 predictors ได้แก่ active address count, transaction count, hash rate และ mean transaction fee ในหน่วย native โดยทุกตัวถูก lag 1 วันก่อนเข้าโมเดล",
+    "detail_feature_macro": "5 predictors ได้แก่ U.S. Dollar Index (DXY), gold price, S&P 500, VIX และ U.S. 10-year Treasury yield โดยทุกตัวถูก lag 1 วันก่อนเข้าโมเดล",
+    "detail_horizon_1d": "ระยะสั้น: ใช้ข้อมูลที่มี ณ วัน t เพื่อทำนายว่าราคาปิด Bitcoin ที่ t+1 จะสูงกว่าที่ t หรือไม่",
+    "detail_horizon_7d": "ระยะกลาง: ใช้ข้อมูลที่มี ณ วัน t เพื่อทำนายว่าราคาปิด Bitcoin ที่ t+7 จะสูงกว่าที่ t หรือไม่",
+    "detail_horizon_30d": "ระยะยาวกว่า: ใช้ข้อมูลที่มี ณ วัน t เพื่อทำนายว่าราคาปิด Bitcoin ที่ t+30 จะสูงกว่าที่ t หรือไม่",
+    "detail_validation_lag": "ตัวแปร on-chain และ macroeconomic ทุกตัวถูก lag 1 วัน และ training rows จะถูกตัดออกด้วยหาก h-step target ของ row นั้นลากข้ามเข้า validation หรือ test period ถัดไป",
+    "detail_validation_folds": "แต่ละ horizon ใช้ outer test folds ชุดเดียวกัน 27 folds: candidate training window แบบ rolling 3 ปี ตามด้วย test window 3 เดือน และเลื่อนไปครั้งละ 3 เดือน ภายในแต่ละ outer fold ใช้ chronological inner validation 3 splits โดยแต่ละ split มี validation window 3 เดือน",
+    "timeline_context_dataset": "ข้อมูล Bitcoin รายวันบน UTC calendar",
+    "timeline_context_period": "31 ม.ค. 2016 – 30 พ.ย. 2025",
+    "timeline_context_folds": "27 rolling OOS folds ต่อ horizon",
+    "timeline_context_label": "ขอบเขตการศึกษา",
+    "pipeline_kicker": "กระบวนการประเมิน",
+    "pipeline_title": "ทุกขั้นตอนถูกออกแบบไม่ให้ข้อมูลอนาคตย้อนกลับไปช่วยการฝึกโมเดล",
+    "pipeline_desc": "สำหรับ multi-horizon labels การแบ่งข้อมูลตามเวลาเพียงอย่างเดียวยังไม่พอ งานนี้จึงตัด training observations ที่ future target endpoint ข้ามเข้า validation หรือ test period ถัดไปออกด้วย",
+    "pipeline_narrative_1": "Pipeline เริ่มจาก daily UTC dataset เดียว จำนวน 3,592 observations และ predictors 16 ตัว จากนั้นสร้าง binary direction labels แยกสำหรับอีก 1, 7 และ 30 วัน และ lag ตัวแปร on-chain กับ macroeconomic 1 วันก่อนเข้าโมเดล",
+    "pipeline_narrative_2": "ในแต่ละ outer fold จะทำ horizon-aware purging ก่อนขั้นตอนที่ต้องเรียนรู้จากข้อมูล Standardization และ PCA fit จาก training data เท่านั้น ส่วนการเลือก hyperparameter ทำภายใน chronological inner validation 3 splits โดยใช้ purge rule เดียวกัน Outer test fold จะยังไม่ถูกใช้จนกว่าจะถึงการประเมินครั้งสุดท้าย",
+    "pipeline_step1_title": "เตรียม Daily UTC Dataset",
+    "pipeline_step1_text": "ข้อมูล 3,592 observations และ predictors 16 ตัว ช่วง 31 ม.ค. 2016 ถึง 30 พ.ย. 2025",
+    "pipeline_step2_title": "Lag ข้อมูลภายนอก 1 วัน",
+    "pipeline_step2_text": "เลื่อนตัวแปร on-chain และ macroeconomic ทุกตัวย้อนหลัง 1 วันตามกติกาที่กำหนด",
+    "pipeline_step3_title": "สร้าง target แยกตาม horizon",
+    "pipeline_step3_text": "สร้าง y = 1[Close(t+h) > Close(t)] แยกสำหรับ h = 1, 7 และ 30 วัน",
+    "pipeline_step4_title": "Roll forward และ purge target overlap",
+    "pipeline_step4_text": "ใช้ candidate training window 3 ปี, test window 3 เดือน และ step 3 เดือน แล้วตัด training rows ที่ target ลากเข้า period ถัดไปออก",
+    "pipeline_step5_title": "Fit preprocessing จาก training data เท่านั้น",
+    "pipeline_step5_text": "คำนวณ standardization และ fixed 8-component PCA เมื่อจำเป็น โดยใช้เฉพาะ eligible training partition",
+    "pipeline_step6_title": "เลือก C ภายใน training fold",
+    "pipeline_step6_text": "เลือก C จาก {0.1, 1.0, 10.0} ด้วย chronological inner validation 3 splits ขนาด 3 เดือน พร้อม horizon-aware purge แบบเดียวกัน",
+    "pipeline_step7_title": "ทดสอบกับ outer fold ที่ยังไม่เคยถูกใช้",
+    "pipeline_step7_text": "Refit pipeline ที่เลือกแล้วบน eligible outer-training data จากนั้นประเมินเพียงครั้งเดียวบน outer test period ที่กันไว้",
+    "pipeline_step8_title": "ใช้ OOS predictions เฉพาะการประเมินผล",
+    "pipeline_step8_text": "เก็บ out-of-sample predictions สำหรับ classification และ fixed post-hoc trading/risk analysis ส่วน quantum diagnostics คำนวณแยกบน predefined folds",
+    "pipeline_trust_note": "RBF_FULL และ RBF_PCA ใช้ eligible training observations ทั้งหมด ส่วน QSVM มีข้อจำกัดด้านต้นทุนการสร้าง exact quantum kernel จึงใช้ได้สูงสุด 1,024 observations ล่าสุดที่ยัง eligible หลัง purging นอกจากนี้ยังมี matched-1,024 classical control แยกต่างหาก เพื่อตรวจว่าผลระยะสั้นสามารถอธิบายได้ด้วย training-size cap เพียงอย่างเดียวหรือไม่ โดย control นี้ไม่ได้มาแทน primary classical baselines",
     "roles_kicker": "บทบาทของโมเดล",
-    "roles_title": "Baseline แต่ละตัวไม่ได้ตอบคำถามเดียวกัน",
-    "roles_desc": "ชุดโมเดลในงานนี้ถูกออกแบบเพื่อการเปรียบเทียบตามบทบาท ไม่ใช่การแข่งขันแบบดูว่าโมเดลไหนชนะอย่างเดียว QSVM ไม่ได้ถูกตั้งให้เป็นผู้ชนะล่วงหน้า แต่ถูกประเมินเทียบกับ classical kernel baselines ที่มีขอบเขตการเปรียบเทียบต่างกัน",
-    "roles_narrative_1": "งานนี้เน้นการเปรียบเทียบในกลุ่ม kernel-based models เพราะ QSVM ยังคงใช้ logic ของ SVM classification แต่เปลี่ยนวิธีสร้าง similarity function จาก classical kernel ไปเป็น quantum-generated kernel ดังนั้นการตีความ QSVM อย่างยุติธรรมต้องเปรียบกับ classical references มากกว่าหนึ่งแบบ",
-    "roles_narrative_2": "RBF_PCA เป็น dimension-controlled comparator เพราะใช้ PCA-reduced feature representation ใกล้กับข้อจำกัดของ QSVM ส่วน RBF_FULL เป็น full-feature classical kernel reference ขณะที่ QSVM เป็น quantum-kernel benchmark สำหรับตรวจสอบว่า quantum-generated similarity ให้คุณค่าเพิ่มที่เกี่ยวข้องกับโจทย์จริงหรือไม่ภายใต้ validation protocol เดียวกัน",
-    "role_qsvm_title": "QSVM - Quantum-Kernel Benchmark",
-    "role_qsvm_text": "ใช้ quantum-generated kernel เพื่อสร้าง pairwise similarity ก่อนเข้าสู่ SVM classification บทบาทคือทดสอบว่า quantum-kernel representation ให้ task-relevant value หรือไม่ ไม่ใช่ตั้งต้นว่า quantum ต้องเหนือกว่า",
-    "role_rbf_pca_title": "RBF_PCA - Dimension-Controlled Classical Comparator",
-    "role_rbf_pca_text": "ใช้ classical RBF kernel บน PCA-reduced features เป็นตัวเปรียบเทียบเชิงโครงสร้างที่ใกล้กับ QSVM มากที่สุด เพราะทั้งสองอยู่ภายใต้ข้อจำกัดด้านมิติของ input",
-    "role_rbf_full_title": "RBF_FULL - Full-Feature Classical Kernel Reference",
-    "role_rbf_full_text": "ใช้ classical RBF kernel กับ full feature representation ทำหน้าที่เป็นตัวแทน classical kernel ที่ไม่ถูกจำกัดด้านมิติ เพื่อประเมินว่าการลดมิติของข้อมูลตามข้อจำกัดของ quantum-capacity setting อาจทำให้สูญเสียข้อมูลที่เกี่ยวข้องกับโจทย์หรือไม่",
-    "roles_interpretation_rule": "ถ้า QSVM ดีกว่า RBF_PCA แต่ยังไม่ดีกว่า RBF_FULL การตีความที่ปลอดภัยคือ QSVM แข่งขันได้ภายใต้ dimension-controlled setting ไม่ใช่ QSVM เหนือกว่า classical models โดยรวม",
-    "leak_kicker": "การควบคุม Leakage",
-    "leak_title": "test fold ต้องไม่ถูกแตะก่อนถึงขั้นประเมินผล",
-    "leak_desc": "งาน financial time-series อาจดูดีเกินจริงได้ หากข้อมูลอนาคตรั่วเข้าสู่ preprocessing, model selection หรือ trading interpretation งานนี้จึงแยก training decisions ออกจาก out-of-sample evaluation อย่างชัดเจน",
+    "roles_title": "Baseline แต่ละตัวถูกเลือกมาเพื่อตอบคำถามเปรียบเทียบคนละแบบ",
+    "roles_desc": "QSVM ไม่ได้ถูกตั้งให้เป็นผู้ชนะล่วงหน้า Classical baselines ถูกออกแบบให้ตัวหนึ่งควบคุมเรื่อง dimensionality และอีกตัวเป็น full-feature kernel benchmark ที่แข็งแรง",
+    "roles_narrative_1": "QSVM ยังอยู่ในกรอบของ SVM แต่เปลี่ยนวิธีคำนวณ similarity จาก classical RBF kernel เป็น quantum-generated fidelity kernel ดังนั้น classical kernel models จึงเป็นตัวเปรียบเทียบที่ตรงที่สุด",
+    "roles_narrative_2": "RBF_PCA ควบคุม dimensionality โดยใช้ PCA 8 components ชุดเดียวกับ QSVM ส่วน RBF_FULL ใช้ predictors ทั้ง 16 ตัวและทำหน้าที่เป็น full-feature classical benchmark การมี baseline สองแบบช่วยแยกได้ดีขึ้นว่าความแตกต่างที่เห็นมาจาก quantum kernel หรือจากข้อจำกัดด้าน representation และจำนวน features",
+    "role_qsvm_title": "QSVM · Quantum-kernel benchmark",
+    "role_qsvm_text": "ใช้ 8-component PCA representation ที่ fit จาก training data เหมือนกับ RBF_PCA แล้วคำนวณ precomputed quantum fidelity kernel ด้วย exact statevector simulation แต่ละ training partition ใช้ observations ล่าสุดที่ eligible ได้สูงสุด 1,024 ตัว",
+    "role_rbf_pca_title": "RBF_PCA · Dimension-controlled comparator",
+    "role_rbf_pca_text": "ใช้ classical RBF kernel บน PCA 8 components ชุดเดียวกับ QSVM จึงเป็น classical comparator ที่ใกล้เคียงเชิงโครงสร้างมากที่สุด",
+    "role_rbf_full_title": "RBF_FULL · Full-feature classical benchmark",
+    "role_rbf_full_text": "ใช้ classical RBF kernel กับ predictors ทั้ง 16 ตัวและ eligible training observations ทั้งหมด",
+    "roles_interpretation_rule": "SVM ทั้งสามใช้ class_weight = balanced และ C grid เดียวกัน {0.1, 1.0, 10.0} ส่วน RBF models ใช้ gamma = scale สำหรับ matched-1,024 classical analysis มีไว้เป็น fairness check และไม่ได้แทน primary baselines ที่ใช้ eligible training data เต็มชุด",
+    "leak_kicker": "การควบคุม Data Leakage",
+    "leak_title": "ป้องกันทั้งข้อมูล feature ที่มาช้า และ target ที่ลากข้ามช่วงทดสอบ",
+    "leak_desc": "Protocol ฉบับสุดท้ายไม่ได้ควบคุมแค่ลำดับ train/test แต่ยังป้องกัน target-overlap leakage ที่ outer และ inner boundaries พร้อมกัน และกัน preprocessing, model selection, trading interpretation รวมถึง diagnostics ออกจาก outer test period",
     "leak_narrative_1": "protocol นี้ถูกออกแบบให้ข้อมูลไหลไปข้างหน้าตามเวลา ตั้งแต่ data alignment, feature lagging, label construction, train/test splitting, preprocessing, PCA, model selection และ OOS prediction ทุกขั้นตอนที่เรียนรู้จากข้อมูลต้อง fit ภายใน training fold เท่านั้น ส่วน test fold จะถูกใช้หลังจากโมเดลและ transformations ถูกกำหนดเรียบร้อยแล้ว",
-    "leak_narrative": "protocol นี้ถูกออกแบบให้ข้อมูลไหลไปข้างหน้าตามเวลา ตั้งแต่ data alignment, feature lagging, label construction, train/test splitting, preprocessing, PCA, model selection และ OOS prediction ทุกขั้นตอนที่เรียนรู้จากข้อมูลต้อง fit ภายใน training fold เท่านั้น ส่วน test fold จะถูกใช้หลังจากโมเดลและ transformations ถูกกำหนดเรียบร้อยแล้ว",
-    "leak_control1_title": "No Random Split",
-    "leak_control1_text": "รักษาลำดับเวลาด้วย rolling walk-forward validation",
-    "leak_control2_title": "One-Day Exogenous Lag",
-    "leak_control2_text": "เลื่อนข้อมูล on-chain และ macroeconomic variables ก่อนนำเข้าโมเดล",
-    "leak_control3_title": "Train-Only Scaling",
-    "leak_control3_text": "fit scaler จาก training fold เท่านั้น",
-    "leak_control4_title": "Train-Only PCA",
-    "leak_control4_text": "fit dimensionality reduction จาก training fold เท่านั้น",
-    "leak_control5_title": "Train-Only Model Selection",
-    "leak_control5_text": "เลือก hyperparameters โดยไม่ใช้ outer test fold",
-    "leak_control6_title": "Untouched OOS Test Fold",
-    "leak_control6_text": "สร้าง final predictions หลังจาก training decisions ถูกกำหนดแล้วเท่านั้น",
-    "leak_control7_title": "OOS-Only Trading/Risk Layer",
-    "leak_control7_text": "การตีความ trading/risk ใช้เฉพาะ clean out-of-sample predictions พร้อมสมมติฐาน transaction cost ที่กำหนดไว้ล่วงหน้า ไม่มีการ optimize trading rule หรือ cost parameter จาก test fold",
-    "leak_control8_title": "Hardcoded Transaction Cost",
-    "leak_control8_text": "ชั้น trading/risk บังคับใช้ transaction cost คงที่ c = 0.0015 เพื่อลดความเสี่ยงของการตีความเกินจริงจากโมเดลที่เปลี่ยนสัญญาณถี่เกินไป",
-    "leak_control9_title": "Diagnostics Separated from Selection",
-    "leak_control9_text": "ใช้ quantum diagnostics เพื่อการตีความ ไม่ใช่เพื่อเลือกโมเดล",
-    "leak_trust_note": "การออกแบบนี้ไม่ได้รับประกันว่า performance จะดีขึ้น แต่ช่วยลดความเสี่ยงของการตีความเกินจริง โดยแยก predictive evidence, financial interpretation และ diagnostic evidence ออกจากกันอย่างชัดเจน",
-    "ladder_kicker": "ลำดับชั้นของหลักฐาน",
-    "ladder_title": "หลักฐานแต่ละชั้นตอบคำถามคนละแบบ",
-    "ladder_desc": "งานนี้ไม่ได้จัดอันดับโมเดลจากกราฟเดียว แต่สร้าง evidence ladder จาก classification ไปสู่ stability จากการตีความทางการเงินไปสู่ quantum diagnostics และสุดท้ายจึงเข้าสู่ claim boundary",
-    "ladder_narrative_1": "ค่า mean F1 ที่สูงสามารถสนับสนุนว่าโมเดลแข่งขันได้ในชั้น classification แต่ไม่สามารถพิสูจน์ financial usefulness ได้โดยตรง ในทำนองเดียวกัน quantum kernel ที่ richer สามารถสนับสนุนว่ามี representation ที่ต่างออกไป แต่ไม่สามารถพิสูจน์ task-relevant quantum advantage ได้ด้วยตัวเอง Worst-fold behavior มีความสำคัญ เพราะโมเดลที่มีค่าเฉลี่ยดูยอมรับได้ อาจยังล้มเหลวอย่างรุนแรงในช่วงตลาดที่ยากที่สุด Evidence ladder จึงช่วยป้องกันไม่ให้ claim คนละประเภทถูกปนกัน",
-    "ladder_narrative": "ค่า mean F1 ที่สูงสามารถสนับสนุนว่าโมเดลแข่งขันได้ในชั้น classification แต่ไม่สามารถพิสูจน์ financial usefulness ได้โดยตรง ในทำนองเดียวกัน quantum kernel ที่ richer สามารถสนับสนุนว่ามี representation ที่ต่างออกไป แต่ไม่สามารถพิสูจน์ task-relevant quantum advantage ได้ด้วยตัวเอง Worst-fold behavior มีความสำคัญ เพราะโมเดลที่มีค่าเฉลี่ยดูยอมรับได้ อาจยังล้มเหลวอย่างรุนแรงในช่วงตลาดที่ยากที่สุด Evidence ladder จึงช่วยป้องกันไม่ให้ claim คนละประเภทถูกปนกัน",
+    "leak_narrative": "สำหรับ observation ที่วัน t และ horizon h จะนำ row นั้นเข้า training set ได้ก็ต่อเมื่อราคาที่ต้องใช้สร้าง label ณ t+h เกิดขึ้นครบก่อน validation หรือ test period ถัดไปเริ่ม กฎเดียวกันนี้ใช้ทั้ง outer และ inner boundaries หลังจาก purge แล้ว จึงค่อย fit scaling, PCA, kernel centering และโมเดลจาก training data ที่เหลือ",
+    "leak_control1_title": "ทดสอบแบบ Chronological Walk-Forward",
+    "leak_control1_text": "27 outer folds ต่อ horizon โดยใช้ candidate training window 3 ปี, test window 3 เดือน และเลื่อนไปครั้งละ 3 เดือน",
+    "leak_control2_title": "Lag exogenous data 1 วัน",
+    "leak_control2_text": "ตัวแปร on-chain และ macroeconomic ทุกตัวถูกเลื่อนย้อนหลัง 1 วันก่อนเข้าโมเดล",
+    "leak_control3_title": "Outer Horizon-Aware Purge",
+    "leak_control3_text": "ตัด outer-training rows ที่ h-step target ไปถึงหรือข้ามวันเริ่มของ outer test period",
+    "leak_control4_title": "Inner Horizon-Aware Purge",
+    "leak_control4_text": "ใช้กฎ target endpoint เดียวกันที่ทุก inner training–validation boundary ระหว่างการเลือก hyperparameter",
+    "leak_control5_title": "Preprocessing และ tuning ใช้ training data เท่านั้น",
+    "leak_control5_text": "Fit scaling, fixed PCA 8 components เมื่อจำเป็น และเลือก C จาก eligible training data เท่านั้น",
+    "leak_control6_title": "กัน Outer Test Fold ไว้จนถึงขั้นสุดท้าย",
+    "leak_control6_text": "Outer test period จะถูกใช้เมื่อ preprocessing และ model choices ถูกกำหนดเรียบร้อยแล้วเท่านั้น",
+    "leak_control7_title": "QSVM Cap และ Kernel Centering",
+    "leak_control7_text": "ใช้ cap 1,024 observations หลัง purging แล้วเท่านั้น เลือก observations ล่าสุดที่ยัง eligible และคำนวณ centering statistics จาก training kernel เท่านั้น",
+    "leak_control8_title": "Trading Protocol ถูกกำหนดไว้ล่วงหน้า",
+    "leak_control8_text": "ใช้เฉพาะ clean OOS predictions เข้า Open(t+1), ออก Open(t+h+1), ใช้ global non-overlapping sequence เดียวต่อเนื่องข้าม folds และประเมิน transaction-cost scenarios ที่กำหนดไว้ล่วงหน้า",
+    "leak_control9_title": "Diagnostics ใช้เพื่ออธิบายผลภายหลังเท่านั้น",
+    "leak_control9_text": "Kernel diagnostics ใช้ predefined folds 0, 13 และ 26 พร้อม matched samples และไม่ถูกนำไปใช้เลือก preprocessing, hyperparameter หรือ model",
+    "leak_trust_note": "การตรวจสอบขั้นสุดท้ายไม่พบ target-overlap violations ที่ outer หรือ inner boundaries และไม่พบ inner validation period ที่ข้ามเข้า outer test period ที่เกี่ยวข้อง นอกจากนี้ dates, labels และ return fields ของ OOS predictions ยังถูกตรวจให้ตรงกันก่อนทำ paired statistical comparisons",
+    "ladder_kicker": "วิธีอ่านหลักฐาน",
+    "ladder_title": "หลักฐานแต่ละชั้นตอบคำถามคนละเรื่อง",
+    "ladder_desc": "งานนี้ไม่ใช้กราฟเดียวตัดสินว่าโมเดลไหนเหนือกว่า แต่เริ่มจากผลการพยากรณ์ ตรวจความ robust ตามเวลา ต่อด้วยความหมายด้านการเงินและโครงสร้าง quantum kernel แล้วจึงกำหนดว่าควรสรุปได้ไกลแค่ไหน",
+    "ladder_narrative_1": "Mean F1 ที่สูงกว่าสามารถบอกว่า classification ดีกว่า แต่ยังไม่พิสูจน์ financial usefulness ในทำนองเดียวกัน quantum kernel ที่มีโครงสร้างหลากหลายกว่าสามารถบอกได้ว่า representation แตกต่างออกไป แต่ยังไม่พิสูจน์ quantum advantage การดู dispersion และ worst fold ก็สำคัญ เพราะค่าเฉลี่ยที่ดูรับได้อาจซ่อนช่วงเวลาที่โมเดลล้มเหลวอย่างมากไว้",
+    "ladder_narrative": "Mean F1 ที่สูงกว่าสามารถบอกว่า classification ดีกว่า แต่ยังไม่พิสูจน์ financial usefulness ในทำนองเดียวกัน quantum kernel ที่มีโครงสร้างหลากหลายกว่าสามารถบอกได้ว่า representation แตกต่างออกไป แต่ยังไม่พิสูจน์ quantum advantage การดู dispersion และ worst fold ก็สำคัญ เพราะค่าเฉลี่ยที่ดูรับได้อาจซ่อนช่วงเวลาที่โมเดลล้มเหลวอย่างมากไว้",
     "ladder1_title": "Classification",
-    "ladder1_question": "โมเดลทำนายทิศทางได้แข่งขันหรือไม่",
-    "ladder1_can": "directional competitiveness",
-    "ladder1_cannot": "trading superiority หรือ quantum advantage",
-    "ladder2_title": "Stability",
-    "ladder2_question": "โมเดลมีอาการเสื่อมประสิทธิภาพรุนแรงแค่ไหนใน walk-forward fold ที่แย่ที่สุด",
-    "ladder2_can": "temporal robustness และ downside stability",
-    "ladder2_cannot": "profitability, ความพร้อมใช้งานจริง หรือ hardware-level advantage",
+    "ladder1_question": "โมเดลใดจำแนกทิศทางได้ดีกว่า?",
+    "ladder1_can": "ความแตกต่างด้าน predictive performance",
+    "ladder1_cannot": "Trading superiority หรือ quantum advantage",
+    "ladder2_title": "Stability ตามเวลา",
+    "ladder2_question": "ผลคงเส้นคงวาระหว่าง folds แค่ไหน และ fold ที่แย่ที่สุดอ่อนลงมากเพียงใด?",
+    "ladder2_can": "ความสม่ำเสมอตามเวลาและ downside stability",
+    "ladder2_cannot": "กำไรจริง ความพร้อมใช้งานจริง หรือ hardware advantage",
     "ladder3_title": "Trading/Risk",
-    "ladder3_question": "OOS predictions ยังมีความหมายหรือไม่เมื่อพิจารณา transaction costs และ risk metrics",
-    "ladder3_can": "financial interpretation ภายใต้ protocol ที่กำหนด",
-    "ladder3_cannot": "live trading readiness หรือ investment advice",
-    "ladder4_title": "Quantum Diagnostics",
-    "ladder4_question": "QSVM kernel มีโครงสร้างแตกต่างและเกี่ยวข้องกับ target หรือไม่",
-    "ladder4_can": "representational evidence",
-    "ladder4_cannot": "quantum advantage ด้วยตัวมันเอง",
-    "ladder5_title": "Claim Boundary",
-    "ladder5_question": "เมื่อรวมหลักฐานทั้งหมดแล้ว สรุปอะไรได้อย่างปลอดภัย",
-    "ladder5_can": "bounded interpretation",
-    "ladder5_cannot": "overclaim เกิน setting ที่ทดสอบ",
-    "ladder_bridge_note": "ผลลัพธ์ควรถูกอ่านเป็นลำดับ: เริ่มจากหลักฐาน ต่อด้วยการตีความ และสุดท้ายจึงเป็นขอบเขตของ claim",
+    "ladder3_question": "เมื่อ OOS predictions ชุดเดิมเจอ execution timing, costs, turnover และ drawdown ผลเป็นอย่างไร?",
+    "ladder3_can": "ความหมายทางการเงินภายใต้ protocol ที่กำหนดไว้",
+    "ladder3_cannot": "ความพร้อมสำหรับ live trading หรือคำแนะนำการลงทุน",
+    "ladder4_title": "Quantum-Kernel Diagnostics",
+    "ladder4_question": "QSVM kernel ต่างจาก RBF_PCA อย่างไร และความต่างนั้นช่วย target จริงหรือไม่?",
+    "ladder4_can": "หลักฐานเกี่ยวกับ representation geometry",
+    "ladder4_cannot": "Quantum advantage ด้วยตัวมันเอง",
+    "ladder5_title": "ข้อสรุปสุดท้าย",
+    "ladder5_question": "เมื่อรวมหลักฐานทั้งสี่ด้านแล้ว ยังมีข้อสรุปใดที่ยืนอยู่ได้?",
+    "ladder5_can": "ข้อสรุปที่จำกัดตาม horizon และหลักฐาน",
+    "ladder5_cannot": "การขยายข้อสรุปเกินกว่าสิ่งที่ทดสอบ",
+    "ladder_bridge_note": "การตีความเริ่มจากผลที่สังเกตได้ ตามด้วยความ robust ของผล ความหมายเชิงปฏิบัติและเชิงโครงสร้าง แล้วจึงสรุปเฉพาะข้ออ้างที่หลักฐานทั้งหมดรองรับร่วมกัน",
     "ladder_question_label": "คำถาม:",
-    "ladder_can_label": "สนับสนุนได้:",
-    "ladder_cannot_label": "สนับสนุนไม่ได้:",
-    "qsvm_kicker": "กลไกของ QSVM Kernel",
-    "qsvm_title": "จาก Features สู่ Quantum Similarity",
-    "qsvm_desc": "QSVM ยังคงใช้ตรรกะของ Support Vector Machine แต่เปลี่ยนวิธีสร้าง similarity จาก classical kernel ไปเป็น quantum-generated kernel จุดเปลี่ยนหลักจึงไม่ใช่ตัว classifier ทั้งหมด แต่คือวิธีวัดความคล้ายกันระหว่าง observations",
-    "qsvm_narrative_1": "ใน classical RBF-SVM ความคล้ายกันของข้อมูลถูกคำนวณผ่าน classical kernel function แต่ใน QSVM features จะถูกลดมิติให้เหมาะกับ quantum embedding dimension ก่อน จากนั้นจึงถูก encode ผ่าน quantum feature map ข้อมูลที่ถูก encode แล้วจะถูกแทนเป็น quantum states และนำมาเปรียบเทียบกันผ่าน pairwise state overlap เพื่อสร้าง quantum kernel matrix ก่อนส่งเข้าสู่ SVM classifier",
-    "qsvm_narrative_2": "งานนี้ใช้ PennyLane default.qubit statevector simulator เพื่อคำนวณ quantum kernel แบบ deterministic ไม่ได้ใช้ physical quantum hardware ดังนั้นการทดลองนี้ประเมินพฤติกรรมของ representation ภายใต้ simulation ไม่ใช่ hardware speedup, shot noise, decoherence หรือผลจาก device calibration",
+    "ladder_can_label": "บอกเราได้ว่า:",
+    "ladder_cannot_label": "ยังใช้พิสูจน์ไม่ได้ว่า:",
+    "qsvm_kicker": "QSVM สร้าง Quantum Kernel อย่างไร",
+    "qsvm_title": "จาก PCA 8 features ไปสู่ quantum similarity",
+    "qsvm_desc": "QSVM ยังคงใช้ SVM classifier แต่เปลี่ยน classical RBF similarity เป็น precomputed fidelity kernel จาก 8-qubit RY angle encoding การคำนวณ kernel ทำแบบ deterministic ด้วย statevector simulator ไม่ได้รันบน physical quantum hardware",
+    "qsvm_narrative_1": "ภายในแต่ละ training partition จะ fit standardization และ fixed PCA 8 components จาก training data เท่านั้น จากนั้น PCA component แต่ละตัวควบคุม RY rotation บน qubit หนึ่งตัว แล้วใช้ fixed nearest-neighbor CNOT chain ก่อนคำนวณ similarity เป็น squared overlap ระหว่าง encoded states",
+    "qsvm_narrative_2": "CNOT chain ชุดนี้เหมือนกันสำหรับทุก input และถูกวางหลัง data-dependent RY rotations เมื่อ unitary เดียวกันถูกใช้กับทั้งสอง states ค่า inner product จึงไม่เปลี่ยน และ fidelity kernel ก็ไม่เปลี่ยนตามไปด้วย ดังนั้นผล QSVM ที่เห็นในงานนี้ไม่ควรถูกอธิบายว่าเกิดจาก entanglement contribution แต่เป็นผลของ angle-encoded fidelity representation ที่ทดสอบ Kernel คำนวณด้วย PennyLane default.qubit exact statevectors",
     "qsvm_loop_badge": "ภาพอธิบายแบบวนอัตโนมัติ",
     "qsvm_loop_title": "หนึ่งค่า Quantum Kernel ถูกสร้างขึ้นอย่างไร",
     "qsvm_loop_caption": "ข้อมูลสอง observation ถูก map เป็น quantum states แล้วเปรียบเทียบด้วย fidelity เพื่อสร้างหนึ่งค่าใน kernel matrix ก่อนส่งทั้ง matrix ให้ classical SVM.",
     "qsvm_detail_summary": "ดูรายละเอียดกลไก QSVM แบบ 8 ขั้นตอน",
-    "qsvm_card1_title": "เปลี่ยนอะไร?",
-    "qsvm_card1_text": "QSVM เปลี่ยนกลไกการสร้าง similarity ไม่ได้เปลี่ยน learning framework ทั้งหมดของ SVM",
-    "qsvm_card2_title": "จำลองอะไร?",
-    "qsvm_card2_text": "Quantum kernel ถูกประเมินด้วย PennyLane default.qubit statevector simulation ไม่ใช่ physical quantum hardware",
-    "qsvm_card3_title": "อะไรที่ไม่ได้รวมอยู่?",
-    "qsvm_card3_text": "Statevector simulation ไม่รวม shot noise, measurement noise, decoherence หรือ device-specific calibration effects",
-    "qsvm_card4_title": "อะไรที่ยังสรุปไม่ได้โดยอัตโนมัติ?",
-    "qsvm_card4_text": "Quantum kernel ที่แตกต่างหรือ richer กว่า ไม่ได้แปลว่าเกิด quantum advantage โดยอัตโนมัติ",
-    "qsvm_card5_title": "ควรอ่าน diagnostics อย่างไร?",
-    "qsvm_card5_text": "Kernel richness หรือ effective rank ที่สูงกว่า ควรถูกตีความเป็น representational evidence ไม่ใช่หลักฐานว่าโมเดลเหนือกว่าในโจทย์จริง",
-    "qsvm_diagnostic_bridge": "ผล diagnostics ภายหลังแสดงว่า QSVM kernel มีโครงสร้างแตกต่างจาก PCA-controlled RBF kernel โดย Pearson kernel correlation อยู่ประมาณ 0.6808 และ Spearman kernel correlation อยู่ประมาณ 0.5054 อีกทั้ง QSVM มี effective rank สูงกว่า ประมาณ 147.79 เทียบกับ RBF_PCA ประมาณ 35.90 อย่างไรก็ตาม target-alignment differences มีขนาดเล็กมาก ได้แก่ 0.0025, 0.0044 และ -0.0002 ดังนั้น kernel มีความแตกต่างและ richer จริง แต่หลักฐานยังไม่เพียงพอสำหรับสรุปว่าเกิด task-relevant quantum advantage",
-    "qsvm_step1_title": "Input Features",
-    "qsvm_step1_text": "สัญญาณจาก market/technical, on-chain และ macroeconomic features หลังการเตรียมข้อมูลแบบ leakage-safe",
-    "qsvm_step2_title": "PCA-Reduced Features",
-    "qsvm_step2_text": "ลดมิติของ features ให้เหมาะกับ quantum embedding dimension ที่ทำได้จริง",
-    "qsvm_step3_title": "Quantum Feature Map",
-    "qsvm_step3_text": "encode ค่า features แบบ classical ให้กลายเป็น quantum representation",
-    "qsvm_step4_title": "Quantum State / Statevector Simulation",
-    "qsvm_step4_text": "แทนข้อมูลที่ encode แล้วเป็น quantum states ผ่าน default.qubit simulator",
-    "qsvm_step5_title": "Pairwise State Overlap",
-    "qsvm_step5_text": "คำนวณ similarity ของ observations สองตัวจาก overlap ของ quantum states",
-    "qsvm_step6_title": "Quantum Kernel Matrix",
-    "qsvm_step6_text": "รวม pairwise similarities ทั้งหมดเป็น kernel matrix สำหรับ classifier",
+    "qsvm_card1_title": "ต่างจาก Classical SVM ตรงไหน?",
+    "qsvm_card1_text": "กรอบการเรียนรู้ของ SVM ยังเหมือนเดิม สิ่งที่เปลี่ยนคือ similarity function ซึ่งถูกแทนด้วย quantum-generated fidelity kernel",
+    "qsvm_card2_title": "สิ่งที่ถูก Simulation คืออะไร?",
+    "qsvm_card2_text": "PennyLane default.qubit คำนวณ exact statevectors และ fidelity kernel โดยไม่ได้ใช้ quantum processor จริง",
+    "qsvm_card3_title": "อะไรที่ Simulation นี้ไม่ได้จำลอง?",
+    "qsvm_card3_text": "ไม่มี finite-shot sampling, gate noise, measurement noise, decoherence, device calibration หรือ hardware execution latency",
+    "qsvm_card4_title": "Kernel ที่มีโครงสร้างมากกว่า บอกอะไรไม่ได้บ้าง?",
+    "qsvm_card4_text": "Kernel ที่แตกต่างหรือมี effective rank สูงกว่า ไม่ได้หมายความว่าจะทำนายดีกว่า เทรดดีกว่า มี computational speedup หรือมี quantum advantage โดยอัตโนมัติ",
+    "qsvm_card5_title": "Diagnostics ใช้เพื่ออะไร?",
+    "qsvm_card5_text": "Effective rank, kernel correlation และ target alignment ใช้อธิบายโครงสร้าง similarity ภายหลังการทดลอง ไม่ได้ใช้เลือกโมเดล และไม่สามารถพิสูจน์ advantage ได้เพียงลำพัง",
+    "qsvm_diagnostic_bridge": "บน predefined folds 0, 13 และ 26 โดยใช้ observations ชุดเดียวกัน 1,024 ตัว QSVM มี effective rank ประมาณ 142.4–143.9 เทียบกับ 36.0–36.2 ของ RBF_PCA ค่า Pearson correlation อยู่ราว 0.7065–0.7123 และ Spearman 0.5341–0.5490 ขณะที่ direction-alignment differences มีขนาดเล็กและกลายเป็นลบสำหรับ QSVM ที่ 30 วัน ดังนั้น geometry ที่หลากหลายกว่ายังไม่ใช่หลักฐานของ quantum advantage",
+    "qsvm_step1_title": "Input predictors",
+    "qsvm_step1_text": "Market/technical features ร่วมกับ on-chain และ macroeconomic predictors ที่ lag 1 วันแล้ว",
+    "qsvm_step2_title": "PCA ที่ fit จาก Training · 8 มิติ",
+    "qsvm_step2_text": "Standardize และลดเหลือ 8 components โดยใช้ training data เท่านั้น และ RBF_PCA ใช้ representation ชุดเดียวกัน",
+    "qsvm_step3_title": "RY Angle Encoding",
+    "qsvm_step3_text": "นำ PCA component แต่ละตัวไปควบคุม RY rotation บน qubit ที่ตรงกัน",
+    "qsvm_step4_title": "Fixed CNOT Chain",
+    "qsvm_step4_text": "ใช้ nearest-neighbor CNOT chain ชุดเดียวกันหลัง data-dependent rotations ซึ่งไม่เปลี่ยน pairwise fidelity เพราะ unitary เดียวกันถูกใช้กับทั้งสอง states",
+    "qsvm_step5_title": "Squared State Overlap",
+    "qsvm_step5_text": "นิยาม similarity เป็น squared overlap ระหว่าง encoded statevectors สองตัว",
+    "qsvm_step6_title": "Leakage-Safe Kernel Matrix",
+    "qsvm_step6_text": "สร้าง kernel จาก eligible training observations ล่าสุดได้สูงสุด 1,024 ตัว และคำนวณ centering statistics จาก training kernel เท่านั้น",
     "qsvm_step7_title": "SVM Classifier",
-    "qsvm_step7_text": "SVM ใช้ quantum kernel matrix เพื่อทำ margin-based classification",
-    "qsvm_step8_title": "Direction Prediction",
-    "qsvm_step8_text": "โมเดลทำนายว่าทิศทางราคาปิด Bitcoin ในอนาคตจะสูงขึ้นหรือไม่ สำหรับแต่ละ horizon-specific task",
-    "dashboard_framing": "ชั้น classification แสดงว่า QSVM ยังมีความหมายในฐานะ quantum-kernel benchmark across horizons ที่ทดสอบ อย่างไรก็ตาม dashboard นี้ต้องถูกอ่านคู่กับ trading/risk evidence เพราะ financial machine learning ไม่ควรถูกตัดสินจาก predictive scores เพียงอย่างเดียว",
-    "classification_stat_note": "<span class=\"badge-focus gold evidence-badge\">จำกัดด้วย Holm correction</span><br>หมายเหตุทางสถิติ: QSVM มี Mean F1 สูงที่สุดใน horizons ที่ทดสอบ แต่หลักฐานนัยสำคัญหลัง Holm correction พบเฉพาะการเปรียบเทียบ QSVM vs RBF_FULL ที่ horizon 1 วัน ส่วนการเปรียบเทียบอื่นเป็น descriptive หรือไม่ผ่านนัยสำคัญหลัง correction",
-    "gap_kicker": "ช่องว่างระหว่าง Classification และ Trading",
-    "gap_classification_label": "Classification Layer",
-    "gap_classification_text": "QSVM มี Mean F1 สูงที่สุดในกลุ่ม kernel models ที่เปรียบเทียบสำหรับ horizon 1 วัน",
-    "gap_trading_label": "Trading/Risk Layer",
-    "gap_trading_text": "แต่สัญญาณ QSVM horizon 1 วันเดียวกันอ่อนลงจาก turnover สูงและความไวต่อ transaction cost",
-    "gap_interpretation": "นี่ไม่ได้แปลว่า QSVM ไม่มีคุณค่าในฐานะ benchmark เชิงวิทยาศาสตร์ แต่เป็นเหตุผลว่าทำไมงานนี้ต้องใช้ layered evaluation ความสามารถในการแข่งขันด้าน classification อาจมีอยู่จริง ขณะที่ financial usefulness ยังไม่ถูกสนับสนุนภายใต้ trading/risk interpretation",
-    "diag_kicker": "Quantum Diagnostics",
-    "diag_interpretation": "Quantum kernel มีความแตกต่างและ richer จริง แต่ richness เพียงอย่างเดียวไม่เพียงพอ หากจะสนับสนุน task-relevant advantage representation นั้นต้อง align กับ prediction target และทำให้ integrated evidence ดีขึ้น across classification, trading/risk และ diagnostics เงื่อนไขนี้ยังไม่ถูกพิสูจน์ในงานนี้",
-    "diag_kernel_label": "Kernel Similarity",
-    "diag_kernel_pearson": "Pearson kernel correlation ≈ 0.6808",
-    "diag_kernel_spearman": "Spearman kernel correlation ≈ 0.5054",
-    "diag_rank_label": "Effective Rank",
-    "diag_alignment_label": "Target Alignment",
-    "diag_alignment_text": "Target-alignment differences มีขนาดเล็ก: 0.0025, 0.0044, -0.0002",
-    "diag_rank_qsvm": "QSVM effective rank ≈ 147.79",
-    "diag_rank_rbf": "RBF_PCA effective rank ≈ 35.90",
-    "claim_boundary_text": "หลักฐานสนับสนุนข้อสรุปแบบระมัดระวังว่า QSVM มีความหมายในฐานะ quantum-kernel benchmark และยังแข่งขันได้ในบาง classification settings อย่างไรก็ตาม หลักฐานรวมยังไม่สนับสนุนข้อกล่าวอ้างที่แรงกว่า เช่น overall QSVM superiority, trading superiority, live trading readiness หรือ task-relevant quantum advantage",
-    "claim_card1_status": "สนับสนุน",
-    "claim_card1_title": "มีความหมายในฐานะ quantum-kernel benchmark",
-    "claim_card1_text": "QSVM ยังมีความหมายทางวิทยาศาสตร์ในฐานะ quantum-kernel benchmark และแข่งขันได้ในชั้น classification ภายใต้ Bitcoin multi-horizon setting ที่ทดสอบ",
-    "claim_card2_status": "สนับสนุนแบบมีเงื่อนไข",
-    "claim_card2_title": "ความสามารถในการแข่งขันด้าน classification",
-    "claim_card2_text": "QSVM มี Mean F1 สูงที่สุดใน horizons ที่ทดสอบ แต่ corrected statistical support ยังมีขอบเขตจำกัด ดังนั้น classification competitiveness ต้องอ่านร่วมกับ fold stability และ trading/risk evidence",
-    "claim_card3_status": "ไม่สนับสนุน",
-    "claim_card3_title": "ความเหนือกว่าโดยรวมของโมเดล",
-    "claim_card3_text": "หลักฐานยังไม่อาจสรุปได้ว่า QSVM เหนือกว่า classical kernel baselines โดยรวม",
-    "claim_card4_status": "ไม่สนับสนุน",
-    "claim_card4_title": "Trading superiority หรือความพร้อมใช้งานจริง",
-    "claim_card4_text": "trading/risk layer ยังไม่อาจสรุปได้ว่า QSVM มี trading superiority หรือความพร้อมสำหรับ live deployment",
-    "claim_card5_status": "ยังไม่อาจสรุปได้",
-    "claim_card5_title": "Task-relevant quantum advantage",
-    "claim_card5_text": "quantum diagnostics แสดง kernel difference และ spectral richness ที่สูงกว่า แต่ยังไม่อาจสรุปได้ว่าเกิด task-relevant quantum advantage",
-    "claim_boundary_statement": "ข้อสรุปที่ปลอดภัยที่สุดไม่ใช่ \"QSVM ชนะ\" แต่คือ QSVM ควรถูกศึกษาเพิ่มเติมภายใต้การประเมิน financial QML ที่เข้มงวด และข้อกล่าวอ้างเกี่ยวกับ QSVM ต้องถูกจำกัดด้วย evidence layers หลายชั้น",
-    "table_group1_title": "Classification and Stability Summary",
-    "table_group1_intro": "หลักฐานด้าน fold-level classification แสดงว่า QSVM มี Mean F1 สูงที่สุดใน horizons ที่ทดสอบ แต่การตีความเชิงสถิติและ stability ยังต้องอยู่ในขอบเขตที่เหมาะสม",
-    "table_group1_note": "<span class=\"badge-focus gold evidence-badge\">จำกัดด้วย Holm correction</span><br>หลักฐานนัยสำคัญหลัง Holm correction พบเฉพาะการเปรียบเทียบ QSVM vs RBF_FULL ที่ horizon 1 วัน ส่วนการเปรียบเทียบอื่นเป็น descriptive หรือไม่ผ่านนัยสำคัญหลัง correction",
-    "table_group2_title": "Trading/Risk Summary",
-    "table_group2_intro": "trading/risk layer ใช้ clean out-of-sample predictions ภายใต้ post-hoc interpretation ที่กำหนดไว้ล่วงหน้า ไม่ใช่ระบบ trading ที่พร้อมใช้งานจริง",
-    "table_group2_note": "Turnover หมายถึง aggregate turnover across out-of-sample folds ที่ประเมิน ไม่ใช่ daily turnover ผลลัพธ์นี้ใช้เพื่อการตีความเท่านั้น ไม่ใช่คำแนะนำการลงทุน",
-    "table_group3_title": "Quantum Diagnostics and Claim Boundary",
-    "table_group3_intro": "quantum diagnostics ใช้ตรวจสอบว่า QSVM kernel แตกต่างจาก PCA-controlled RBF kernel หรือไม่ และความแตกต่างนั้นเกี่ยวข้องกับโจทย์จริงหรือไม่",
+    "qsvm_step7_text": "ส่ง centered precomputed fidelity kernel เข้า SVM โดยใช้ restricted C grid เดียวกับ classical models",
+    "qsvm_step8_title": "Out-of-Sample Direction Prediction",
+    "qsvm_step8_text": "สร้าง binary direction predictions สำหรับ untouched test fold แยกในแต่ละ horizon",
+    "dashboard_framing": "Headline result ของงานตั้งใจให้แคบและชัด: QSVM มี robust classification advantage ที่ 1 วัน, ที่ 7 วันยังแข่งขันได้แต่หลักฐานยังไม่ robust พอที่จะสรุปว่าเหนือกว่า และที่ 30 วันไม่มี classification advantage ส่วน trading/risk และ quantum diagnostics ทำให้ขอบเขตการตีความแคบลงอีก",
+    "classification_stat_note": "<span class=\"badge-focus gold evidence-badge\">Robust เฉพาะ 1 วัน</span><br>ที่ 1 วัน QSVM ยัง significant เหนือทั้ง RBF_FULL และ RBF_PCA หลัง Holm correction ทั้ง paired t-test และ Wilcoxon test และข้อได้เปรียบเดียวกันยังได้รับการสนับสนุนจาก circular moving-block bootstrap ที่ block lengths 2, 3 และ 4 ส่วนผล 7 วันยังไม่สอดคล้องกันพอที่จะสรุป robust superiority ขณะที่ 30 วันไม่มี QSVM advantage",
+    "gap_kicker": "เมื่อ Classification กับผลทางการเงินให้คำตอบไม่เหมือนกัน",
+    "gap_classification_label": "ผลด้าน Classification",
+    "gap_classification_text": "ที่ 1 วัน QSVM มี mean F1 = 0.4760 เทียบกับ RBF_PCA = 0.4400 และ RBF_FULL = 0.4249 พร้อม robust statistical support เหนือ baseline ทั้งสอง",
+    "gap_trading_label": "ผลด้าน Trading/Risk",
+    "gap_trading_text": "ที่ central cost 0.0015 ต่อ side QSVM มี Sharpe = -0.5012, total return = -0.9685 และ aggregate turnover = 1330 ขณะที่ RBF_FULL มี Sharpe ที่ติดลบน้อยที่สุดในระยะ 1 วันที่ -0.3906",
+    "gap_interpretation": "ดังนั้นผล 1 วันควรถูกมองเป็นข้อค้นพบด้าน classification ไม่ใช่ข้ออ้างด้านการซื้อขาย ภายใต้ fixed post-hoc protocol การทำนายทิศทางที่ดีกว่าไม่ได้แปลเป็น risk-adjusted financial performance ที่ดีกว่า",
+    "diag_kicker": "Quantum-Kernel Diagnostics",
+    "diag_interpretation": "Diagnostics ยืนยันว่า QSVM สร้าง representation ที่แตกต่างและมีโครงสร้างหลากหลายกว่า แต่ยังไม่ใช่ representation ที่มีประโยชน์กว่าอย่างสม่ำเสมอ เพราะ effective rank ที่สูงกว่าไม่ได้มาพร้อม target alignment, classification performance หรือ economic performance ที่ดีกว่าอย่างต่อเนื่อง",
+    "diag_kernel_label": "สอง Kernels คล้ายกันแค่ไหน?",
+    "diag_kernel_pearson": "Pearson correlation: 0.7065 (1D), 0.7084 (7D), 0.7123 (30D)",
+    "diag_kernel_spearman": "Spearman correlation: 0.5341 (1D), 0.5378 (7D), 0.5490 (30D)",
+    "diag_rank_label": "Spectrum มีความ rich แค่ไหน?",
+    "diag_alignment_label": "Kernel Align กับ Target ได้ดีแค่ไหน?",
+    "diag_alignment_text": "Direction alignment (QSVM / RBF_PCA) เท่ากับ 0.009073 / 0.006742 (1D), 0.025196 / 0.021750 (7D) และ 0.071702 / 0.075119 (30D) โดย differences คือ +0.002331, +0.003446 และ -0.003417 ตามลำดับ นอกจากนี้ volatility-regime alignment ของ QSVM ยังต่ำกว่า RBF_PCA ในทั้งสาม horizons",
+    "diag_rank_qsvm": "QSVM effective rank: 142.4 (1D), 143.2 (7D), 143.9 (30D)",
+    "diag_rank_rbf": "RBF_PCA effective rank: 36.0 (1D), 36.0 (7D), 36.2 (30D)",
+    "claim_boundary_text": "เมื่อนำหลักฐานทั้งหมดมาพิจารณาร่วมกัน งานรองรับ robust QSVM classification advantage ที่ 1 วัน ที่ 7 วัน QSVM ยังแข่งขันได้แต่หลักฐานยังไม่ robust พอที่จะสรุปว่าเหนือกว่า และที่ 30 วันไม่มี QSVM classification advantage ผล trading/risk ไม่รองรับ QSVM trading superiority ขณะที่ kernel geometry ที่หลากหลายกว่าก็ยังไม่เพียงพอสำหรับสรุป quantum advantage โดยผล quantum ทั้งหมดมาจาก simulation",
+    "claim_card1_status": "หลักฐานรองรับ",
+    "claim_card1_title": "Robust 1-day classification advantage",
+    "claim_card1_text": "QSVM มี 1-day mean F1 สูงสุดที่ 0.4760 และข้อได้เปรียบเหนือ RBF_FULL กับ RBF_PCA ยังคงอยู่หลัง Holm-corrected paired tests และ circular moving-block bootstrap ที่ block lengths 2, 3 และ 4",
+    "claim_card2_status": "รองรับแบบมีขอบเขต",
+    "claim_card2_title": "7-day competitiveness แต่ยังไม่ robust superiority",
+    "claim_card2_text": "QSVM มี 7-day mean F1 สูงสุดที่ 0.4600 แต่ผลทางสถิติยังไม่สอดคล้องกันครบทั้งสอง baselines, paired tests ทั้งสองแบบ และ bootstrap ทุก block length จึงยังไม่ควรสรุป robust superiority",
+    "claim_card3_status": "หลักฐานไม่รองรับ",
+    "claim_card3_title": "QSVM classification advantage ที่ 30 วัน",
+    "claim_card3_text": "RBF_PCA มี descriptive classification-stability profile แข็งแรงที่สุดที่ 30 วัน และทั้ง paired tests กับ block-bootstrap analysis ไม่สนับสนุน QSVM advantage",
+    "claim_card4_status": "หลักฐานไม่รองรับ",
+    "claim_card4_title": "QSVM trading superiority",
+    "claim_card4_text": "ที่ central transaction cost QSVM ไม่ใช่ best-Sharpe model ใน horizon ใด และทุกโมเดลมี total return ติดลบ ส่วนการวิเคราะห์ trading/risk นี้ถูกกำหนดไว้ล่วงหน้าเพื่อใช้เป็น diagnostic เท่านั้น ไม่ใช่ optimized หรือ deployable strategy",
+    "claim_card5_status": "ยังไม่สามารถสรุปได้",
+    "claim_card5_title": "Quantum advantage หรือหลักฐานจาก Hardware จริง",
+    "claim_card5_text": "QSVM มี effective rank สูงกว่า แต่ผลนี้ยังไม่เพียงพอที่จะสรุป predictive, economic หรือ computational quantum advantage เพราะ quantum kernel ถูกประเมินด้วย exact statevector simulation และ fixed post-RY CNOT chain ไม่ได้เปลี่ยน fidelity kernel ดังนั้นผลที่เห็นจึงไม่ควรถูกอธิบายว่าเกิดจาก entanglement contribution",
+    "claim_boundary_statement": "ขอบเขตสุดท้ายของงาน: QSVM มี robust classification advantage เฉพาะที่ 1 วัน; ที่ 7 วันแข่งขันได้แต่ยังไม่ robustly superior; ที่ 30 วันไม่มี QSVM classification advantage; ไม่มี QSVM trading superiority; และยังไม่มีหลักฐานของ quantum advantage, computational speedup, entanglement contribution หรือผลจาก physical quantum hardware",
+    "table_group1_title": "Classification และ Stability",
+    "table_group1_intro": "ผล macro F1 จาก 27 matched outer walk-forward folds ตารางนี้แสดง descriptive results ส่วนข้อสรุปเรื่อง superiority จะอ้างอิง paired tests และ temporal block-bootstrap checks ร่วมกัน",
+    "table_group1_note": "<span class=\"badge-focus gold evidence-badge\">Robust เฉพาะ 1 วัน</span><br>ข้อได้เปรียบของ QSVM ที่ 1 วันได้รับการสนับสนุนเหนือ baseline ทั้งสองจาก Holm-corrected paired t-tests, Wilcoxon tests และ circular moving-block bootstrap ที่ block lengths 2, 3 และ 4 ส่วนผล 7 วันยังไม่สอดคล้องกันพอที่จะสรุป robust superiority ขณะที่ 30 วันไม่มี QSVM advantage",
+    "table_group2_title": "Trading/Risk",
+    "table_group2_intro": "ผล post-hoc ที่ central transaction cost 0.0015 ต่อ side ใช้ clean OOS predictions เข้า position ที่ Open(t+1), ออกที่ Open(t+h+1) และใช้ global non-overlapping trade sequence เดียวต่อเนื่องตลอด OOS period",
+    "table_group2_note": "ทุกโมเดลมี total return ติดลบที่ central cost Turnover ในตารางคือ aggregate turnover ตลอด OOS period ที่ประเมิน ตัวเลขเหล่านี้ใช้เป็น economic diagnostic ของ predictions เท่านั้น ไม่ใช่ optimized trading strategy หรือหลักฐานเชิงการลงทุน",
+    "table_group3_title": "หลักฐานรวมและข้อสรุปสุดท้าย",
+    "table_group3_intro": "ตารางนี้วางผลด้าน prediction, statistical robustness, financial interpretation และ quantum diagnostics ไว้ข้างกัน เพื่อให้เห็นข้อสรุปของแต่ละ horizon โดยไม่ปน evidence layers เข้าด้วยกัน",
     "final_takeaway_kicker": "ข้อสรุปสุดท้าย",
-    "final_takeaway_title": "งานนี้พบอะไรจริง ๆ",
-    "final_takeaway_message": "<span class=\"final-message-line final-message-lead\">QSVM ไม่ได้พิสูจน์ว่าชนะทุกโมเดล แต่ก็ไม่ใช่โมเดลที่ไม่มีคุณค่า</span><span class=\"final-message-line\">ในการทดลองนี้ QSVM ให้ผลด้านการทำนายทิศทางที่น่าสนใจ โดยเฉพาะเมื่อเปรียบเทียบกับโมเดล classical kernel ที่ถูกลดมิติด้วย PCA เพื่อให้เงื่อนไขใกล้เคียงกันมากขึ้น</span><span class=\"final-message-line\">นอกจากนี้ kernel ของ QSVM ยังมีโครงสร้างแตกต่างจาก RBF_PCA และมีความหลากหลายของ representation สูงกว่า แสดงว่าโมเดลไม่ได้เพียงทำซ้ำสิ่งที่ classical kernel ทำอยู่แล้ว</span><span class=\"final-message-line\">อย่างไรก็ตาม หลักฐานยังไม่เพียงพอที่จะสรุปว่า QSVM เหนือกว่าโดยรวม ใช้เทรดได้ดีกว่า หรือเกิด quantum advantage ในโจทย์นี้</span><span class=\"final-message-line final-message-boundary\">ข้อสรุปที่เหมาะสมคือ: QSVM เป็น benchmark ที่มีความหมาย มีพฤติกรรมที่ต่างจาก classical kernel และควรถูกศึกษาต่อภายใต้การประเมินที่รัดกุม</span>",
-    "final_chip_leakage": "ป้องกัน leakage",
-    "final_chip_horizon": "แยกตาม horizon",
-    "final_chip_trading": "มี trading-risk layer",
-    "final_chip_diagnostic": "มี diagnostic boundary",
+    "final_takeaway_title": "งานนี้แสดงให้เห็นอะไรจริง ๆ",
+    "final_takeaway_message": "<span class=\"final-message-line final-message-lead\">QSVM มี robust classification advantage เฉพาะที่ระยะ 1 วัน</span><span class=\"final-message-line\">ที่ 7 วัน QSVM ยังแข่งขันได้ แต่หลักฐานเรื่องความเหนือกว่ายังไม่ robust เมื่อพิจารณาการตรวจสอบทางสถิติทั้งหมด ส่วนที่ 30 วันไม่มี QSVM classification advantage และ RBF_PCA มีผลเชิงพรรณนาโดยรวมแข็งแรงที่สุด</span><span class=\"final-message-line\">Predefined post-hoc trading/risk analysis ไม่สนับสนุน QSVM trading superiority และทุกโมเดลมี total return ติดลบที่ central transaction cost</span><span class=\"final-message-line\">QSVM มี effective rank สูงกว่า RBF_PCA อย่างมาก แต่ target alignment ต่างกันเพียงเล็กน้อยและขึ้นกับ horizon ดังนั้น kernel geometry ที่หลากหลายกว่ายังไม่เพียงพอสำหรับสรุป quantum advantage</span><span class=\"final-message-line final-message-boundary\">หลักฐาน quantum ทั้งหมดมาจาก exact statevector simulation ไม่ใช่ physical quantum hardware งานนี้ไม่ได้อ้าง computational speedup, hardware advantage, entanglement contribution หรือ general QSVM superiority</span>",
+    "final_chip_leakage": "ควบคุม leakage",
+    "final_chip_horizon": "สรุปแยกตาม horizon",
+    "final_chip_trading": "แยก trading/risk ออกจาก prediction",
+    "final_chip_diagnostic": "จำกัดที่ simulation evidence",
     "final_takeaway_supporting": "",
     "final_takeaway_closing": ""
   }
@@ -655,34 +705,478 @@ const i18n = {
 
 const tableHTML = {
   "en": {
-    "classification": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Horizon</th><th>Model</th><th>Mean F1</th><th>Std F1</th><th>Worst F1</th><th>Rank</th></tr></thead>\n        <tbody><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>0.475</td><td>0.062</td><td>0.321</td><td>1</td></tr><tr><td>1</td><td>RBF_PCA</td><td>0.437</td><td>0.067</td><td>0.27</td><td>2</td></tr><tr><td>1</td><td>RBF_FULL</td><td>0.427</td><td>0.079</td><td>0.258</td><td>3</td></tr><tr class=\"highlight-row\"><td>7</td><td>QSVM</td><td>0.456</td><td>0.094</td><td>0.308</td><td>1</td></tr><tr><td>7</td><td>RBF_FULL</td><td>0.429</td><td>0.093</td><td>0.261</td><td>2</td></tr><tr><td>7</td><td>RBF_PCA</td><td>0.428</td><td>0.089</td><td>0.244</td><td>3</td></tr><tr class=\"highlight-row\"><td>30</td><td>QSVM</td><td>0.455</td><td>0.138</td><td>0.147</td><td>1</td></tr><tr><td>30</td><td>RBF_FULL</td><td>0.43</td><td>0.155</td><td>0.161</td><td>2</td></tr><tr><td>30</td><td>RBF_PCA</td><td>0.429</td><td>0.207</td><td>0.011</td><td>3</td></tr></tbody>\n      </table>\n    </div>\n    ",
-    "trading": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Horizon</th><th>Model</th><th>Total Return</th><th>Sharpe</th><th>Max Drawdown</th><th>Turnover</th><th>Rank</th></tr></thead>\n        <tbody><tr><td>1</td><td>RBF_PCA</td><td>-64.0%</td><td>-0.24</td><td>-92.8%</td><td>587.0</td><td>1</td></tr><tr><td>1</td><td>RBF_FULL</td><td>-67.4%</td><td>-0.26</td><td>-92.6%</td><td>671.0</td><td>2</td></tr><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>-94.1%</td><td>-0.67</td><td>-97.1%</td><td>1315.0</td><td>3</td></tr><tr class=\"highlight-row\"><td>7</td><td>RBF_FULL</td><td>1932.4%</td><td>0.66</td><td>-68.1%</td><td>157.0</td><td>1</td></tr><tr><td>7</td><td>RBF_PCA</td><td>1362.5%</td><td>0.58</td><td>-63.6%</td><td>157.0</td><td>2</td></tr><tr><td>7</td><td>QSVM</td><td>383.5%</td><td>0.34</td><td>-68.0%</td><td>245.0</td><td>3</td></tr><tr class=\"highlight-row\"><td>30</td><td>RBF_FULL</td><td>8558.2%</td><td>0.77</td><td>-64.4%</td><td>77.0</td><td>1</td></tr><tr><td>30</td><td>RBF_PCA</td><td>1980.8%</td><td>0.52</td><td>-80.8%</td><td>77.0</td><td>2</td></tr><tr><td>30</td><td>QSVM</td><td>657.2%</td><td>0.34</td><td>-86.4%</td><td>89.0</td><td>3</td></tr></tbody>\n      </table>\n    </div>\n    ",
-    "decision": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Horizon</th><th>Model</th><th>Nested F1</th><th>Total Return</th><th>Sharpe</th><th>Final Role</th><th>Interpretation</th></tr></thead>\n        <tbody><tr><td>1</td><td>RBF_PCA</td><td>0.437</td><td>-64.0%</td><td>-0.24</td><td>Dimensionality-controlled classical comparator</td><td>Useful PCA-controlled comparator; instability appears in some long-horizon folds</td></tr><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>0.475</td><td>-94.1%</td><td>-0.67</td><td>Quantum-kernel benchmark; competitive but not overall superior</td><td>Classification strength; trading weakness due to turnover/cost</td></tr><tr><td>1</td><td>RBF_FULL</td><td>0.427</td><td>-67.4%</td><td>-0.26</td><td>Strongest practical trading/risk classical baseline</td><td>Robust classical baseline</td></tr><tr class=\"highlight-row\"><td>7</td><td>RBF_FULL</td><td>0.429</td><td>1932.4%</td><td>0.66</td><td>Strongest practical trading/risk classical baseline</td><td>Strongest trading/risk profile</td></tr><tr><td>7</td><td>RBF_PCA</td><td>0.428</td><td>1362.5%</td><td>0.58</td><td>Dimensionality-controlled classical comparator</td><td>Useful PCA-controlled comparator; instability appears in some long-horizon folds</td></tr><tr><td>7</td><td>QSVM</td><td>0.456</td><td>383.5%</td><td>0.34</td><td>Quantum-kernel benchmark; competitive but not overall superior</td><td>Competitive classification; weaker trading/risk than RBF_FULL</td></tr><tr class=\"highlight-row\"><td>30</td><td>RBF_FULL</td><td>0.43</td><td>8558.2%</td><td>0.77</td><td>Strongest practical trading/risk classical baseline</td><td>Strongest trading/risk profile</td></tr><tr><td>30</td><td>QSVM</td><td>0.455</td><td>657.2%</td><td>0.34</td><td>Quantum-kernel benchmark; competitive but not overall superior</td><td>Competitive classification; weaker trading/risk than RBF_FULL</td></tr><tr><td>30</td><td>RBF_PCA</td><td>0.429</td><td>1980.8%</td><td>0.52</td><td>Dimensionality-controlled classical comparator</td><td>Useful PCA-controlled comparator; instability appears in some long-horizon folds</td></tr></tbody>\n      </table>\n    </div>\n    ",
-    "diagnostic": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Diagnostic</th><th>Result</th><th>Meaning</th><th>Presentation Level</th></tr></thead>\n        <tbody><tr><td>Kernel similarity</td><td>0.6808</td><td>QSVM and RBF_PCA kernels are meaningfully different, not identical.</td><td>main_ladder</td></tr><tr class=\"highlight-row\"><td>Target alignment</td><td>0.0022</td><td>No clear QSVM target-alignment advantage for binary direction labels.</td><td>main_ladder</td></tr><tr class=\"highlight-row\"><td>Effective rank</td><td>QSVM 147.8 vs RBF_PCA 35.9</td><td>QSVM has richer spectral complexity, but richness alone does not imply advantage.</td><td>main_ladder</td></tr><tr><td>Volatility-regime alignment</td><td>-0.0077</td><td>Exploratory probe does not show QSVM regime-alignment advantage over RBF_PCA.</td><td>evidence_mode</td></tr></tbody>\n      </table>\n    </div>\n    ",
-    "verdict": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Claim</th><th>Evidence Status</th><th>Safe Interpretation</th></tr></thead>\n        <tbody><tr><td>QSVM is overall superior to classical ML.</td><td><span class=\"badge-focus red\">Not supported</span></td><td>Evidence does not support overall superiority across horizons, stability, and trading/risk metrics.</td></tr><tr><td>QSVM has no scientific value.</td><td>Rejected</td><td>QSVM remains competitive in selected classification settings and is meaningful as a quantum-kernel benchmark.</td></tr><tr><td>The main contribution is a deployable trading strategy.</td><td><span class=\"badge-focus red\">Not supported</span></td><td>The study contributes a leakage-safe, multi-horizon, stability-aware, trading-aware evaluation framework, not an investment system.</td></tr><tr><td>Quantum expressivity equals task-relevant advantage.</td><td><span class=\"badge-focus gold\">Not established</span></td><td>Quantum expressivity is observable, but task-relevant quantum advantage is not established.</td></tr></tbody>\n      </table>\n    </div>\n    ",
-    "group1": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Horizon</th><th>Model</th><th>Mean F1</th><th>Std F1</th><th>Worst F1</th><th>Interpretation</th></tr></thead>\n        <tbody><tr><td>1-day</td><td>QSVM</td><td>0.4754</td><td>0.0616</td><td>0.3212</td><td><span class=\"badge-focus gold evidence-badge\">Classification-competitive</span><br><span class=\"badge-focus gold evidence-badge\">Highest Mean F1</span><br>Strongest 1-day classification-stability profile, but not a final superiority claim.</td></tr><tr><td>1-day</td><td>RBF_PCA</td><td>0.4375</td><td>0.0667</td><td>0.2705</td><td>Dimension-controlled classical comparator with lower mean F1 than QSVM.</td></tr><tr><td>1-day</td><td>RBF_FULL</td><td>0.4271</td><td>0.0795</td><td>0.2583</td><td>Full-feature classical reference with weaker 1-day classification evidence than QSVM.</td></tr><tr><td>7-day</td><td>QSVM</td><td>0.4556</td><td>0.0937</td><td>0.3076</td><td><span class=\"badge-focus gold evidence-badge\">Highest Mean F1</span><br>Highest mean and worst-fold F1 at the 7-day horizon.</td></tr><tr><td>7-day</td><td>RBF_FULL</td><td>0.4288</td><td>0.0933</td><td>0.2609</td><td>Similar dispersion to QSVM but lower mean and worst-fold F1.</td></tr><tr><td>7-day</td><td>RBF_PCA</td><td>0.4279</td><td>0.0886</td><td>0.2437</td><td>Lowest dispersion but weaker mean and worst-fold profile.</td></tr><tr><td>30-day</td><td>QSVM</td><td>0.4551</td><td>0.1382</td><td>0.1473</td><td><span class=\"badge-focus gold evidence-badge\">Highest Mean F1</span><br>Highest mean F1 and lowest dispersion, but not strongest worst-fold result.</td></tr><tr><td>30-day</td><td>RBF_FULL</td><td>0.4296</td><td>0.1545</td><td>0.1606</td><td>Strongest worst-fold result at the 30-day horizon.</td></tr><tr><td>30-day</td><td>RBF_PCA</td><td>0.4295</td><td>0.2066</td><td>0.0111</td><td>Weakest stability profile among the 30-day kernel comparisons.</td></tr></tbody>\n      </table>\n    </div>\n    ",
-    "group2": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Horizon</th><th>Model</th><th>Total Return</th><th>Sharpe</th><th>Max Drawdown</th><th>Turnover</th><th>Interpretation</th></tr></thead>\n        <tbody><tr><td>1-day</td><td>QSVM</td><td>-0.9412</td><td>-0.6691</td><td>-0.9714</td><td>1315</td><td><span class=\"badge-focus copper evidence-badge\">Cost-sensitive</span><br>High classification score but highly sensitive to turnover and transaction costs.</td></tr><tr><td>1-day</td><td>RBF_FULL</td><td>-0.6739</td><td>-0.2646</td><td>-0.9263</td><td>671</td><td>Less negative than QSVM but still weak under the tested trading/risk layer.</td></tr><tr><td>1-day</td><td>RBF_PCA</td><td>-0.6396</td><td>-0.2411</td><td>-0.9284</td><td>587</td><td>Best short-horizon trading/risk profile among the three tested kernel models.</td></tr><tr><td>7-day</td><td>QSVM</td><td>3.8348</td><td>0.3417</td><td>-0.6796</td><td>245</td><td>Positive trading/risk profile but weaker than the classical baselines.</td></tr><tr><td>7-day</td><td>RBF_FULL</td><td>19.3243</td><td>0.6557</td><td>-0.6808</td><td>157</td><td><span class=\"badge-focus gold evidence-badge\">Strongest 7D Sharpe</span><br>Strongest 7-day risk-adjusted profile under the tested protocol.</td></tr><tr><td>7-day</td><td>RBF_PCA</td><td>13.6248</td><td>0.5837</td><td>-0.6356</td><td>157</td><td>Competitive 7-day trading/risk profile but below RBF_FULL.</td></tr><tr><td>30-day</td><td>QSVM</td><td>6.5722</td><td>0.3415</td><td>-0.8645</td><td>89</td><td>Positive but weaker risk-adjusted profile than classical baselines.</td></tr><tr><td>30-day</td><td>RBF_FULL</td><td>85.5822</td><td>0.7675</td><td>-0.6439</td><td>77</td><td><span class=\"badge-focus gold evidence-badge\">Strongest 30D Sharpe</span><br>Strongest 30-day trading/risk evidence under the tested protocol.</td></tr><tr><td>30-day</td><td>RBF_PCA</td><td>19.8075</td><td>0.5155</td><td>-0.8081</td><td>77</td><td>Moderate 30-day trading/risk evidence.</td></tr></tbody>\n      </table>\n    </div>\n    ",
-    "group3": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Evidence Question</th><th>Key Evidence</th><th>Assessment</th><th>Safe Claim Boundary</th></tr></thead>\n        <tbody><tr><td>Is QSVM classification-competitive?</td><td>QSVM has the highest mean F1-score across the three tested horizons.</td><td><span class=\"badge-focus gold evidence-badge\">Classification-competitive</span><br>Supported with qualification</td><td>QSVM shows horizon-dependent competitiveness, not overall superiority.</td></tr><tr><td>Is QSVM statistically superior across all horizons?</td><td>Corrected statistical support appears only for QSVM vs RBF_FULL at the 1-day horizon.</td><td><span class=\"badge-focus gold evidence-badge\">Holm-limited</span><br>Not supported broadly</td><td>Statistical superiority across all horizons is not established.</td></tr><tr><td>Does classification strength translate directly into financial usefulness?</td><td>Trading/risk evidence differs from classification evidence, especially at the 1-day horizon.</td><td>Not supported</td><td>Classification and financial interpretation must be evaluated separately.</td></tr><tr><td>Does QSVM provide superior trading/risk performance?</td><td>RBF_FULL has stronger Sharpe ratios at the 7-day and 30-day horizons.</td><td>Not supported</td><td>QSVM trading superiority is not established.</td></tr><tr><td>Is the QSVM kernel structurally different from RBF_PCA?</td><td>Pearson 0.6808; Spearman 0.5054.</td><td><span class=\"badge-focus gold evidence-badge\">Structurally different</span><br>Supported descriptively</td><td>Kernel difference does not imply predictive superiority.</td></tr><tr><td>Is the QSVM kernel spectrally richer?</td><td>QSVM effective rank 147.79; RBF_PCA 35.90.</td><td><span class=\"badge-focus gold evidence-badge\">Richer spectrum</span><br>Supported descriptively</td><td>Higher effective rank does not prove task usefulness.</td></tr><tr><td>Is QSVM more target-aligned?</td><td>Alignment differences are 0.0025, 0.0044, and -0.0002.</td><td><span class=\"badge-focus copper evidence-badge\">No clear target advantage</span><br>No clear advantage</td><td>Richer representation does not automatically imply task-relevant advantage.</td></tr><tr><td>Is task-relevant quantum advantage established?</td><td>Integrated evidence does not show consistent QSVM superiority across classification, trading/risk, and diagnostic layers.</td><td><span class=\"badge-focus gold evidence-badge\">Expressivity ≠ advantage</span><br>Not supported</td><td>QSVM is a meaningful benchmark, not proof of quantum advantage.</td></tr></tbody>\n      </table>\n    </div>\n    "
+    "group1": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Horizon</th><th>Model</th><th>Mean F1</th><th>Std F1</th><th>Worst F1</th><th>Interpretation</th></tr></thead>\n        <tbody><tr class=\"highlight-row\"><td>1-day</td><td>QSVM</td><td>0.4760</td><td>0.0448</td><td>0.3779</td><td><span class=\"badge-focus gold evidence-badge\">Robust 1D advantage</span><br>Strongest 1-day descriptive profile, with robust support over both classical baselines.</td></tr><tr><td>1-day</td><td>RBF_PCA</td><td>0.4400</td><td>0.0710</td><td>0.2705</td><td>Classical comparator using the same eight-dimensional PCA representation as QSVM.</td></tr><tr><td>1-day</td><td>RBF_FULL</td><td>0.4249</td><td>0.0686</td><td>0.2705</td><td>Classical benchmark using the full 16-predictor representation.</td></tr><tr class=\"highlight-row\"><td>7-day</td><td>QSVM</td><td>0.4600</td><td>0.0746</td><td>0.2796</td><td><span class=\"badge-focus gold evidence-badge\">Competitive, not robustly superior</span><br>Best descriptive profile, but the full statistical evidence does not support robust superiority.</td></tr><tr><td>7-day</td><td>RBF_PCA</td><td>0.4066</td><td>0.0961</td><td>0.2366</td><td>Lower mean F1 and a weaker worst-fold result.</td></tr><tr><td>7-day</td><td>RBF_FULL</td><td>0.4228</td><td>0.1029</td><td>0.2261</td><td>Lower mean F1 and the weakest worst-fold result at 7 days.</td></tr><tr><td>30-day</td><td>QSVM</td><td>0.3832</td><td>0.1460</td><td>0.0111</td><td><span class=\"badge-focus copper evidence-badge\">No QSVM advantage</span><br>Lower mean F1 and very weak worst-fold performance; no QSVM advantage is supported.</td></tr><tr class=\"highlight-row\"><td>30-day</td><td>RBF_PCA</td><td>0.3977</td><td>0.1440</td><td>0.1756</td><td><span class=\"badge-focus gold evidence-badge\">Strongest 30D descriptive profile</span></td></tr><tr><td>30-day</td><td>RBF_FULL</td><td>0.3855</td><td>0.1790</td><td>0.0111</td><td>Higher cross-fold dispersion and a very weak worst fold.</td></tr></tbody>\n      </table>\n    </div>\n    ",
+    "group2": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Horizon</th><th>Model</th><th>Trades</th><th>Total Return</th><th>Annualized Return</th><th>Sharpe</th><th>MDD</th><th>Turnover</th><th>Interpretation</th></tr></thead>\n        <tbody><tr><td>1-day</td><td>QSVM</td><td>2464</td><td>-0.9685</td><td>-0.4010</td><td>-0.5012</td><td>-0.9815</td><td>1330</td><td>Not the best Sharpe; also has the highest turnover at 1 day.</td></tr><tr><td>1-day</td><td>RBF_PCA</td><td>2464</td><td>-0.9537</td><td>-0.3659</td><td>-0.4117</td><td>-0.9678</td><td>744</td><td>Second-best Sharpe at 1 day.</td></tr><tr class=\"highlight-row\"><td>1-day</td><td>RBF_FULL</td><td>2464</td><td>-0.9509</td><td>-0.3603</td><td>-0.3906</td><td>-0.9790</td><td>780</td><td><span class=\"badge-focus gold evidence-badge\">Best 1D Sharpe</span></td></tr><tr><td>7-day</td><td>QSVM</td><td>352</td><td>-0.8741</td><td>-0.2645</td><td>-0.1694</td><td>-0.9198</td><td>262</td><td>Not the best Sharpe at 7 days.</td></tr><tr><td>7-day</td><td>RBF_PCA</td><td>352</td><td>-0.9705</td><td>-0.4068</td><td>-0.5014</td><td>-0.9736</td><td>136</td><td>Weakest Sharpe at 7 days.</td></tr><tr class=\"highlight-row\"><td>7-day</td><td>RBF_FULL</td><td>352</td><td>-0.8235</td><td>-0.2267</td><td>-0.0877</td><td>-0.8965</td><td>172</td><td><span class=\"badge-focus gold evidence-badge\">Best 7D Sharpe</span></td></tr><tr><td>30-day</td><td>QSVM</td><td>83</td><td>-0.9979</td><td>-0.5956</td><td>-0.8398</td><td>-0.9979</td><td>68</td><td>Weakest Sharpe at 30 days.</td></tr><tr class=\"highlight-row\"><td>30-day</td><td>RBF_PCA</td><td>83</td><td>-0.8423</td><td>-0.2374</td><td>0.0065</td><td>-0.9013</td><td>60</td><td><span class=\"badge-focus gold evidence-badge\">Best 30D Sharpe</span></td></tr><tr><td>30-day</td><td>RBF_FULL</td><td>83</td><td>-0.9081</td><td>-0.2954</td><td>-0.1160</td><td>-0.9578</td><td>56</td><td>Second-best Sharpe at 30 days.</td></tr></tbody>\n      </table>\n    </div>\n    ",
+    "group3": "\n    <div class=\"table-scroll table-fit-integrated\">\n      <table>\n        <colgroup><col class=\"col-horizon\"><col class=\"col-bestf1\"><col class=\"col-stat\"><col class=\"col-sharpe\"><col class=\"col-trading\"><col class=\"col-diagnostic\"><col class=\"col-supported\"></colgroup>\n        <thead><tr><th>Horizon</th><th>Best Mean F1</th><th>Statistical Evidence</th><th>Best Central-Cost Sharpe Model</th><th>Trading Interpretation</th><th>Quantum Diagnostic</th><th>Supported Interpretation</th></tr></thead>\n        <tbody><tr class=\"highlight-row\"><td>1-day</td><td>QSVM</td><td>Robust against both baselines</td><td>RBF_FULL</td><td>QSVM is not best at central cost</td><td>Richer geometry; only slightly higher direction alignment</td><td><span class=\"badge-focus gold evidence-badge\">Robust QSVM classification advantage only</span></td></tr><tr><td>7-day</td><td>QSVM</td><td>Mixed; not robust across bootstrap blocks</td><td>RBF_FULL</td><td>QSVM is not best at central cost</td><td>Richer geometry; only slightly higher direction alignment</td><td>Competitive, no robust superiority</td></tr><tr><td>30-day</td><td>RBF_PCA</td><td>No QSVM advantage</td><td>RBF_PCA</td><td>QSVM weakest central-cost Sharpe</td><td>Richer geometry; lower direction alignment</td><td>No QSVM classification advantage</td></tr></tbody>\n      </table>\n    </div>\n    "
   },
   "th": {
-    "classification": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ระยะเวลา (Days)</th><th>โมเดล</th><th>ความแม่นยำเฉลี่ย (Mean F1)</th><th>ความผันผวน (Std F1)</th><th>กรณีเลวร้ายสุด (Worst F1)</th><th>อันดับ</th></tr></thead>\n        <tbody><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>0.475</td><td>0.062</td><td>0.321</td><td>1</td></tr><tr><td>1</td><td>RBF_PCA</td><td>0.437</td><td>0.067</td><td>0.270</td><td>2</td></tr><tr><td>1</td><td>RBF_FULL</td><td>0.427</td><td>0.079</td><td>0.258</td><td>3</td></tr><tr class=\"highlight-row\"><td>7</td><td>QSVM</td><td>0.456</td><td>0.094</td><td>0.308</td><td>1</td></tr><tr><td>7</td><td>RBF_FULL</td><td>0.429</td><td>0.093</td><td>0.261</td><td>2</td></tr><tr><td>7</td><td>RBF_PCA</td><td>0.428</td><td>0.089</td><td>0.244</td><td>3</td></tr><tr class=\"highlight-row\"><td>30</td><td>QSVM</td><td>0.455</td><td>0.138</td><td>0.147</td><td>1</td></tr><tr><td>30</td><td>RBF_FULL</td><td>0.430</td><td>0.155</td><td>0.161</td><td>2</td></tr><tr><td>30</td><td>RBF_PCA</td><td>0.429</td><td>0.207</td><td>0.011</td><td>3</td></tr></tbody>\n      </table>\n    </div>\n    ",
-    "trading": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ระยะเวลา (Days)</th><th>โมเดล</th><th>ผลตอบแทนรวมสะสมจากการจำลอง</th><th>Sharpe Ratio</th><th>สัดส่วนขาดทุนสูงสุด (Max Drawdown)</th><th>รอบการซื้อขาย (Turnover)</th><th>อันดับ</th></tr></thead>\n        <tbody><tr><td>1</td><td>RBF_PCA</td><td>-64.0%</td><td>-0.24</td><td>-92.8%</td><td>587.0</td><td>1</td></tr><tr><td>1</td><td>RBF_FULL</td><td>-67.4%</td><td>-0.26</td><td>-92.6%</td><td>671.0</td><td>2</td></tr><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>-94.1%</td><td>-0.67</td><td>-97.1%</td><td>1315.0</td><td>3</td></tr><tr class=\"highlight-row\"><td>7</td><td>RBF_FULL</td><td>1932.4%</td><td>0.66</td><td>-68.1%</td><td>157.0</td><td>1</td></tr><tr><td>7</td><td>RBF_PCA</td><td>1362.5%</td><td>0.58</td><td>-63.6%</td><td>157.0</td><td>2</td></tr><tr><td>7</td><td>QSVM</td><td>383.5%</td><td>0.34</td><td>-68.0%</td><td>245.0</td><td>3</td></tr><tr class=\"highlight-row\"><td>30</td><td>RBF_FULL</td><td>8558.2%</td><td>0.77</td><td>-64.4%</td><td>77.0</td><td>1</td></tr><tr><td>30</td><td>RBF_PCA</td><td>1980.8%</td><td>0.52</td><td>-80.8%</td><td>77.0</td><td>2</td></tr><tr><td>30</td><td>QSVM</td><td>657.2%</td><td>0.34</td><td>-86.4%</td><td>89.0</td><td>3</td></tr></tbody>\n      </table>\n    </div>\n    ",
-    "decision": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ระยะเวลา (Days)</th><th>โมเดล</th><th>ความแม่นยำ (Nested F1)</th><th>ผลตอบแทนรวม</th><th>Sharpe Ratio</th><th>บทบาทที่เหมาะสมเชิงนโยบาย</th><th>ข้อสังเกตเพิ่มเติม</th></tr></thead>\n        <tbody><tr><td>1</td><td>RBF_PCA</td><td>0.437</td><td>-64.0%</td><td>-0.24</td><td>โมเดลพื้นฐานสำหรับเปรียบเทียบมิติข้อมูล</td><td>เกิดความไม่เสถียรในกรอบเวลาที่ยาวขึ้น</td></tr><tr class=\"highlight-row\"><td>1</td><td>QSVM</td><td>0.475</td><td>-94.1%</td><td>-0.67</td><td>โมเดลควอนตัมทางเลือก (คู่แข่งที่น่าสนใจแต่ไม่ชนะเด็ดขาด)</td><td>ทำนายแม่นยำ แต่มีข้อจำกัดสำคัญเรื่องต้นทุนการทำธุรกรรม</td></tr><tr><td>1</td><td>RBF_FULL</td><td>0.427</td><td>-67.4%</td><td>-0.26</td><td>โมเดลมาตรฐานเพื่อจัดการความเสี่ยง (มีความแข็งแรงที่สุดในมุมผลตอบแทนและความเสี่ยง)</td><td>รับมือกับปัจจัยเสี่ยงและต้นทุนแฝงได้ดี</td></tr><tr class=\"highlight-row\"><td>7</td><td>RBF_FULL</td><td>0.429</td><td>1932.4%</td><td>0.66</td><td>โมเดลมาตรฐานเพื่อจัดการความเสี่ยง (มีความแข็งแรงที่สุดในมุมผลตอบแทนและความเสี่ยง)</td><td>ให้โปรไฟล์ผลตอบแทนเทียบความเสี่ยงดีที่สุด</td></tr><tr><td>7</td><td>RBF_PCA</td><td>0.428</td><td>1362.5%</td><td>0.58</td><td>โมเดลพื้นฐานสำหรับเปรียบเทียบมิติข้อมูล</td><td>เกิดความไม่เสถียรในกรอบเวลาที่ยาวขึ้น</td></tr><tr><td>7</td><td>QSVM</td><td>0.456</td><td>383.5%</td><td>0.34</td><td>โมเดลควอนตัมทางเลือก (คู่แข่งที่น่าสนใจแต่ไม่ชนะเด็ดขาด)</td><td>พยากรณ์ดี แต่ยังให้ผลลัพธ์การลงทุนสู้ RBF_FULL ไม่ได้</td></tr><tr class=\"highlight-row\"><td>30</td><td>RBF_FULL</td><td>0.430</td><td>8558.2%</td><td>0.77</td><td>โมเดลมาตรฐานเพื่อจัดการความเสี่ยง (มีความแข็งแรงที่สุดในมุมผลตอบแทนและความเสี่ยง)</td><td>ให้โปรไฟล์ผลตอบแทนเทียบความเสี่ยงดีที่สุด</td></tr><tr><td>30</td><td>QSVM</td><td>0.455</td><td>657.2%</td><td>0.34</td><td>โมเดลควอนตัมทางเลือก (คู่แข่งที่น่าสนใจแต่ไม่ชนะเด็ดขาด)</td><td>พยากรณ์ดี แต่ยังให้ผลลัพธ์การลงทุนสู้ RBF_FULL ไม่ได้</td></tr><tr><td>30</td><td>RBF_PCA</td><td>0.429</td><td>1980.8%</td><td>0.52</td><td>โมเดลพื้นฐานสำหรับเปรียบเทียบมิติข้อมูล</td><td>เกิดความไม่เสถียรในกรอบเวลาที่ยาวขึ้น</td></tr></tbody>\n      </table>\n    </div>\n    ",
-    "diagnostic": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ตัวชี้วัด (Diagnostic)</th><th>ผลประเมิน</th><th>ความหมายเชิงสถิติ</th><th>ระดับความสำคัญ</th></tr></thead>\n        <tbody><tr><td>ความแตกต่างของ Kernel</td><td>0.6808</td><td>QSVM และ RBF_PCA สกัดโครงสร้างข้อมูลที่แตกต่างกันอย่างชัดเจนในเชิงโครงสร้าง</td><td>ระดับสูง</td></tr><tr class=\"highlight-row\"><td>ความสอดคล้องกับเป้าหมาย</td><td>0.0022</td><td>ยังไม่พบข้อได้เปรียบที่ชัดเจนของ QSVM ในการนำมาวิเคราะห์ทิศทางไบนารี</td><td>ระดับสูง</td></tr><tr class=\"highlight-row\"><td>ความซับซ้อนเชิงมิติ (Effective Rank)</td><td>QSVM 147.8 vs RBF_PCA 35.9</td><td>QSVM มีความซับซ้อนเชิงสเปกตรัมสูงกว่า แต่ความซับซ้อนไม่ได้แปลว่าได้เปรียบ</td><td>ระดับสูง</td></tr><tr><td>ความทนทานต่อสภาวะตลาดผันผวน</td><td>-0.0077</td><td>ผลทดสอบเบื้องต้นยังไม่ชี้ชัดว่า QSVM ทนทานต่อ Regime ความผันผวนได้ดีกว่า</td><td>ระดับรอง</td></tr></tbody>\n      </table>\n    </div>\n    ",
-    "verdict": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>ข้อกล่าวอ้าง</th><th>สถานะหลักฐาน</th><th>การตีความที่ปลอดภัย</th></tr></thead>\n        <tbody><tr><td>QSVM เหนือกว่า Classical ML โดยรวม</td><td><span class=\"badge-focus red\">ไม่สนับสนุน</span></td><td>หลักฐานยังไม่สนับสนุน overall superiority across horizons, stability และ trading/risk metrics</td></tr><tr><td>QSVM ไม่มีคุณค่าทางวิทยาศาสตร์</td><td>ปฏิเสธข้อสรุปนี้</td><td>QSVM ยังแข่งขันได้ในบาง classification settings และมีความหมายในฐานะ quantum-kernel benchmark</td></tr><tr><td>ผลงานหลักคือระบบ trading ที่พร้อมใช้งาน</td><td><span class=\"badge-focus red\">ไม่สนับสนุน</span></td><td>งานนี้นำเสนอ leakage-safe, multi-horizon, stability-aware และ trading-aware evaluation framework ไม่ใช่ระบบลงทุน</td></tr><tr><td>Quantum expressivity เท่ากับ task-relevant advantage</td><td><span class=\"badge-focus gold\">ยังไม่อาจสรุปได้</span></td><td>พบ quantum expressivity แต่ยังไม่อาจสรุปได้ว่าเกิด task-relevant quantum advantage</td></tr></tbody>\n      </table>\n    </div>\n    ",
-    "group1": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Horizon</th><th>Model</th><th>Mean F1</th><th>Std F1</th><th>Worst F1</th><th>Interpretation</th></tr></thead>\n        <tbody><tr><td>1-day</td><td>QSVM</td><td>0.4754</td><td>0.0616</td><td>0.3212</td><td><span class=\"badge-focus gold evidence-badge\">แข่งขันได้ด้าน classification</span><br><span class=\"badge-focus gold evidence-badge\">Mean F1 สูงสุด</span><br>classification-stability profile แข็งแรงที่สุดใน horizon 1 วัน แต่ไม่ใช่ข้อสรุปว่าเหนือกว่าโดยรวม</td></tr><tr><td>1-day</td><td>RBF_PCA</td><td>0.4375</td><td>0.0667</td><td>0.2705</td><td>dimension-controlled classical comparator ที่มี Mean F1 ต่ำกว่า QSVM</td></tr><tr><td>1-day</td><td>RBF_FULL</td><td>0.4271</td><td>0.0795</td><td>0.2583</td><td>full-feature classical reference ที่มี classification evidence ใน horizon 1 วันอ่อนกว่า QSVM</td></tr><tr><td>7-day</td><td>QSVM</td><td>0.4556</td><td>0.0937</td><td>0.3076</td><td><span class=\"badge-focus gold evidence-badge\">Mean F1 สูงสุด</span><br>มี mean และ worst-fold F1 สูงที่สุดใน horizon 7 วัน</td></tr><tr><td>7-day</td><td>RBF_FULL</td><td>0.4288</td><td>0.0933</td><td>0.2609</td><td>dispersion ใกล้เคียง QSVM แต่ mean และ worst-fold F1 ต่ำกว่า</td></tr><tr><td>7-day</td><td>RBF_PCA</td><td>0.4279</td><td>0.0886</td><td>0.2437</td><td>dispersion ต่ำที่สุด แต่ mean และ worst-fold profile อ่อนกว่า</td></tr><tr><td>30-day</td><td>QSVM</td><td>0.4551</td><td>0.1382</td><td>0.1473</td><td><span class=\"badge-focus gold evidence-badge\">Mean F1 สูงสุด</span><br>มี Mean F1 สูงที่สุดและ dispersion ต่ำที่สุด แต่ไม่ใช่ strongest worst-fold result</td></tr><tr><td>30-day</td><td>RBF_FULL</td><td>0.4296</td><td>0.1545</td><td>0.1606</td><td>มี worst-fold result แข็งแรงที่สุดใน horizon 30 วัน</td></tr><tr><td>30-day</td><td>RBF_PCA</td><td>0.4295</td><td>0.2066</td><td>0.0111</td><td>stability profile อ่อนที่สุดในกลุ่ม kernel comparisons ของ horizon 30 วัน</td></tr></tbody>\n      </table>\n    </div>\n    ",
-    "group2": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Horizon</th><th>Model</th><th>Total Return</th><th>Sharpe</th><th>Max Drawdown</th><th>Turnover</th><th>Interpretation</th></tr></thead>\n        <tbody><tr><td>1-day</td><td>QSVM</td><td>-0.9412</td><td>-0.6691</td><td>-0.9714</td><td>1315</td><td><span class=\"badge-focus copper evidence-badge\">ไวต่อ transaction cost</span><br>classification score สูง แต่ไวต่อ turnover และ transaction costs มาก</td></tr><tr><td>1-day</td><td>RBF_FULL</td><td>-0.6739</td><td>-0.2646</td><td>-0.9263</td><td>671</td><td>ติดลบน้อยกว่า QSVM แต่ยังอ่อนภายใต้ trading/risk layer ที่ทดสอบ</td></tr><tr><td>1-day</td><td>RBF_PCA</td><td>-0.6396</td><td>-0.2411</td><td>-0.9284</td><td>587</td><td>trading/risk profile ระยะสั้นดีที่สุดในสาม kernel models ที่ทดสอบ</td></tr><tr><td>7-day</td><td>QSVM</td><td>3.8348</td><td>0.3417</td><td>-0.6796</td><td>245</td><td>trading/risk profile เป็นบวก แต่ยังอ่อนกว่า classical baselines</td></tr><tr><td>7-day</td><td>RBF_FULL</td><td>19.3243</td><td>0.6557</td><td>-0.6808</td><td>157</td><td><span class=\"badge-focus gold evidence-badge\">Sharpe เด่นสุดที่ 7 วัน</span><br>risk-adjusted profile แข็งแรงที่สุดใน horizon 7 วันภายใต้ protocol ที่ทดสอบ</td></tr><tr><td>7-day</td><td>RBF_PCA</td><td>13.6248</td><td>0.5837</td><td>-0.6356</td><td>157</td><td>trading/risk profile ใน horizon 7 วันแข่งขันได้ แต่ยังต่ำกว่า RBF_FULL</td></tr><tr><td>30-day</td><td>QSVM</td><td>6.5722</td><td>0.3415</td><td>-0.8645</td><td>89</td><td>เป็นบวก แต่ risk-adjusted profile ยังอ่อนกว่า classical baselines</td></tr><tr><td>30-day</td><td>RBF_FULL</td><td>85.5822</td><td>0.7675</td><td>-0.6439</td><td>77</td><td><span class=\"badge-focus gold evidence-badge\">Sharpe เด่นสุดที่ 30 วัน</span><br>trading/risk evidence แข็งแรงที่สุดใน horizon 30 วันภายใต้ protocol ที่ทดสอบ</td></tr><tr><td>30-day</td><td>RBF_PCA</td><td>19.8075</td><td>0.5155</td><td>-0.8081</td><td>77</td><td>trading/risk evidence ระดับปานกลางใน horizon 30 วัน</td></tr></tbody>\n      </table>\n    </div>\n    ",
-    "group3": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Evidence Question</th><th>Key Evidence</th><th>Assessment</th><th>Safe Claim Boundary</th></tr></thead>\n        <tbody><tr><td>QSVM แข่งขันได้ในชั้น classification หรือไม่</td><td>QSVM มี mean F1-score สูงที่สุด across three tested horizons</td><td><span class=\"badge-focus gold evidence-badge\">แข่งขันได้ด้าน classification</span><br>สนับสนุนแบบมีเงื่อนไข</td><td>QSVM แสดง horizon-dependent competitiveness ไม่ใช่ overall superiority</td></tr><tr><td>QSVM เหนือกว่าเชิงสถิติ across all horizons หรือไม่</td><td>corrected statistical support พบเฉพาะ QSVM vs RBF_FULL ที่ horizon 1 วัน</td><td><span class=\"badge-focus gold evidence-badge\">จำกัดด้วย Holm correction</span><br>ไม่สนับสนุนในภาพกว้าง</td><td>ยังไม่อาจสรุป statistical superiority across all horizons</td></tr><tr><td>classification strength แปลเป็น financial usefulness โดยตรงหรือไม่</td><td>trading/risk evidence แตกต่างจาก classification evidence โดยเฉพาะ horizon 1 วัน</td><td>ไม่สนับสนุน</td><td>classification และ financial interpretation ต้องประเมินแยกกัน</td></tr><tr><td>QSVM ให้ trading/risk performance ที่เหนือกว่าหรือไม่</td><td>RBF_FULL มี Sharpe ratios แข็งแรงกว่าใน horizon 7 วันและ 30 วัน</td><td>ไม่สนับสนุน</td><td>ยังไม่อาจสรุปว่า QSVM มี trading superiority</td></tr><tr><td>QSVM kernel แตกต่างจาก RBF_PCA เชิงโครงสร้างหรือไม่</td><td>Pearson 0.6808; Spearman 0.5054</td><td><span class=\"badge-focus gold evidence-badge\">โครงสร้างแตกต่าง</span><br>สนับสนุนเชิงพรรณนา</td><td>kernel difference ไม่ได้แปลว่า predictive superiority</td></tr><tr><td>QSVM kernel มี spectral richness สูงกว่าหรือไม่</td><td>QSVM effective rank 147.79; RBF_PCA 35.90</td><td><span class=\"badge-focus gold evidence-badge\">spectrum richer</span><br>สนับสนุนเชิงพรรณนา</td><td>effective rank ที่สูงกว่าไม่ได้พิสูจน์ task usefulness</td></tr><tr><td>QSVM target-aligned มากกว่าหรือไม่</td><td>alignment differences คือ 0.0025, 0.0044 และ -0.0002</td><td><span class=\"badge-focus copper evidence-badge\">ยังไม่เห็น target advantage ชัดเจน</span><br>ยังไม่เห็นข้อได้เปรียบชัดเจน</td><td>richer representation ไม่ได้แปลว่า task-relevant advantage โดยอัตโนมัติ</td></tr><tr><td>เกิด task-relevant quantum advantage แล้วหรือไม่</td><td>integrated evidence ยังไม่แสดง consistent QSVM superiority across classification, trading/risk และ diagnostic layers</td><td><span class=\"badge-focus gold evidence-badge\">expressivity ≠ advantage</span><br>ไม่สนับสนุน</td><td>QSVM เป็น meaningful benchmark ไม่ใช่หลักฐานของ quantum advantage</td></tr></tbody>\n      </table>\n    </div>\n    "
+    "group1": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Horizon</th><th>Model</th><th>Mean F1</th><th>Std F1</th><th>Worst F1</th><th>Interpretation</th></tr></thead>\n        <tbody><tr class=\"highlight-row\"><td>1-day</td><td>QSVM</td><td>0.4760</td><td>0.0448</td><td>0.3779</td><td><span class=\"badge-focus gold evidence-badge\">Robust 1D advantage</span><br>มี descriptive profile แข็งแรงที่สุดที่ 1 วัน และข้อได้เปรียบเหนือ classical baselines ทั้งสองได้รับการสนับสนุนอย่าง robust</td></tr><tr><td>1-day</td><td>RBF_PCA</td><td>0.4400</td><td>0.0710</td><td>0.2705</td><td>Classical comparator ที่ใช้ PCA 8 มิติชุดเดียวกับ QSVM</td></tr><tr><td>1-day</td><td>RBF_FULL</td><td>0.4249</td><td>0.0686</td><td>0.2705</td><td>Classical benchmark ที่ใช้ predictors ครบทั้ง 16 ตัว</td></tr><tr class=\"highlight-row\"><td>7-day</td><td>QSVM</td><td>0.4600</td><td>0.0746</td><td>0.2796</td><td><span class=\"badge-focus gold evidence-badge\">แข่งขันได้ แต่ไม่ robustly superior</span><br>มี descriptive profile ดีที่สุด แต่หลักฐานทางสถิติทั้งหมด ยังไม่รองรับ robust superiority</td></tr><tr><td>7-day</td><td>RBF_PCA</td><td>0.4066</td><td>0.0961</td><td>0.2366</td><td>Mean F1 ต่ำกว่า และผลใน worst fold อ่อนกว่า QSVM</td></tr><tr><td>7-day</td><td>RBF_FULL</td><td>0.4228</td><td>0.1029</td><td>0.2261</td><td>Mean F1 ต่ำกว่า และมี worst-fold result อ่อนที่สุดที่ 7 วัน</td></tr><tr><td>30-day</td><td>QSVM</td><td>0.3832</td><td>0.1460</td><td>0.0111</td><td><span class=\"badge-focus copper evidence-badge\">ไม่มี QSVM advantage</span><br>Mean F1 ต่ำกว่า และ worst-fold performance อ่อนมาก จึงไม่มีหลักฐานรองรับ QSVM advantage</td></tr><tr class=\"highlight-row\"><td>30-day</td><td>RBF_PCA</td><td>0.3977</td><td>0.1440</td><td>0.1756</td><td><span class=\"badge-focus gold evidence-badge\">descriptive profile แข็งแรงที่สุดที่ 30 วัน</span></td></tr><tr><td>30-day</td><td>RBF_FULL</td><td>0.3855</td><td>0.1790</td><td>0.0111</td><td>Cross-fold dispersion สูงกว่า และ worst fold อ่อนมาก</td></tr></tbody>\n      </table>\n    </div>\n    ",
+    "group2": "\n    <div class=\"table-scroll\">\n      <table>\n        <thead><tr><th>Horizon</th><th>Model</th><th>Trades</th><th>Total Return</th><th>Annualized Return</th><th>Sharpe</th><th>MDD</th><th>Turnover</th><th>Interpretation</th></tr></thead>\n        <tbody><tr><td>1-day</td><td>QSVM</td><td>2464</td><td>-0.9685</td><td>-0.4010</td><td>-0.5012</td><td>-0.9815</td><td>1330</td><td>ไม่ใช่โมเดลที่มี Sharpe ดีที่สุดที่ 1 วัน และมี turnover สูงที่สุดที่ 1 วัน</td></tr><tr><td>1-day</td><td>RBF_PCA</td><td>2464</td><td>-0.9537</td><td>-0.3659</td><td>-0.4117</td><td>-0.9678</td><td>744</td><td>Sharpe ดีเป็นอันดับสองที่ 1 วัน</td></tr><tr class=\"highlight-row\"><td>1-day</td><td>RBF_FULL</td><td>2464</td><td>-0.9509</td><td>-0.3603</td><td>-0.3906</td><td>-0.9790</td><td>780</td><td><span class=\"badge-focus gold evidence-badge\">Best 1D Sharpe</span></td></tr><tr><td>7-day</td><td>QSVM</td><td>352</td><td>-0.8741</td><td>-0.2645</td><td>-0.1694</td><td>-0.9198</td><td>262</td><td>ไม่ใช่โมเดลที่มี Sharpe ดีที่สุด</td></tr><tr><td>7-day</td><td>RBF_PCA</td><td>352</td><td>-0.9705</td><td>-0.4068</td><td>-0.5014</td><td>-0.9736</td><td>136</td><td>Sharpe อ่อนที่สุดที่ 7 วัน</td></tr><tr class=\"highlight-row\"><td>7-day</td><td>RBF_FULL</td><td>352</td><td>-0.8235</td><td>-0.2267</td><td>-0.0877</td><td>-0.8965</td><td>172</td><td><span class=\"badge-focus gold evidence-badge\">Best 7D Sharpe</span></td></tr><tr><td>30-day</td><td>QSVM</td><td>83</td><td>-0.9979</td><td>-0.5956</td><td>-0.8398</td><td>-0.9979</td><td>68</td><td>Sharpe อ่อนที่สุดที่ 30 วัน</td></tr><tr class=\"highlight-row\"><td>30-day</td><td>RBF_PCA</td><td>83</td><td>-0.8423</td><td>-0.2374</td><td>0.0065</td><td>-0.9013</td><td>60</td><td><span class=\"badge-focus gold evidence-badge\">Best 30D Sharpe</span></td></tr><tr><td>30-day</td><td>RBF_FULL</td><td>83</td><td>-0.9081</td><td>-0.2954</td><td>-0.1160</td><td>-0.9578</td><td>56</td><td>Sharpe ดีเป็นอันดับสองที่ 30 วัน</td></tr></tbody>\n      </table>\n    </div>\n    ",
+    "group3": "\n    <div class=\"table-scroll table-fit-integrated\">\n      <table>\n        <colgroup><col class=\"col-horizon\"><col class=\"col-bestf1\"><col class=\"col-stat\"><col class=\"col-sharpe\"><col class=\"col-trading\"><col class=\"col-diagnostic\"><col class=\"col-supported\"></colgroup>\n        <thead><tr><th>Horizon</th><th>Best Mean F1</th><th>Statistical Evidence</th><th>Best Central-Cost Sharpe Model</th><th>Trading Interpretation</th><th>Quantum Diagnostic</th><th>Supported Interpretation</th></tr></thead>\n        <tbody><tr class=\"highlight-row\"><td>1-day</td><td>QSVM</td><td>Robust เหนือ baseline ทั้งสอง</td><td>RBF_FULL</td><td>QSVM ไม่ใช่โมเดลที่มี Sharpe ดีที่สุดที่ central cost</td><td>Kernel geometry richer แต่ direction alignment สูงกว่าเพียงเล็กน้อย</td><td><span class=\"badge-focus gold evidence-badge\">สนับสนุนเฉพาะ robust QSVM classification advantage</span></td></tr><tr><td>7-day</td><td>QSVM</td><td>หลักฐานยัง mixed และไม่ robust across bootstrap blocks</td><td>RBF_FULL</td><td>QSVM ไม่ใช่โมเดลที่มี Sharpe ดีที่สุดที่ central cost</td><td>Kernel geometry richer แต่ direction alignment สูงกว่าเพียงเล็กน้อย</td><td>แข่งขันได้ แต่ไม่มี robust superiority</td></tr><tr><td>30-day</td><td>RBF_PCA</td><td>ไม่มี QSVM advantage</td><td>RBF_PCA</td><td>QSVM มี central-cost Sharpe อ่อนที่สุด</td><td>Kernel geometry richer แต่ direction alignment ต่ำกว่า RBF_PCA</td><td>ไม่มี QSVM classification advantage</td></tr></tbody>\n      </table>\n    </div>\n    "
   }
 };
 
-const classificationData = [{"horizon": "1", "model": "QSVM", "mean_f1": 0.4754082368, "std_f1": 0.0616132147, "worst_f1": 0.3211864407}, {"horizon": "1", "model": "RBF_PCA", "mean_f1": 0.4374709226, "std_f1": 0.0666770917, "worst_f1": 0.2704918033}, {"horizon": "1", "model": "RBF_FULL", "mean_f1": 0.4271445676, "std_f1": 0.0794675529, "worst_f1": 0.2583333333}, {"horizon": "7", "model": "QSVM", "mean_f1": 0.4555661314, "std_f1": 0.0936909942, "worst_f1": 0.3075647404}, {"horizon": "7", "model": "RBF_FULL", "mean_f1": 0.4287765688, "std_f1": 0.0933453472, "worst_f1": 0.2608577263}, {"horizon": "7", "model": "RBF_PCA", "mean_f1": 0.4279076636, "std_f1": 0.0886140814, "worst_f1": 0.2436951754}, {"horizon": "30", "model": "QSVM", "mean_f1": 0.4551214141, "std_f1": 0.1382256704, "worst_f1": 0.1472556894}, {"horizon": "30", "model": "RBF_FULL", "mean_f1": 0.4296151532, "std_f1": 0.1545369718, "worst_f1": 0.1605640479}, {"horizon": "30", "model": "RBF_PCA", "mean_f1": 0.4294557192, "std_f1": 0.2065535524, "worst_f1": 0.0111111111}];
-const tradingData = [{"horizon": "1", "model": "RBF_PCA", "sharpe": -0.2410999924, "total_return": -0.6395849733, "max_drawdown": -0.9283611797, "total_turnover": 587.0}, {"horizon": "1", "model": "RBF_FULL", "sharpe": -0.2645604792, "total_return": -0.6738587047, "max_drawdown": -0.9263054564, "total_turnover": 671.0}, {"horizon": "1", "model": "QSVM", "sharpe": -0.6691284914, "total_return": -0.9411552737, "max_drawdown": -0.9713909622, "total_turnover": 1315.0}, {"horizon": "7", "model": "RBF_FULL", "sharpe": 0.6556764965, "total_return": 19.3243467875, "max_drawdown": -0.6808406592, "total_turnover": 157.0}, {"horizon": "7", "model": "RBF_PCA", "sharpe": 0.5836922409, "total_return": 13.6247711628, "max_drawdown": -0.6355973476, "total_turnover": 157.0}, {"horizon": "7", "model": "QSVM", "sharpe": 0.3417169401, "total_return": 3.8347594075, "max_drawdown": -0.6796473773, "total_turnover": 245.0}, {"horizon": "30", "model": "RBF_FULL", "sharpe": 0.7675353511, "total_return": 85.5821555478, "max_drawdown": -0.6439249329, "total_turnover": 77.0}, {"horizon": "30", "model": "RBF_PCA", "sharpe": 0.5155196246, "total_return": 19.8075256831, "max_drawdown": -0.8081431265, "total_turnover": 77.0}, {"horizon": "30", "model": "QSVM", "sharpe": 0.3415175292, "total_return": 6.5721672121, "max_drawdown": -0.864497361, "total_turnover": 89.0}];
-const diagnosticData = [{"model": "QSVM", "effective_rank": 147.8}, {"model": "RBF_PCA", "effective_rank": 35.9}];
-const models = ["QSVM", "RBF_FULL", "RBF_PCA"];
+const classificationData = [{"horizon": "1", "model": "QSVM", "mean_f1": 0.476, "std_f1": 0.0448, "worst_f1": 0.3779}, {"horizon": "1", "model": "RBF_PCA", "mean_f1": 0.44, "std_f1": 0.071, "worst_f1": 0.2705}, {"horizon": "1", "model": "RBF_FULL", "mean_f1": 0.4249, "std_f1": 0.0686, "worst_f1": 0.2705}, {"horizon": "7", "model": "QSVM", "mean_f1": 0.46, "std_f1": 0.0746, "worst_f1": 0.2796}, {"horizon": "7", "model": "RBF_FULL", "mean_f1": 0.4228, "std_f1": 0.1029, "worst_f1": 0.2261}, {"horizon": "7", "model": "RBF_PCA", "mean_f1": 0.4066, "std_f1": 0.0961, "worst_f1": 0.2366}, {"horizon": "30", "model": "RBF_PCA", "mean_f1": 0.3977, "std_f1": 0.144, "worst_f1": 0.1756}, {"horizon": "30", "model": "RBF_FULL", "mean_f1": 0.3855, "std_f1": 0.179, "worst_f1": 0.0111}, {"horizon": "30", "model": "QSVM", "mean_f1": 0.3832, "std_f1": 0.146, "worst_f1": 0.0111}];
+const tradingData = [{"horizon": "1", "model": "QSVM", "trades": 2464, "total_return": -0.9685, "annualized_return": -0.401, "sharpe": -0.5012, "max_drawdown": -0.9815, "total_turnover": 1330}, {"horizon": "1", "model": "RBF_FULL", "trades": 2464, "total_return": -0.9509, "annualized_return": -0.3603, "sharpe": -0.3906, "max_drawdown": -0.979, "total_turnover": 780}, {"horizon": "1", "model": "RBF_PCA", "trades": 2464, "total_return": -0.9537, "annualized_return": -0.3659, "sharpe": -0.4117, "max_drawdown": -0.9678, "total_turnover": 744}, {"horizon": "7", "model": "QSVM", "trades": 352, "total_return": -0.8741, "annualized_return": -0.2645, "sharpe": -0.1694, "max_drawdown": -0.9198, "total_turnover": 262}, {"horizon": "7", "model": "RBF_FULL", "trades": 352, "total_return": -0.8235, "annualized_return": -0.2267, "sharpe": -0.0877, "max_drawdown": -0.8965, "total_turnover": 172}, {"horizon": "7", "model": "RBF_PCA", "trades": 352, "total_return": -0.9705, "annualized_return": -0.4068, "sharpe": -0.5014, "max_drawdown": -0.9736, "total_turnover": 136}, {"horizon": "30", "model": "QSVM", "trades": 83, "total_return": -0.9979, "annualized_return": -0.5956, "sharpe": -0.8398, "max_drawdown": -0.9979, "total_turnover": 68}, {"horizon": "30", "model": "RBF_FULL", "trades": 83, "total_return": -0.9081, "annualized_return": -0.2954, "sharpe": -0.116, "max_drawdown": -0.9578, "total_turnover": 56}, {"horizon": "30", "model": "RBF_PCA", "trades": 83, "total_return": -0.8423, "annualized_return": -0.2374, "sharpe": 0.0065, "max_drawdown": -0.9013, "total_turnover": 60}];
+const diagnosticData = [{"horizon": "1", "model": "QSVM", "effective_rank": 142.4}, {"horizon": "1", "model": "RBF_PCA", "effective_rank": 36.0}, {"horizon": "7", "model": "QSVM", "effective_rank": 143.2}, {"horizon": "7", "model": "RBF_PCA", "effective_rank": 36.0}, {"horizon": "30", "model": "QSVM", "effective_rank": 143.9}, {"horizon": "30", "model": "RBF_PCA", "effective_rank": 36.2}];
+
+const horizonExplorerData = {
+  en: {
+    "1": {
+      horizonLabel: "1 day",
+      claim: "QSVM wins the classification comparison—and the result is robust.",
+      summary: "This is the only forecast horizon where a QSVM superiority claim survives the full statistical robustness checks.",
+      classificationValue: "QSVM · Mean F1 0.4760",
+      classificationNote: "RBF_PCA 0.4400 · RBF_FULL 0.4249",
+      bars: [
+        { model: "QSVM", value: 0.4760, display: "0.4760" },
+        { model: "RBF_PCA", value: 0.4400, display: "0.4400" },
+        { model: "RBF_FULL", value: 0.4249, display: "0.4249" }
+      ],
+      statValue: "Robust against both baselines",
+      statNote: "Holm-corrected paired tests and circular moving-block bootstrap checks both support the 1-day QSVM classification advantage.",
+      tradingValue: "Best Sharpe: RBF_FULL −0.3906",
+      tradingNote: "QSVM Sharpe is −0.5012. At the central cost, total return is negative for every model.",
+      verdictValue: "Classification advantage only",
+      verdictNote: "The result supports QSVM classification superiority at 1 day, not QSVM trading superiority.",
+      diagnostic: "Quantum diagnostic · richer geometry, not quantum advantage"
+    },
+    "7": {
+      horizonLabel: "7 days",
+      claim: "QSVM leads mean F1, but the evidence is not robust enough for superiority.",
+      summary: "The descriptive result is favorable to QSVM, yet the statistical evidence does not remain consistent across tests and bootstrap block lengths.",
+      classificationValue: "QSVM · Mean F1 0.4600",
+      classificationNote: "RBF_FULL 0.4228 · RBF_PCA 0.4066",
+      bars: [
+        { model: "QSVM", value: 0.4600, display: "0.4600" },
+        { model: "RBF_PCA", value: 0.4066, display: "0.4066" },
+        { model: "RBF_FULL", value: 0.4228, display: "0.4228" }
+      ],
+      statValue: "Mixed; not robust",
+      statNote: "QSVM versus RBF_FULL is not significant, while the evidence against RBF_PCA is not consistent across the paired tests and moving-block bootstrap checks.",
+      tradingValue: "Best Sharpe: RBF_FULL −0.0877",
+      tradingNote: "QSVM Sharpe is −0.1694. At the central cost, total return is negative for every model.",
+      verdictValue: "Competitive, not robustly superior",
+      verdictNote: "QSVM remains a meaningful competitor at 7 days, but the evidence does not support a robust superiority claim.",
+      diagnostic: "Quantum diagnostic · richer geometry, only slightly higher direction alignment"
+    },
+    "30": {
+      horizonLabel: "30 days",
+      claim: "The classification lead shifts to RBF_PCA.",
+      summary: "At the longest horizon, the dimension-controlled classical comparator has the strongest descriptive classification-stability profile.",
+      classificationValue: "RBF_PCA · Mean F1 0.3977",
+      classificationNote: "RBF_FULL 0.3855 · QSVM 0.3832",
+      bars: [
+        { model: "QSVM", value: 0.3832, display: "0.3832" },
+        { model: "RBF_PCA", value: 0.3977, display: "0.3977" },
+        { model: "RBF_FULL", value: 0.3855, display: "0.3855" }
+      ],
+      statValue: "No QSVM advantage",
+      statNote: "Neither the paired tests nor the circular moving-block bootstrap analysis supports QSVM classification superiority at 30 days.",
+      tradingValue: "Best Sharpe: RBF_PCA 0.0065",
+      tradingNote: "QSVM Sharpe is −0.8398. Even the best Sharpe occurs alongside a negative total return at the central cost.",
+      verdictValue: "No QSVM classification advantage",
+      verdictNote: "The evidence does not support a QSVM classification advantage at 30 days, and it provides no basis for a broader superiority claim.",
+      diagnostic: "Quantum diagnostic · richer geometry, but lower direction alignment than RBF_PCA"
+    }
+  },
+  th: {
+    "1": {
+      horizonLabel: "1 วัน",
+      claim: "QSVM ชนะด้าน classification และผลนี้ robust ทางสถิติ",
+      summary: "นี่เป็นระยะพยากรณ์เดียวที่ข้อสรุปว่า QSVM เหนือกว่าในงาน classification ยังคงอยู่หลังการตรวจสอบความ robust ทางสถิติทั้งหมด",
+      classificationValue: "QSVM · Mean F1 0.4760",
+      classificationNote: "RBF_PCA 0.4400 · RBF_FULL 0.4249",
+      bars: [
+        { model: "QSVM", value: 0.4760, display: "0.4760" },
+        { model: "RBF_PCA", value: 0.4400, display: "0.4400" },
+        { model: "RBF_FULL", value: 0.4249, display: "0.4249" }
+      ],
+      statValue: "Robust เหนือ baseline ทั้งสอง",
+      statNote: "ทั้ง Holm-corrected paired tests และ circular moving-block bootstrap สนับสนุนข้อได้เปรียบด้าน classification ของ QSVM ที่ระยะ 1 วัน",
+      tradingValue: "Sharpe ดีที่สุด: RBF_FULL −0.3906",
+      tradingNote: "QSVM มี Sharpe = −0.5012 และที่ central cost ทุกโมเดลยังมี total return ติดลบ",
+      verdictValue: "ได้เปรียบเฉพาะด้าน classification",
+      verdictNote: "ผลนี้รองรับ QSVM classification superiority ที่ 1 วัน แต่ไม่ได้รองรับ QSVM trading superiority",
+      diagnostic: "Quantum diagnostic · geometry richer แต่ยังไม่ใช่ quantum advantage"
+    },
+    "7": {
+      horizonLabel: "7 วัน",
+      claim: "QSVM มี mean F1 สูงสุด แต่หลักฐานยังไม่ robust พอสำหรับข้อสรุปว่าเหนือกว่า",
+      summary: "ผลเชิงพรรณนาเป็นบวกต่อ QSVM แต่หลักฐานทางสถิติยังไม่สม่ำเสมอเมื่อพิจารณาทั้ง paired tests และ bootstrap หลาย block lengths",
+      classificationValue: "QSVM · Mean F1 0.4600",
+      classificationNote: "RBF_FULL 0.4228 · RBF_PCA 0.4066",
+      bars: [
+        { model: "QSVM", value: 0.4600, display: "0.4600" },
+        { model: "RBF_PCA", value: 0.4066, display: "0.4066" },
+        { model: "RBF_FULL", value: 0.4228, display: "0.4228" }
+      ],
+      statValue: "หลักฐาน mixed; ยังไม่ robust",
+      statNote: "การเทียบกับ RBF_FULL ไม่ significant ขณะที่หลักฐานเมื่อเทียบกับ RBF_PCA ไม่สม่ำเสมอเมื่อดูทั้ง paired tests และ moving-block bootstrap",
+      tradingValue: "Sharpe ดีที่สุด: RBF_FULL −0.0877",
+      tradingNote: "QSVM มี Sharpe = −0.1694 และที่ central cost ทุกโมเดลยังมี total return ติดลบ",
+      verdictValue: "แข่งขันได้ แต่ยังไม่ robustly superior",
+      verdictNote: "QSVM ยังเป็นคู่แข่งที่มีความหมายที่ 7 วัน แต่หลักฐานยังไม่รองรับข้อสรุปว่าเหนือกว่าอย่าง robust",
+      diagnostic: "Quantum diagnostic · geometry richer และ direction alignment สูงกว่าเพียงเล็กน้อย"
+    },
+    "30": {
+      horizonLabel: "30 วัน",
+      claim: "ผู้นำด้าน classification เปลี่ยนเป็น RBF_PCA",
+      summary: "ที่ระยะยาวที่สุด RBF_PCA ซึ่งเป็น classical comparator ที่ควบคุมมิติ มี descriptive classification-stability profile แข็งแรงที่สุด",
+      classificationValue: "RBF_PCA · Mean F1 0.3977",
+      classificationNote: "RBF_FULL 0.3855 · QSVM 0.3832",
+      bars: [
+        { model: "QSVM", value: 0.3832, display: "0.3832" },
+        { model: "RBF_PCA", value: 0.3977, display: "0.3977" },
+        { model: "RBF_FULL", value: 0.3855, display: "0.3855" }
+      ],
+      statValue: "ไม่มี QSVM advantage",
+      statNote: "ทั้ง paired tests และ circular moving-block bootstrap ไม่สนับสนุน QSVM classification superiority ที่ระยะ 30 วัน",
+      tradingValue: "Sharpe ดีที่สุด: RBF_PCA 0.0065",
+      tradingNote: "QSVM มี Sharpe = −0.8398 และแม้โมเดลที่ Sharpe ดีที่สุดก็ยังมี total return ติดลบที่ central cost",
+      verdictValue: "ไม่มี QSVM classification advantage",
+      verdictNote: "หลักฐานไม่รองรับข้อได้เปรียบด้าน classification ของ QSVM ที่ 30 วัน และไม่รองรับข้อสรุปที่กว้างกว่านั้น",
+      diagnostic: "Quantum diagnostic · geometry richer แต่ direction alignment ต่ำกว่า RBF_PCA"
+    }
+  }
+};
+
+
+const evidenceStepOrder = ['classification', 'stability', 'trading', 'diagnostics', 'claim'];
+let activeEvidenceStep = 'classification';
+let evidenceStepperTimer = null;
+
+const diagnosticAlignmentData = {
+  '1': { qsvm: 0.009073, rbfPca: 0.006742, diff: 0.002331 },
+  '7': { qsvm: 0.025196, rbfPca: 0.021750, diff: 0.003446 },
+  '30': { qsvm: 0.071702, rbfPca: 0.075119, diff: -0.003417 }
+};
+
+const evidenceStepperText = {
+  en: {
+    kicker: 'Evidence logic',
+    progress: (index, total) => `Evidence layer ${index} of ${total}`,
+    shortcut: 'Change the horizon above. Change the evidence layer here.',
+    previous: 'Previous',
+    next: 'Next',
+    layerLabels: {
+      classification: 'Directional classification',
+      stability: 'Fold-level stability & robustness',
+      trading: 'Post-hoc trading / risk',
+      diagnostics: 'Quantum-kernel diagnostics',
+      claim: 'Supported interpretation'
+    },
+    bestSharpe: 'Best Sharpe',
+    stdF1: 'Std F1',
+    worstF1: 'Worst F1',
+    totalReturn: 'Total return',
+    turnover: 'Turnover',
+    effectiveRank: 'Effective rank',
+    directionAlignment: 'Direction alignment',
+    alignmentDifference: 'QSVM − RBF_PCA',
+    simulationNote: 'Exact statevector simulation · no physical quantum hardware',
+    diagnosticTitle: 'The quantum kernel is richer, but richer is not the same as better.',
+    diagnosticNote: 'The effective-rank gap is large, while direction-target alignment differs only slightly and reverses at 30 days. These diagnostics describe representation geometry; they do not establish quantum advantage.',
+    claimLabels: ['Classification', 'Robustness', 'Trading / risk', 'Quantum diagnostic']
+  },
+  th: {
+    kicker: 'ตรรกะของหลักฐาน',
+    progress: (index, total) => `หลักฐานชั้นที่ ${index} จาก ${total}`,
+    shortcut: 'เปลี่ยนระยะพยากรณ์ด้านบน แล้วไล่ดูหลักฐานแต่ละชั้นตรงนี้',
+    previous: 'ก่อนหน้า',
+    next: 'ถัดไป',
+    layerLabels: {
+      classification: 'ผลการจำแนกทิศทาง',
+      stability: 'ความเสถียรและความ robust ระหว่าง folds',
+      trading: 'การตีความด้าน Trading / Risk',
+      diagnostics: 'Quantum-kernel diagnostics',
+      claim: 'ข้อสรุปที่หลักฐานรองรับ'
+    },
+    bestSharpe: 'Sharpe สูงสุด',
+    stdF1: 'Std F1',
+    worstF1: 'Worst F1',
+    totalReturn: 'Total return',
+    turnover: 'Turnover',
+    effectiveRank: 'Effective rank',
+    directionAlignment: 'Direction alignment',
+    alignmentDifference: 'QSVM − RBF_PCA',
+    simulationNote: 'Exact statevector simulation · ไม่ใช่ physical quantum hardware',
+    diagnosticTitle: 'Quantum kernel มีโครงสร้างที่ richer แต่ richer ไม่ได้แปลว่าดีกว่า',
+    diagnosticNote: 'ความต่างของ effective rank มีขนาดใหญ่ แต่ direction-target alignment ต่างกันเพียงเล็กน้อยและกลับทิศที่ 30 วัน ดังนั้น diagnostics เหล่านี้อธิบาย geometry ของ representation ไม่ได้พิสูจน์ quantum advantage',
+    claimLabels: ['Classification', 'ความ robust', 'Trading / Risk', 'Quantum diagnostic']
+  }
+};
+
+function getHorizonRows(source, horizon) {
+  return models.map(model => source.find(row => row.horizon === horizon && row.model === model)).filter(Boolean);
+}
+
+function renderStepperClassification(data) {
+  const leader = Math.max(...data.bars.map(item => item.value));
+  return `<div class="stepper-bar-stack">${data.bars.map(item => {
+    const width = Math.max(8, Math.min(100, (item.value / 0.5) * 100));
+    const leaderClass = item.value === leader ? ' is-leader' : '';
+    return `<div class="stepper-bar-row${leaderClass}">
+      <div class="stepper-bar-meta"><span>${item.model}</span><strong>${item.display}</strong></div>
+      <div class="stepper-bar-track"><span class="stepper-bar-fill model-${horizonExplorerModelClass(item.model)}" style="--bar-width:${width.toFixed(1)}%"></span></div>
+    </div>`;
+  }).join('')}</div>`;
+}
+
+function renderStepperStability(horizon) {
+  const text = evidenceStepperText[currentLang];
+  const rows = getHorizonRows(classificationData, horizon);
+  return `<div class="stepper-metric-grid">${rows.map(row => `<div class="stepper-model-card model-${horizonExplorerModelClass(row.model)}">
+    <div class="stepper-model-name"><span class="stepper-model-dot"></span>${row.model}</div>
+    <div class="stepper-metric-pair"><span>${text.stdF1}</span><strong>${row.std_f1.toFixed(4)}</strong></div>
+    <div class="stepper-metric-pair"><span>${text.worstF1}</span><strong>${row.worst_f1.toFixed(4)}</strong></div>
+  </div>`).join('')}</div>`;
+}
+
+function renderStepperTrading(horizon) {
+  const text = evidenceStepperText[currentLang];
+  const rows = getHorizonRows(tradingData, horizon);
+  const best = Math.max(...rows.map(row => row.sharpe));
+  return `<div class="stepper-metric-grid">${rows.map(row => `<div class="stepper-model-card model-${horizonExplorerModelClass(row.model)}${row.sharpe === best ? ' is-best' : ''}">
+    <div class="stepper-model-name"><span class="stepper-model-dot"></span>${row.model}${row.sharpe === best ? `<em>${text.bestSharpe}</em>` : ''}</div>
+    <div class="stepper-metric-pair"><span>Sharpe</span><strong>${row.sharpe.toFixed(4)}</strong></div>
+    <div class="stepper-metric-pair"><span>${text.totalReturn}</span><strong>${row.total_return.toFixed(4)}</strong></div>
+    <div class="stepper-metric-pair"><span>${text.turnover}</span><strong>${row.total_turnover}</strong></div>
+  </div>`).join('')}</div>`;
+}
+
+function renderStepperDiagnostics(horizon) {
+  const text = evidenceStepperText[currentLang];
+  const rows = diagnosticData.filter(row => row.horizon === horizon);
+  const alignment = diagnosticAlignmentData[horizon];
+  const maxRank = 150;
+  return `<div class="stepper-diagnostic-layout">
+    <div class="stepper-rank-bars">${rows.map(row => {
+      const width = Math.max(8, Math.min(100, (row.effective_rank / maxRank) * 100));
+      return `<div class="stepper-bar-row">
+        <div class="stepper-bar-meta"><span>${row.model}</span><strong>${row.effective_rank.toFixed(1)}</strong></div>
+        <div class="stepper-bar-track"><span class="stepper-bar-fill model-${horizonExplorerModelClass(row.model)}" style="--bar-width:${width.toFixed(1)}%"></span></div>
+      </div>`;
+    }).join('')}</div>
+    <div class="stepper-alignment-card">
+      <div class="stepper-alignment-label">${text.directionAlignment}</div>
+      <div class="stepper-alignment-values"><span>QSVM <strong>${alignment.qsvm.toFixed(6)}</strong></span><span>RBF_PCA <strong>${alignment.rbfPca.toFixed(6)}</strong></span></div>
+      <div class="stepper-alignment-diff"><span>${text.alignmentDifference}</span><strong>${alignment.diff >= 0 ? '+' : ''}${alignment.diff.toFixed(6)}</strong></div>
+    </div>
+    <div class="stepper-simulation-note">${text.simulationNote}</div>
+  </div>`;
+}
+
+function renderStepperClaim(data) {
+  const text = evidenceStepperText[currentLang];
+  const values = [data.classificationValue, data.statValue, data.tradingValue, data.diagnostic.replace(/^Quantum diagnostic ·\s*/i, '')];
+  return `<div class="stepper-claim-stack">${text.claimLabels.map((label, index) => `<div class="stepper-claim-row"><span>${label}</span><strong>${values[index]}</strong></div>`).join('')}</div>`;
+}
+
+function renderEvidenceStepper({ animate = false } = {}) {
+  const root = document.querySelector('[data-evidence-stepper]');
+  if (!root) return;
+  const data = horizonExplorerData[currentLang]?.[activeHorizonExplorer];
+  if (!data) return;
+  const text = evidenceStepperText[currentLang];
+  const activeIndex = evidenceStepOrder.indexOf(activeEvidenceStep);
+  const stage = root.querySelector('[data-evidence-stepper-stage]');
+
+  const paint = () => {
+    const setText = (selector, value) => {
+      const el = root.querySelector(selector);
+      if (el) el.textContent = value;
+    };
+    setText('[data-stepper-kicker]', text.kicker);
+    setText('[data-stepper-progress-text]', text.progress(activeIndex + 1, evidenceStepOrder.length));
+    setText('[data-stepper-shortcut]', text.shortcut);
+    setText('[data-step-prev-label]', text.previous);
+    setText('[data-step-next-label]', text.next);
+    setText('[data-step-layer]', text.layerLabels[activeEvidenceStep]);
+
+    let title = '';
+    let note = '';
+    let viz = '';
+    if (activeEvidenceStep === 'classification') {
+      title = data.classificationValue;
+      note = data.classificationNote;
+      viz = renderStepperClassification(data);
+    } else if (activeEvidenceStep === 'stability') {
+      title = data.statValue;
+      note = data.statNote;
+      viz = renderStepperStability(activeHorizonExplorer);
+    } else if (activeEvidenceStep === 'trading') {
+      title = data.tradingValue;
+      note = data.tradingNote;
+      viz = renderStepperTrading(activeHorizonExplorer);
+    } else if (activeEvidenceStep === 'diagnostics') {
+      title = text.diagnosticTitle;
+      note = text.diagnosticNote;
+      viz = renderStepperDiagnostics(activeHorizonExplorer);
+    } else {
+      title = data.verdictValue;
+      note = data.verdictNote;
+      viz = renderStepperClaim(data);
+    }
+
+    setText('[data-step-title]', title);
+    setText('[data-step-note]', note);
+    const vizEl = root.querySelector('[data-step-viz]');
+    if (vizEl) vizEl.innerHTML = viz;
+
+    const progress = activeIndex / (evidenceStepOrder.length - 1) * 100;
+    const fill = root.querySelector('[data-stepper-track-fill]');
+    if (fill) fill.style.width = `${progress}%`;
+
+    root.querySelectorAll('[data-evidence-step]').forEach((button, index) => {
+      const selected = button.dataset.evidenceStep === activeEvidenceStep;
+      button.classList.toggle('is-active', selected);
+      button.classList.toggle('is-complete', index < activeIndex);
+      button.setAttribute('aria-selected', String(selected));
+      button.tabIndex = selected ? 0 : -1;
+      if (selected && stage) stage.setAttribute('aria-labelledby', button.id);
+    });
+
+    const prev = root.querySelector('[data-step-prev]');
+    const next = root.querySelector('[data-step-next]');
+    if (prev) prev.disabled = activeIndex === 0;
+    if (next) next.disabled = activeIndex === evidenceStepOrder.length - 1;
+
+    const dots = root.querySelector('[data-step-dots]');
+    if (dots) dots.innerHTML = evidenceStepOrder.map((_, index) => `<span class="${index === activeIndex ? 'is-active' : index < activeIndex ? 'is-complete' : ''}"></span>`).join('');
+  };
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!animate || reduceMotion || !stage) {
+    if (evidenceStepperTimer) clearTimeout(evidenceStepperTimer);
+    paint();
+    stage?.classList.remove('is-changing');
+    return;
+  }
+  stage.classList.add('is-changing');
+  if (evidenceStepperTimer) clearTimeout(evidenceStepperTimer);
+  evidenceStepperTimer = setTimeout(() => {
+    paint();
+    requestAnimationFrame(() => stage.classList.remove('is-changing'));
+  }, 120);
+}
+
+function setEvidenceStep(step, { focus = false } = {}) {
+  if (!evidenceStepOrder.includes(step)) return;
+  activeEvidenceStep = step;
+  renderEvidenceStepper({ animate: true });
+  if (focus) document.querySelector(`[data-evidence-step="${step}"]`)?.focus();
+}
+
+function setupEvidenceStepper() {
+  const root = document.querySelector('[data-evidence-stepper]');
+  if (!root) return;
+  const steps = [...root.querySelectorAll('[data-evidence-step]')];
+  steps.forEach((button, index) => {
+    button.addEventListener('click', () => setEvidenceStep(button.dataset.evidenceStep));
+    button.addEventListener('keydown', event => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      let nextIndex = index;
+      if (event.key === 'ArrowLeft') nextIndex = (index - 1 + steps.length) % steps.length;
+      if (event.key === 'ArrowRight') nextIndex = (index + 1) % steps.length;
+      if (event.key === 'Home') nextIndex = 0;
+      if (event.key === 'End') nextIndex = steps.length - 1;
+      setEvidenceStep(steps[nextIndex].dataset.evidenceStep, { focus: true });
+    });
+  });
+  root.querySelector('[data-step-prev]')?.addEventListener('click', () => {
+    const index = evidenceStepOrder.indexOf(activeEvidenceStep);
+    if (index > 0) setEvidenceStep(evidenceStepOrder[index - 1]);
+  });
+  root.querySelector('[data-step-next]')?.addEventListener('click', () => {
+    const index = evidenceStepOrder.indexOf(activeEvidenceStep);
+    if (index < evidenceStepOrder.length - 1) setEvidenceStep(evidenceStepOrder[index + 1]);
+  });
+  renderEvidenceStepper();
+}
+
+const models = ["QSVM", "RBF_PCA", "RBF_FULL"];
 
 const plotConfig = { responsive: true, displayModeBar: false };
 let currentLang = 'en';
+let activeHorizonExplorer = '1';
+let horizonExplorerTimer = null;
+
+function horizonExplorerModelClass(model) {
+  return model.toLowerCase().replace(/_/g, '-');
+}
+
+function renderHorizonExplorer({ animate = false } = {}) {
+  const root = document.querySelector('[data-horizon-explorer]');
+  if (!root) return;
+  const data = horizonExplorerData[currentLang]?.[activeHorizonExplorer];
+  if (!data) return;
+  const stage = root.querySelector('.horizon-explorer-stage');
+
+  const paint = () => {
+    const setText = (selector, value) => {
+      const el = root.querySelector(selector);
+      if (el) el.textContent = value;
+    };
+
+    setText('[data-hx-horizon-label]', data.horizonLabel);
+    setText('[data-hx-claim]', data.claim);
+    setText('[data-hx-summary]', data.summary);
+    renderEvidenceStepper();
+
+    root.querySelectorAll('[data-hx-horizon]').forEach(tab => {
+      const selected = tab.dataset.hxHorizon === activeHorizonExplorer;
+      tab.classList.toggle('is-active', selected);
+      tab.setAttribute('aria-selected', String(selected));
+      tab.tabIndex = selected ? 0 : -1;
+      if (selected && stage) stage.setAttribute('aria-labelledby', tab.id);
+    });
+  };
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!animate || reduceMotion || !stage) {
+    if (horizonExplorerTimer) clearTimeout(horizonExplorerTimer);
+    paint();
+    stage?.classList.remove('is-changing');
+    return;
+  }
+
+  stage.classList.add('is-changing');
+  if (horizonExplorerTimer) clearTimeout(horizonExplorerTimer);
+  horizonExplorerTimer = setTimeout(() => {
+    paint();
+    requestAnimationFrame(() => stage.classList.remove('is-changing'));
+  }, 135);
+}
+
+function setHorizonExplorer(horizon, { focus = false } = {}) {
+  if (!horizonExplorerData[currentLang]?.[horizon]) return;
+  activeHorizonExplorer = horizon;
+  renderHorizonExplorer({ animate: true });
+  if (focus) {
+    document.querySelector(`[data-hx-horizon="${horizon}"]`)?.focus();
+  }
+}
+
+function setupHorizonExplorer() {
+  const tabs = [...document.querySelectorAll('[data-hx-horizon]')];
+  if (!tabs.length) return;
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => setHorizonExplorer(tab.dataset.hxHorizon));
+    tab.addEventListener('keydown', event => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      let nextIndex = index;
+      if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+      if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+      if (event.key === 'Home') nextIndex = 0;
+      if (event.key === 'End') nextIndex = tabs.length - 1;
+      setHorizonExplorer(tabs[nextIndex].dataset.hxHorizon, { focus: true });
+    });
+  });
+  renderHorizonExplorer();
+}
 
 // Premium chart palette: Gold, Platinum, Copper.
 // Silver remains reserved for typography and metallic heading treatments.
@@ -712,58 +1206,76 @@ function baseLayout(lang) {
       font: { color: '#B3BCC9' }
     },
     xaxis: {
-      gridcolor: '#2A3442',
-      zerolinecolor: '#2A3442',
+      gridcolor: 'rgba(133, 151, 176, 0.16)',
+      zerolinecolor: 'rgba(215, 210, 196, 0.26)',
+      linecolor: 'rgba(215, 210, 196, 0.14)',
       automargin: true,
-      tickfont: { color: '#B3BCC9' }
+      tickfont: { color: '#B9C0CA' }
     },
     yaxis: {
-      gridcolor: '#2A3442',
-      zerolinecolor: '#2A3442',
+      gridcolor: 'rgba(133, 151, 176, 0.16)',
+      zerolinecolor: 'rgba(215, 210, 196, 0.26)',
+      linecolor: 'rgba(215, 210, 196, 0.14)',
       automargin: true,
-      tickfont: { color: '#B3BCC9' }
+      tickfont: { color: '#B9C0CA' }
     },
+    hovermode: 'closest',
     hoverlabel: {
-      bgcolor: '#161E28',
+      bgcolor: 'rgba(18, 18, 20, 0.96)',
       bordercolor: chartColors.gold,
-      font: { family: 'Inter, Prompt, Arial, sans-serif', color: '#F8F9FA' }
+      font: { family: 'Inter, Prompt, Arial, sans-serif', color: '#F6F2E8', size: 13 },
+      namelength: -1
     },
+    uniformtext: { minsize: 12, mode: 'show' },
     colorway: baseColors
   };
 }
 
-function tracesByModel(data, metric, decimals) {
+function tracesByModel(data, metric, decimals, lang) {
+  const t = i18n[lang];
+  const metricLabel = metric === 'sharpe' ? t.chart_hover_sharpe : t.chart_hover_f1;
+  const hoverDecimals = 4;
+
   return models.map(model => {
     const rows = data
       .filter(d => d.model === model)
       .sort((a, b) => Number(a.horizon) - Number(b.horizon));
+    const values = rows.map(d => Number(d[metric]));
 
     return {
       type: 'bar',
       name: model,
       x: rows.map(d => 'h=' + d.horizon),
-      y: rows.map(d => d[metric]),
-      text: rows.map(d => Number(d[metric]).toFixed(decimals)),
-      textposition: 'auto',
-      hovertemplate: '%{x}<br>' + model + '<br>%{y:.3f}<extra></extra>'
+      y: values,
+      text: values.map(v => v.toFixed(decimals)),
+      textposition: 'outside',
+      textangle: 0,
+      constraintext: 'none',
+      textfont: { family: 'Inter, Prompt, Arial, sans-serif', size: 12, color: '#ECE7DA' },
+      cliponaxis: false,
+      marker: {
+        line: { color: 'rgba(255,255,255,0.12)', width: 0.8 }
+      },
+      hovertemplate: '<b>' + model + '</b><br>' + t.chart_hover_horizon + ': %{x}<br>' + metricLabel + ': %{y:.' + hoverDecimals + 'f}<extra></extra>'
     };
   });
 }
 
 function renderCharts(lang) {
+  if (!window.Plotly || typeof Plotly.react !== 'function') return;
   const t = i18n[lang];
   const layout = baseLayout(lang);
 
   Plotly.react(
     'chart_classification',
-    tracesByModel(classificationData, 'mean_f1', 3),
+    tracesByModel(classificationData, 'mean_f1', 3, lang),
     {
       ...layout,
       barmode: 'group',
       yaxis: {
         ...layout.yaxis,
         title: { text: t.axis_f1, font: { color: '#B3BCC9' } },
-        range: [0, 0.60]
+        range: [0, 0.58]
       }
     },
     plotConfig
@@ -771,13 +1283,14 @@ function renderCharts(lang) {
 
   Plotly.react(
     'chart_trading',
-    tracesByModel(tradingData, 'sharpe', 2),
+    tracesByModel(tradingData, 'sharpe', 2, lang),
     {
       ...layout,
       barmode: 'group',
       yaxis: {
         ...layout.yaxis,
-        title: { text: t.axis_sharpe, font: { color: '#B3BCC9' } }
+        title: { text: t.axis_sharpe, font: { color: '#B3BCC9' } },
+        range: [-0.92, 0.10]
       },
       shapes: [{
         type: 'line',
@@ -795,24 +1308,34 @@ function renderCharts(lang) {
 
   Plotly.react(
     'chart_diagnostic',
-    [{
-      type: 'bar',
-      x: diagnosticData.map(d => d.model),
-      y: diagnosticData.map(d => d.effective_rank),
-      text: diagnosticData.map(d => Number(d.effective_rank).toFixed(1)),
-      textposition: 'auto',
-      marker: { color: [chartColors.gold, chartColors.copper] }, 
-      hovertemplate: '%{x}<br>Effective rank: %{y:.1f}<extra></extra>'
-    }],
+    ['QSVM', 'RBF_PCA'].map(model => {
+      const rows = diagnosticData
+        .filter(d => d.model === model)
+        .sort((a, b) => Number(a.horizon) - Number(b.horizon));
+      return {
+        type: 'bar',
+        name: model,
+        x: rows.map(d => 'h=' + d.horizon),
+        y: rows.map(d => d.effective_rank),
+        text: rows.map(d => Number(d.effective_rank).toFixed(1)),
+        textposition: 'outside',
+        textangle: 0,
+        constraintext: 'none',
+        textfont: { family: 'Inter, Prompt, Arial, sans-serif', size: 12, color: '#ECE7DA' },
+        cliponaxis: false,
+        marker: { line: { color: 'rgba(255,255,255,0.12)', width: 0.8 } },
+        hovertemplate: '<b>' + model + '</b><br>' + t.chart_hover_horizon + ': %{x}<br>' + t.chart_hover_rank + ': %{y:.1f}<extra></extra>'
+      };
+    }),
     {
       ...layout,
+      barmode: 'group',
       autosize: true,
-      showlegend: false,
       margin: { l: 62, r: 18, t: 54, b: 54 },
       yaxis: {
         ...layout.yaxis,
         title: { text: t.axis_rank, font: { color: '#B3BCC9' } },
-        rangemode: 'tozero'
+        range: [0, 165]
       },
       annotations: [{
         text: t.diag_annotation,
@@ -868,14 +1391,25 @@ function setLanguage(lang) {
     }
   });
 
+  const revisitNav = document.querySelector('[data-evidence-revisit-nav]');
+  if (revisitNav && i18n[lang].revisit_aria) {
+    revisitNav.setAttribute('aria-label', i18n[lang].revisit_aria);
+  }
+
   document.getElementById('table_group1_container').innerHTML = tableHTML[lang].group1;
   document.getElementById('table_group2_container').innerHTML = tableHTML[lang].group2;
   document.getElementById('table_group3_container').innerHTML = tableHTML[lang].group3;
 
-  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-  document.getElementById('btn-th').classList.toggle('active', lang === 'th');
+  const btnEn = document.getElementById('btn-en');
+  const btnTh = document.getElementById('btn-th');
+  btnEn.classList.toggle('active', lang === 'en');
+  btnTh.classList.toggle('active', lang === 'th');
+  btnEn.setAttribute('aria-pressed', String(lang === 'en'));
+  btnTh.setAttribute('aria-pressed', String(lang === 'th'));
 
   updateInteractiveDetails();
+  renderHorizonExplorer();
+  renderEvidenceStepper();
   renderCharts(lang);
   schedulePlotlyResize(120);
   updateScrollState();
@@ -1175,6 +1709,8 @@ document.querySelectorAll('[data-lang]').forEach(button => {
 });
 
 setupInteractiveChipGroups();
+setupEvidenceStepper();
+setupHorizonExplorer();
 
 document.querySelectorAll('details').forEach(details => {
   details.addEventListener('toggle', () => schedulePlotlyResize(120));
