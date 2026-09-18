@@ -4,7 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CJ - IS QML Bitcoin Research Showcase</title>
-  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <meta name="description" content="Leakage-safe multi-horizon benchmark of QSVM and classical RBF-SVM models for Bitcoin direction forecasting, with statistical robustness, post-hoc trading/risk analysis, and quantum-kernel diagnostics.">
+  <meta name="author" content="Chonnakarn Jirapatpongthada">
+  <meta name="theme-color" content="#05070A">
+  <link rel="canonical" href="https://chonnakarn-jir.github.io/is-qml-showcase/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CJ - IS QML Bitcoin Research Showcase">
+  <meta property="og:description" content="Leakage-safe multi-horizon evaluation of QSVM against classical RBF-SVM baselines for Bitcoin direction forecasting.">
+  <meta property="og:url" content="https://chonnakarn-jir.github.io/is-qml-showcase/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CJ - IS QML Bitcoin Research Showcase">
+  <meta name="twitter:description" content="Leakage-safe multi-horizon evaluation of QSVM and classical kernel baselines for Bitcoin direction forecasting.">
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -21,14 +32,14 @@
       <div class="nav-links">
         <a href="#research-question" data-i18n="nav_research"></a>
         <a href="#dataset" data-i18n="nav_dataset"></a>
-        <a href="#summary" data-i18n="nav_summary"></a>
-        <a href="#dashboard" data-i18n="nav_dashboard"></a>
+        <a href="#experiment-pipeline" data-i18n="nav_method"></a>
+        <a href="#summary" data-i18n="nav_dashboard"></a>
+        <a href="#quantum-diagnostics" data-i18n="nav_quantum"></a>
         <a href="#claims" data-i18n="nav_claims"></a>
-        <a href="#appendix" data-i18n="nav_appendix"></a>
       </div>
       <div class="lang-toggle" aria-label="Language toggle">
-        <button id="btn-en" class="active" data-lang="en">EN</button>
-        <button id="btn-th" data-lang="th">TH</button>
+        <button id="btn-en" class="active" data-lang="en" type="button" aria-pressed="true">EN</button>
+        <button id="btn-th" data-lang="th" type="button" aria-pressed="false">TH</button>
       </div>
     </div>
   </nav>
@@ -98,23 +109,31 @@
 
       <div class="evidence-question-grid">
         <article class="story-card">
-          <span class="card-index">01</span>
-          <h3 data-i18n="rq_card1_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="card-index">01</span>
+            <h3 data-i18n="rq_card1_title"></h3>
+          </div>
           <p data-i18n="rq_card1_text"></p>
         </article>
         <article class="story-card">
-          <span class="card-index">02</span>
-          <h3 data-i18n="rq_card2_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="card-index">02</span>
+            <h3 data-i18n="rq_card2_title"></h3>
+          </div>
           <p data-i18n="rq_card2_text"></p>
         </article>
         <article class="story-card">
-          <span class="card-index">03</span>
-          <h3 data-i18n="rq_card3_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="card-index">03</span>
+            <h3 data-i18n="rq_card3_title"></h3>
+          </div>
           <p data-i18n="rq_card3_text"></p>
         </article>
         <article class="story-card">
-          <span class="card-index">04</span>
-          <h3 data-i18n="rq_card4_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="card-index">04</span>
+            <h3 data-i18n="rq_card4_title"></h3>
+          </div>
           <p data-i18n="rq_card4_text"></p>
         </article>
       </div>
@@ -136,39 +155,43 @@
       <div class="narrative-panel">
         <p data-i18n="btc_narrative"></p>
         <div class="story-note story-note-compact" data-i18n="btc_boundary_note"></div>
-        <div class="evidence-flow" aria-label="Evidence layer sequence">
-          <span data-i18n="flow_classification"></span>
-          <span data-i18n="flow_stability"></span>
-          <span data-i18n="flow_trading"></span>
-          <span data-i18n="flow_diagnostics"></span>
-          <span data-i18n="flow_boundary"></span>
-        </div>
+
       </div>
 
       <div class="stress-card-grid">
         <article class="story-card compact">
-          <span class="card-index">01</span>
-          <h3 data-i18n="btc_card1_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="card-index">01</span>
+            <h3 data-i18n="btc_card1_title"></h3>
+          </div>
           <p data-i18n="btc_card1_text"></p>
         </article>
         <article class="story-card compact">
-          <span class="card-index">02</span>
-          <h3 data-i18n="btc_card2_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="card-index">02</span>
+            <h3 data-i18n="btc_card2_title"></h3>
+          </div>
           <p data-i18n="btc_card2_text"></p>
         </article>
         <article class="story-card compact">
-          <span class="card-index">03</span>
-          <h3 data-i18n="btc_card3_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="card-index">03</span>
+            <h3 data-i18n="btc_card3_title"></h3>
+          </div>
           <p data-i18n="btc_card3_text"></p>
         </article>
         <article class="story-card compact">
-          <span class="card-index">04</span>
-          <h3 data-i18n="btc_card4_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="card-index">04</span>
+            <h3 data-i18n="btc_card4_title"></h3>
+          </div>
           <p data-i18n="btc_card4_text"></p>
         </article>
         <article class="story-card compact accent-card">
-          <span class="card-index">05</span>
-          <h3 data-i18n="btc_card5_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="card-index">05</span>
+            <h3 data-i18n="btc_card5_title"></h3>
+          </div>
           <p data-i18n="btc_card5_text"></p>
         </article>
       </div>
@@ -289,43 +312,59 @@
 
       <div class="pipeline-grid" aria-label="Experiment pipeline stages">
         <article class="pipeline-step">
-          <span class="step-index">01</span>
-          <h3 data-i18n="pipeline_step1_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="step-index">01</span>
+            <h3 data-i18n="pipeline_step1_title"></h3>
+          </div>
           <p data-i18n="pipeline_step1_text"></p>
         </article>
         <article class="pipeline-step critical">
-          <span class="step-index">02</span>
-          <h3 data-i18n="pipeline_step2_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="step-index">02</span>
+            <h3 data-i18n="pipeline_step2_title"></h3>
+          </div>
           <p data-i18n="pipeline_step2_text"></p>
         </article>
         <article class="pipeline-step">
-          <span class="step-index">03</span>
-          <h3 data-i18n="pipeline_step3_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="step-index">03</span>
+            <h3 data-i18n="pipeline_step3_title"></h3>
+          </div>
           <p data-i18n="pipeline_step3_text"></p>
         </article>
         <article class="pipeline-step">
-          <span class="step-index">04</span>
-          <h3 data-i18n="pipeline_step4_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="step-index">04</span>
+            <h3 data-i18n="pipeline_step4_title"></h3>
+          </div>
           <p data-i18n="pipeline_step4_text"></p>
         </article>
         <article class="pipeline-step critical">
-          <span class="step-index">05</span>
-          <h3 data-i18n="pipeline_step5_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="step-index">05</span>
+            <h3 data-i18n="pipeline_step5_title"></h3>
+          </div>
           <p data-i18n="pipeline_step5_text"></p>
         </article>
         <article class="pipeline-step critical">
-          <span class="step-index">06</span>
-          <h3 data-i18n="pipeline_step6_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="step-index">06</span>
+            <h3 data-i18n="pipeline_step6_title"></h3>
+          </div>
           <p data-i18n="pipeline_step6_text"></p>
         </article>
         <article class="pipeline-step output-step">
-          <span class="step-index">07</span>
-          <h3 data-i18n="pipeline_step7_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="step-index">07</span>
+            <h3 data-i18n="pipeline_step7_title"></h3>
+          </div>
           <p data-i18n="pipeline_step7_text"></p>
         </article>
         <article class="pipeline-step">
-          <span class="step-index">08</span>
-          <h3 data-i18n="pipeline_step8_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="step-index">08</span>
+            <h3 data-i18n="pipeline_step8_title"></h3>
+          </div>
           <p data-i18n="pipeline_step8_text"></p>
         </article>
       </div>
@@ -334,6 +373,16 @@
     </div>
   </section>
 
+  <div class="technical-gateway reveal">
+    <details class="technical-deep-dive" id="technical-deep-dive">
+      <summary>
+        <span class="technical-summary-copy">
+          <span class="technical-summary-kicker" data-i18n="deep_dive_kicker"></span>
+          <strong data-i18n="deep_dive_title"></strong>
+          <span class="technical-summary-desc" data-i18n="deep_dive_intro"></span>
+        </span>
+      </summary>
+      <div class="technical-deep-dive-content">
   <section class="section story-section method-section reveal" id="model-roles">
     <div class="section-head">
       <div>
@@ -449,28 +498,38 @@
 
       <div class="qsvm-explain-grid">
         <article class="qsvm-explain-card qsvm-primary-card">
-          <span class="qsvm-card-label">01</span>
-          <h3 data-i18n="qsvm_card1_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="card-index">01</span>
+            <h3 data-i18n="qsvm_card1_title"></h3>
+          </div>
           <p data-i18n="qsvm_card1_text"></p>
         </article>
         <article class="qsvm-explain-card qsvm-simulation-card">
-          <span class="qsvm-card-label">02</span>
-          <h3 data-i18n="qsvm_card2_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="card-index">02</span>
+            <h3 data-i18n="qsvm_card2_title"></h3>
+          </div>
           <p data-i18n="qsvm_card2_text"></p>
         </article>
         <article class="qsvm-explain-card">
-          <span class="qsvm-card-label">03</span>
-          <h3 data-i18n="qsvm_card3_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="card-index">03</span>
+            <h3 data-i18n="qsvm_card3_title"></h3>
+          </div>
           <p data-i18n="qsvm_card3_text"></p>
         </article>
         <article class="qsvm-explain-card">
-          <span class="qsvm-card-label">04</span>
-          <h3 data-i18n="qsvm_card4_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="card-index">04</span>
+            <h3 data-i18n="qsvm_card4_title"></h3>
+          </div>
           <p data-i18n="qsvm_card4_text"></p>
         </article>
         <article class="qsvm-explain-card qsvm-wide-card">
-          <span class="qsvm-card-label">05</span>
-          <h3 data-i18n="qsvm_card5_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="card-index">05</span>
+            <h3 data-i18n="qsvm_card5_title"></h3>
+          </div>
           <p data-i18n="qsvm_card5_text"></p>
         </article>
       </div>
@@ -495,48 +554,66 @@
 
       <div class="control-matrix">
         <article class="control-card">
-          <span class="control-index">01</span>
-          <h3 data-i18n="leak_control1_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="control-index">01</span>
+            <h3 data-i18n="leak_control1_title"></h3>
+          </div>
           <p data-i18n="leak_control1_text"></p>
         </article>
         <article class="control-card critical">
-          <span class="control-index">02</span>
-          <h3 data-i18n="leak_control2_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="control-index">02</span>
+            <h3 data-i18n="leak_control2_title"></h3>
+          </div>
           <p data-i18n="leak_control2_text"></p>
         </article>
         <article class="control-card critical">
-          <span class="control-index">03</span>
-          <h3 data-i18n="leak_control3_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="control-index">03</span>
+            <h3 data-i18n="leak_control3_title"></h3>
+          </div>
           <p data-i18n="leak_control3_text"></p>
         </article>
         <article class="control-card critical">
-          <span class="control-index">04</span>
-          <h3 data-i18n="leak_control4_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="control-index">04</span>
+            <h3 data-i18n="leak_control4_title"></h3>
+          </div>
           <p data-i18n="leak_control4_text"></p>
         </article>
         <article class="control-card critical">
-          <span class="control-index">05</span>
-          <h3 data-i18n="leak_control5_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="control-index">05</span>
+            <h3 data-i18n="leak_control5_title"></h3>
+          </div>
           <p data-i18n="leak_control5_text"></p>
         </article>
         <article class="control-card output-step">
-          <span class="control-index">06</span>
-          <h3 data-i18n="leak_control6_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="control-index">06</span>
+            <h3 data-i18n="leak_control6_title"></h3>
+          </div>
           <p data-i18n="leak_control6_text"></p>
         </article>
         <article class="control-card">
-          <span class="control-index">07</span>
-          <h3 data-i18n="leak_control7_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="control-index">07</span>
+            <h3 data-i18n="leak_control7_title"></h3>
+          </div>
           <p data-i18n="leak_control7_text"></p>
         </article>
         <article class="control-card">
-          <span class="control-index">08</span>
-          <h3 data-i18n="leak_control8_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="control-index">08</span>
+            <h3 data-i18n="leak_control8_title"></h3>
+          </div>
           <p data-i18n="leak_control8_text"></p>
         </article>
         <article class="control-card">
-          <span class="control-index">09</span>
-          <h3 data-i18n="leak_control9_title"></h3>
+          <div class="numbered-card-heading">
+            <span class="control-index">09</span>
+            <h3 data-i18n="leak_control9_title"></h3>
+          </div>
           <p data-i18n="leak_control9_text"></p>
         </article>
       </div>
@@ -621,6 +698,10 @@
     </div>
   </section>
 
+      </div>
+    </details>
+  </div>
+
   <section class="section reveal" id="summary">
     <div class="section-head">
       <div>
@@ -630,23 +711,86 @@
       <p class="section-desc" data-i18n="summary_desc"></p>
     </div>
 
-    <div class="summary-grid">
-      <div class="summary-card">
-        <h3 data-i18n="sum1_title"></h3>
-        <p data-i18n="sum1_text"></p>
+    <div class="horizon-explorer" data-horizon-explorer>
+      <div class="horizon-explorer-header">
+        <div class="horizon-explorer-copy">
+          <div class="horizon-explorer-kicker" data-i18n="hx_kicker"></div>
+          <h3 data-i18n="hx_title"></h3>
+          <p data-i18n="hx_intro"></p>
+        </div>
+        <div class="horizon-tabs" role="tablist" aria-label="Forecast horizon explorer">
+          <button id="hx-tab-1" class="horizon-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="horizon-explorer-panel" tabindex="0" data-hx-horizon="1">
+            <span data-i18n="hx_tab_1"></span>
+          </button>
+          <button id="hx-tab-7" class="horizon-tab" type="button" role="tab" aria-selected="false" aria-controls="horizon-explorer-panel" tabindex="-1" data-hx-horizon="7">
+            <span data-i18n="hx_tab_7"></span>
+          </button>
+          <button id="hx-tab-30" class="horizon-tab" type="button" role="tab" aria-selected="false" aria-controls="horizon-explorer-panel" tabindex="-1" data-hx-horizon="30">
+            <span data-i18n="hx_tab_30"></span>
+          </button>
+        </div>
       </div>
-      <div class="summary-card">
-        <h3 data-i18n="sum2_title"></h3>
-        <p data-i18n="sum2_text"></p>
+
+      <div id="horizon-explorer-panel" class="horizon-explorer-stage" role="tabpanel" aria-labelledby="hx-tab-1" aria-live="polite" aria-atomic="true">
+        <div class="horizon-explorer-lead">
+          <div class="horizon-context-line">
+            <span class="horizon-context-pill" data-hx-horizon-label>1 day</span>
+            <span class="horizon-context-role" data-i18n="hx_context_role"></span>
+          </div>
+          <h3 class="horizon-claim" data-hx-claim></h3>
+          <p class="horizon-claim-detail" data-hx-summary></p>
+        </div>
+
+        <div class="evidence-stepper" data-evidence-stepper>
+          <div class="evidence-stepper-topline">
+            <div>
+              <div class="evidence-stepper-kicker" data-stepper-kicker></div>
+              <div class="evidence-stepper-progress-text" data-stepper-progress-text></div>
+            </div>
+            <div class="evidence-stepper-shortcut" data-stepper-shortcut></div>
+          </div>
+
+          <div class="evidence-stepper-rail" role="tablist" aria-label="Evidence logic">
+            <div class="evidence-stepper-track" aria-hidden="true"><span data-stepper-track-fill></span></div>
+            <button id="evidence-tab-classification" class="evidence-step is-active" type="button" role="tab" aria-selected="true" aria-controls="evidence-stepper-panel" tabindex="0" data-evidence-step="classification">
+              <span class="evidence-step-number">01</span><span data-i18n="flow_classification"></span>
+            </button>
+            <button id="evidence-tab-stability" class="evidence-step" type="button" role="tab" aria-selected="false" aria-controls="evidence-stepper-panel" tabindex="-1" data-evidence-step="stability">
+              <span class="evidence-step-number">02</span><span data-i18n="flow_stability"></span>
+            </button>
+            <button id="evidence-tab-trading" class="evidence-step" type="button" role="tab" aria-selected="false" aria-controls="evidence-stepper-panel" tabindex="-1" data-evidence-step="trading">
+              <span class="evidence-step-number">03</span><span data-i18n="flow_trading"></span>
+            </button>
+            <button id="evidence-tab-diagnostics" class="evidence-step" type="button" role="tab" aria-selected="false" aria-controls="evidence-stepper-panel" tabindex="-1" data-evidence-step="diagnostics">
+              <span class="evidence-step-number">04</span><span data-i18n="flow_diagnostics"></span>
+            </button>
+            <button id="evidence-tab-claim" class="evidence-step" type="button" role="tab" aria-selected="false" aria-controls="evidence-stepper-panel" tabindex="-1" data-evidence-step="claim">
+              <span class="evidence-step-number">05</span><span data-i18n="flow_boundary"></span>
+            </button>
+          </div>
+
+          <div id="evidence-stepper-panel" class="evidence-stepper-stage" data-evidence-stepper-stage role="tabpanel" aria-labelledby="evidence-tab-classification" aria-live="polite" aria-atomic="true">
+            <div class="evidence-stepper-copy">
+              <div class="evidence-stepper-layer" data-step-layer></div>
+              <h4 data-step-title></h4>
+              <p data-step-note></p>
+            </div>
+            <div class="evidence-stepper-viz" data-step-viz></div>
+          </div>
+
+          <div class="evidence-stepper-controls">
+            <button type="button" class="evidence-stepper-nav-button" data-step-prev aria-label="Previous evidence layer">← <span data-step-prev-label></span></button>
+            <div class="evidence-stepper-dots" aria-hidden="true" data-step-dots></div>
+            <button type="button" class="evidence-stepper-nav-button" data-step-next aria-label="Next evidence layer"><span data-step-next-label></span> →</button>
+          </div>
+        </div>
       </div>
-      <div class="summary-card">
-        <h3 data-i18n="sum3_title"></h3>
-        <p data-i18n="sum3_text"></p>
-      </div>
-      <div class="summary-card">
-        <h3 data-i18n="sum4_title"></h3>
-        <p data-i18n="sum4_text"></p>
-      </div>
+    </div>
+
+    <div class="summary-card summary-integrated-card horizon-integrated-card">
+      <div class="summary-integrated-label" data-i18n="summary_integrated_label"></div>
+      <h3 data-i18n="sum4_title"></h3>
+      <p data-i18n="sum4_text"></p>
     </div>
   </section>
 
@@ -691,32 +835,36 @@
     <div class="gap-frame">
       <div class="gap-contrast-grid">
         <article class="gap-contrast-card">
-          <span class="card-index">01</span>
-          <h3 data-i18n="gap_classification_label"></h3>
+          <div class="numbered-card-heading">
+            <span class="card-index">01</span>
+            <h3 data-i18n="gap_classification_label"></h3>
+          </div>
           <p data-i18n="gap_classification_text"></p>
         </article>
         <article class="gap-contrast-card risk-card">
-          <span class="card-index">02</span>
-          <h3 data-i18n="gap_trading_label"></h3>
+          <div class="numbered-card-heading">
+            <span class="card-index">02</span>
+            <h3 data-i18n="gap_trading_label"></h3>
+          </div>
           <p data-i18n="gap_trading_text"></p>
         </article>
       </div>
 
       <div class="metric-row gap-metrics">
         <div class="metric">
-          <div class="metric-value">0.4754</div>
+          <div class="metric-value">0.4760</div>
           <div class="metric-label" data-i18n="metric_f1"></div>
         </div>
         <div class="metric risk-metric">
-          <div class="metric-value">-0.6691</div>
+          <div class="metric-value">-0.5012</div>
           <div class="metric-label" data-i18n="metric_sharpe"></div>
         </div>
         <div class="metric risk-metric">
-          <div class="metric-value">-0.9412</div>
+          <div class="metric-value">-0.9685</div>
           <div class="metric-label" data-i18n="metric_return"></div>
         </div>
         <div class="metric">
-          <div class="metric-value">1315</div>
+          <div class="metric-value">1330</div>
           <div class="metric-label" data-i18n="metric_turnover"></div>
         </div>
       </div>
@@ -738,20 +886,26 @@
       <div class="diagnostic-layout">
         <div class="diagnostic-card-grid">
           <article class="diagnostic-card">
-            <span class="card-index">01</span>
-            <h3 data-i18n="diag_kernel_label"></h3>
+            <div class="numbered-card-heading">
+              <span class="card-index">01</span>
+              <h3 data-i18n="diag_kernel_label"></h3>
+            </div>
             <p data-i18n="diag_kernel_pearson"></p>
             <p data-i18n="diag_kernel_spearman"></p>
           </article>
           <article class="diagnostic-card">
-            <span class="card-index">02</span>
-            <h3 data-i18n="diag_rank_label"></h3>
+            <div class="numbered-card-heading">
+              <span class="card-index">02</span>
+              <h3 data-i18n="diag_rank_label"></h3>
+            </div>
             <p data-i18n="diag_rank_qsvm"></p>
             <p data-i18n="diag_rank_rbf"></p>
           </article>
           <article class="diagnostic-card">
-            <span class="card-index">03</span>
-            <h3 data-i18n="diag_alignment_label"></h3>
+            <div class="numbered-card-heading">
+              <span class="card-index">03</span>
+              <h3 data-i18n="diag_alignment_label"></h3>
+            </div>
             <p data-i18n="diag_alignment_text"></p>
           </article>
         </div>
@@ -855,7 +1009,7 @@
   </section>
 
   <div class="footer">
-    <span data-i18n="footer"></span> · Generated UTC: 2026-05-28T11:39:56.476827+00:00
+    <span data-i18n="footer"></span>
   </div>
 </main>
 <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
