@@ -266,7 +266,7 @@ const i18n = {
     "qsvm_desc": "QSVM keeps the SVM classifier but replaces the classical RBF similarity with a precomputed fidelity kernel derived from eight-qubit RY angle encoding. The kernel is evaluated deterministically with a statevector simulator, not on physical quantum hardware.",
     "qsvm_narrative_1": "Inside each training partition, standardization and the fixed eight-component PCA are fitted from training data only. Each PCA component controls one RY rotation. A fixed nearest-neighbor CNOT chain is then applied, and the kernel value between two samples is the squared overlap of their encoded states.",
     "qsvm_narrative_2": "The CNOT chain is the same for every input and is applied after the data-dependent RY rotations. Because the same unitary acts on both states, it preserves their inner product and does not change the fidelity kernel. The observed QSVM result is therefore attributed to the tested angle-encoded fidelity representation—not to an entanglement contribution. The kernel is computed with PennyLane default.qubit exact statevectors.",
-    "qsvm_loop_badge": "Auto-loop explainer",
+    "qsvm_loop_badge": "Quantum Kernel Machine Learning",
     "qsvm_loop_title": "How one quantum-kernel similarity value is formed",
     "qsvm_loop_caption": "Two observations are mapped into quantum states, compared by fidelity, and converted into one kernel entry before the full matrix is passed to a classical SVM.",
     "qsvm_detail_summary": "View the detailed 8-step QSVM mechanism",
