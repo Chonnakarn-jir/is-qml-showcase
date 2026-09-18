@@ -4038,10 +4038,7 @@ h2 {
 }
 
 .qsvm-loop-head {
-  display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(280px, 1.2fr);
-  gap: 18px 28px;
-  align-items: end;
+  display: block;
   padding: 2px 2px 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.075);
 }
@@ -4052,14 +4049,16 @@ h2 {
   font-size: clamp(18px, 2vw, 23px);
   font-weight: 680;
   letter-spacing: -0.02em;
+  max-width: 760px;
 }
 
 .qsvm-loop-head p {
-  margin: 0;
+  margin: 10px 0 0;
   color: var(--text-muted);
   font-size: 12.5px;
   line-height: 1.58;
-  text-align: right;
+  text-align: left;
+  max-width: 900px;
 }
 
 .qsvm-loop-badge {
