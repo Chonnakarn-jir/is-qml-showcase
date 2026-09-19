@@ -617,7 +617,7 @@ const i18n = {
     "qsvm_desc": "QSVM ยังคงใช้ SVM classifier แต่เปลี่ยน classical RBF similarity เป็น precomputed fidelity kernel จาก 8-qubit RY angle encoding การคำนวณ kernel ทำแบบ deterministic ด้วย statevector simulator ไม่ได้รันบน physical quantum hardware",
     "qsvm_narrative_1": "ภายในแต่ละ training partition จะ fit standardization และ fixed PCA 8 components จาก training data เท่านั้น จากนั้น PCA component แต่ละตัวควบคุม RY rotation บน qubit หนึ่งตัว แล้วใช้ fixed nearest-neighbor CNOT chain ก่อนคำนวณ similarity เป็น squared overlap ระหว่าง encoded states",
     "qsvm_narrative_2": "CNOT chain ชุดนี้เหมือนกันสำหรับทุก input และถูกวางหลัง data-dependent RY rotations เมื่อ unitary เดียวกันถูกใช้กับทั้งสอง states ค่า inner product จึงไม่เปลี่ยน และ fidelity kernel ก็ไม่เปลี่ยนตามไปด้วย ดังนั้นผล QSVM ที่เห็นในงานนี้ไม่ควรถูกอธิบายว่าเกิดจาก entanglement contribution แต่เป็นผลของ angle-encoded fidelity representation ที่ทดสอบ Kernel คำนวณด้วย PennyLane default.qubit exact statevectors",
-    "qsvm_loop_badge": "ภาพอธิบายแบบวนอัตโนมัติ",
+    "qsvm_loop_badge": "Quantum Kernel Machine Learning",
     "qsvm_loop_title": "หนึ่งค่า Quantum Kernel ถูกสร้างขึ้นอย่างไร",
     "qsvm_loop_caption": "ข้อมูลสอง observation ถูก map เป็น quantum states แล้วเปรียบเทียบด้วย fidelity เพื่อสร้างหนึ่งค่าใน kernel matrix ก่อนส่งทั้ง matrix ให้ classical SVM.",
     "qsvm_detail_summary": "ดูรายละเอียดกลไก QSVM แบบ 8 ขั้นตอน",
