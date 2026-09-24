@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="assets/js/app.js" defer></script>
   <script src="assets/js/qsvm-loop.js" defer></script>
+  <script src="assets/js/qfm-loop.js" defer></script>
 </head>
 <body class="no-js">
 <canvas id="quantum-bg" aria-hidden="true"></canvas>
@@ -380,6 +381,7 @@
           <span class="technical-summary-kicker" data-i18n="deep_dive_kicker"></span>
           <strong data-i18n="deep_dive_title"></strong>
           <span class="technical-summary-desc" data-i18n="deep_dive_intro"></span>
+          <span class="technical-summary-preview" data-i18n="deep_dive_preview"></span>
         </span>
       </summary>
       <div class="technical-deep-dive-content">
@@ -448,9 +450,191 @@
         </div>
       </figure>
 
-      <details class="qsvm-map-disclosure">
-        <summary data-i18n="qsvm_detail_summary"></summary>
-        <div class="qsvm-map-panel qsvm-map-panel--nested">
+      <figure class="qsvm-loop-panel qfm-loop-panel" aria-labelledby="qfm-loop-title">
+        <div class="qsvm-loop-head">
+          <div>
+            <span class="qsvm-loop-badge" data-i18n="qfm_loop_badge"></span>
+            <h3 id="qfm-loop-title" data-i18n="qfm_loop_title"></h3>
+          </div>
+          <p data-i18n="qfm_loop_caption"></p>
+        </div>
+        <div class="qfm-loop-stage-wrap">
+          <div id="qfm-loop-stage" aria-label="Auto-loop animation explaining how one PCA-8 observation is encoded into an 8-qubit quantum state">
+<svg xmlns="http://www.w3.org/2000/svg" width="2560" height="950" viewBox="0 0 2560 950" role="img" aria-labelledby="svg-title svg-description" font-family="Inter, Prompt, Arial, sans-serif" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+<title id="svg-title">From Classical Input to Quantum State</title>
+<desc id="svg-description">A single observation xi is represented by eight classical PCA components z1 through z8. Each value controls the angle of an RY gate on its corresponding qubit, starting from ket zero. The eight rotations are followed by the same seven-gate CNOT chain for every observation, from qubit zero to one, then one to two, through six to seven. The result is the joint quantum state ket psi of xi, ready for later state comparison using fidelity or kernel similarity. The values shown are symbolic. This diagram depicts encoding only.</desc>
+<metadata id="source-metadata">Source: QML Code.zip / Code/10_is_qml_gate3_2.py; Q_TARGET=8; make_state_qnode_angle_d1, lines 399-410. z1-z8 are symbolic PCA coordinates; code x[0]-x[7]. All geometry and text remain separately editable.</metadata>
+<defs>
+  <marker id="ink-arrow" viewBox="0 0 8 8" refX="7.3" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#202020"/></marker>
+  <marker id="data-arrow" viewBox="0 0 7 7" refX="6.5" refY="3.5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#A2A2A2"/></marker>
+  <marker id="quiet-arrow" viewBox="0 0 7 7" refX="6.5" refY="3.5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6C6C6C"/></marker>
+</defs>
+<rect id="background" width="2560" height="950" fill="white"/>
+<text id="illustration-title" x="64" y="65" font-size="32" font-weight="400" text-anchor="start" fill="#202020">From Classical Input to Quantum State</text>
+<g id="classical-input" aria-label="One observation already represented by eight classical PCA components">
+<text id="classical-input-label" x="236" y="153" font-size="22" font-weight="400" text-anchor="middle" fill="#6C6C6C">Classical input</text>
+<text id="observation-label" x="236" y="196" font-size="30" font-weight="700" text-anchor="middle" fill="#202020">Observation <tspan font-family="DejaVu Serif, Times New Roman, serif" font-weight="400">x<tspan font-size="20" baseline-shift="sub">i</tspan></tspan></text>
+<text id="pca-label" x="236" y="237" font-size="23" font-weight="400" text-anchor="middle" fill="#202020">8-D PCA representation</text>
+<path id="pca-vector-bracket-left" d="M177,307 H162 V852 H177" fill="none" stroke="#202020" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="pca-vector-bracket-right" d="M260,307 H275 V852 H260" fill="none" stroke="#202020" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text id="pca-component-1" x="218" y="344" font-family="DejaVu Serif, Times New Roman, serif" font-size="31" text-anchor="middle" fill="#202020">z<tspan font-size="20.77" baseline-shift="sub">1</tspan></text>
+<text id="pca-component-2" x="218" y="414" font-family="DejaVu Serif, Times New Roman, serif" font-size="31" text-anchor="middle" fill="#202020">z<tspan font-size="20.77" baseline-shift="sub">2</tspan></text>
+<text id="pca-component-3" x="218" y="484" font-family="DejaVu Serif, Times New Roman, serif" font-size="31" text-anchor="middle" fill="#202020">z<tspan font-size="20.77" baseline-shift="sub">3</tspan></text>
+<text id="pca-component-4" x="218" y="554" font-family="DejaVu Serif, Times New Roman, serif" font-size="31" text-anchor="middle" fill="#202020">z<tspan font-size="20.77" baseline-shift="sub">4</tspan></text>
+<text id="pca-component-5" x="218" y="624" font-family="DejaVu Serif, Times New Roman, serif" font-size="31" text-anchor="middle" fill="#202020">z<tspan font-size="20.77" baseline-shift="sub">5</tspan></text>
+<text id="pca-component-6" x="218" y="694" font-family="DejaVu Serif, Times New Roman, serif" font-size="31" text-anchor="middle" fill="#202020">z<tspan font-size="20.77" baseline-shift="sub">6</tspan></text>
+<text id="pca-component-7" x="218" y="764" font-family="DejaVu Serif, Times New Roman, serif" font-size="31" text-anchor="middle" fill="#202020">z<tspan font-size="20.77" baseline-shift="sub">7</tspan></text>
+<text id="pca-component-8" x="218" y="834" font-family="DejaVu Serif, Times New Roman, serif" font-size="31" text-anchor="middle" fill="#202020">z<tspan font-size="20.77" baseline-shift="sub">8</tspan></text>
+</g>
+<g id="quantum-feature-map" aria-label="Eight qubits, one data-dependent RY layer, then seven sequential nearest-neighbour CNOTs">
+<text id="feature-map-label" x="1180" y="164" font-size="30" font-weight="700" text-anchor="middle" fill="#202020">Quantum Feature Map</text>
+<text id="feature-map-reuse-note" x="1180" y="185" font-size="17.5" font-weight="400" text-anchor="middle" fill="#6C6C6C">same circuit structure for every observation</text>
+<path id="feature-map-span" d="M538,181 V194 H1810 V181" fill="none" stroke="#B6B6B6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="qubit-initialization" aria-label="Eight qubits each initialized to ket zero">
+<text id="qubit-count-label" x="586" y="255" font-size="26" font-weight="700" text-anchor="middle" fill="#202020">8 qubits</text>
+<text id="qubit-initialization-label" x="586" y="286" font-size="22" font-weight="400" text-anchor="middle" fill="#6C6C6C">initialized in |0⟩</text>
+<text id="qubit-initial-state-1" x="586" y="378" font-family="DejaVu Serif, Times New Roman, serif" font-size="32" text-anchor="middle" fill="#202020">|0⟩</text>
+<path id="qubit-wire-1" d="M622,368 L1780,368" fill="none" stroke="#818181" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text id="qubit-initial-state-2" x="586" y="448" font-family="DejaVu Serif, Times New Roman, serif" font-size="32" text-anchor="middle" fill="#202020">|0⟩</text>
+<path id="qubit-wire-2" d="M622,438 L1780,438" fill="none" stroke="#818181" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text id="qubit-initial-state-3" x="586" y="518" font-family="DejaVu Serif, Times New Roman, serif" font-size="32" text-anchor="middle" fill="#202020">|0⟩</text>
+<path id="qubit-wire-3" d="M622,508 L1780,508" fill="none" stroke="#818181" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text id="qubit-initial-state-4" x="586" y="588" font-family="DejaVu Serif, Times New Roman, serif" font-size="32" text-anchor="middle" fill="#202020">|0⟩</text>
+<path id="qubit-wire-4" d="M622,578 L1780,578" fill="none" stroke="#818181" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text id="qubit-initial-state-5" x="586" y="658" font-family="DejaVu Serif, Times New Roman, serif" font-size="32" text-anchor="middle" fill="#202020">|0⟩</text>
+<path id="qubit-wire-5" d="M622,648 L1780,648" fill="none" stroke="#818181" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text id="qubit-initial-state-6" x="586" y="728" font-family="DejaVu Serif, Times New Roman, serif" font-size="32" text-anchor="middle" fill="#202020">|0⟩</text>
+<path id="qubit-wire-6" d="M622,718 L1780,718" fill="none" stroke="#818181" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text id="qubit-initial-state-7" x="586" y="798" font-family="DejaVu Serif, Times New Roman, serif" font-size="32" text-anchor="middle" fill="#202020">|0⟩</text>
+<path id="qubit-wire-7" d="M622,788 L1780,788" fill="none" stroke="#818181" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text id="qubit-initial-state-8" x="586" y="868" font-family="DejaVu Serif, Times New Roman, serif" font-size="32" text-anchor="middle" fill="#202020">|0⟩</text>
+<path id="qubit-wire-8" d="M622,858 L1780,858" fill="none" stroke="#818181" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="classical-angle-controls" aria-label="Each PCA component sets the angle of its corresponding RY gate">
+<text id="angle-control-note" x="444" y="307" font-size="19" font-weight="400" text-anchor="middle" fill="#6C6C6C">PCA values set the RY angles</text>
+<path id="component-1-to-rotation-1" d="M292,333 H868 Q880,333 880,345" fill="none" stroke="#A2A2A2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#data-arrow)"/>
+<path id="component-2-to-rotation-2" d="M292,403 H868 Q880,403 880,415" fill="none" stroke="#A2A2A2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#data-arrow)"/>
+<path id="component-3-to-rotation-3" d="M292,473 H868 Q880,473 880,485" fill="none" stroke="#A2A2A2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#data-arrow)"/>
+<path id="component-4-to-rotation-4" d="M292,543 H868 Q880,543 880,555" fill="none" stroke="#A2A2A2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#data-arrow)"/>
+<path id="component-5-to-rotation-5" d="M292,613 H868 Q880,613 880,625" fill="none" stroke="#A2A2A2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#data-arrow)"/>
+<path id="component-6-to-rotation-6" d="M292,683 H868 Q880,683 880,695" fill="none" stroke="#A2A2A2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#data-arrow)"/>
+<path id="component-7-to-rotation-7" d="M292,753 H868 Q880,753 880,765" fill="none" stroke="#A2A2A2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#data-arrow)"/>
+<path id="component-8-to-rotation-8" d="M292,823 H868 Q880,823 880,835" fill="none" stroke="#A2A2A2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#data-arrow)"/>
+</g>
+<g id="data-dependent-encoding" aria-label="Data-dependent RY rotations: one gate for each PCA value">
+<text id="encoding-label-1" x="880" y="251" font-size="25" font-weight="700" text-anchor="middle" fill="#202020">Data-dependent</text>
+<text id="encoding-label-2" x="880" y="283" font-size="25" font-weight="700" text-anchor="middle" fill="#202020">RY rotations</text>
+<g id="ry-gate-1" aria-label="RY rotation with angle z1 on qubit 0" data-component="1" data-wire="0">
+<rect id="ry-box-1" x="811" y="345" width="138" height="46" rx="3" fill="#F7F7F7" stroke="#202020" stroke-width="1.9"/>
+<text id="ry-label-1" x="880" y="377" font-family="DejaVu Serif, Times New Roman, serif" font-size="28" text-anchor="middle" fill="#202020">R<tspan font-size="18.76" baseline-shift="sub">Y</tspan>(z<tspan font-size="18.76" baseline-shift="sub">1</tspan>)</text>
+</g>
+<g id="ry-gate-2" aria-label="RY rotation with angle z2 on qubit 1" data-component="2" data-wire="1">
+<rect id="ry-box-2" x="811" y="415" width="138" height="46" rx="3" fill="#F7F7F7" stroke="#202020" stroke-width="1.9"/>
+<text id="ry-label-2" x="880" y="447" font-family="DejaVu Serif, Times New Roman, serif" font-size="28" text-anchor="middle" fill="#202020">R<tspan font-size="18.76" baseline-shift="sub">Y</tspan>(z<tspan font-size="18.76" baseline-shift="sub">2</tspan>)</text>
+</g>
+<g id="ry-gate-3" aria-label="RY rotation with angle z3 on qubit 2" data-component="3" data-wire="2">
+<rect id="ry-box-3" x="811" y="485" width="138" height="46" rx="3" fill="#F7F7F7" stroke="#202020" stroke-width="1.9"/>
+<text id="ry-label-3" x="880" y="517" font-family="DejaVu Serif, Times New Roman, serif" font-size="28" text-anchor="middle" fill="#202020">R<tspan font-size="18.76" baseline-shift="sub">Y</tspan>(z<tspan font-size="18.76" baseline-shift="sub">3</tspan>)</text>
+</g>
+<g id="ry-gate-4" aria-label="RY rotation with angle z4 on qubit 3" data-component="4" data-wire="3">
+<rect id="ry-box-4" x="811" y="555" width="138" height="46" rx="3" fill="#F7F7F7" stroke="#202020" stroke-width="1.9"/>
+<text id="ry-label-4" x="880" y="587" font-family="DejaVu Serif, Times New Roman, serif" font-size="28" text-anchor="middle" fill="#202020">R<tspan font-size="18.76" baseline-shift="sub">Y</tspan>(z<tspan font-size="18.76" baseline-shift="sub">4</tspan>)</text>
+</g>
+<g id="ry-gate-5" aria-label="RY rotation with angle z5 on qubit 4" data-component="5" data-wire="4">
+<rect id="ry-box-5" x="811" y="625" width="138" height="46" rx="3" fill="#F7F7F7" stroke="#202020" stroke-width="1.9"/>
+<text id="ry-label-5" x="880" y="657" font-family="DejaVu Serif, Times New Roman, serif" font-size="28" text-anchor="middle" fill="#202020">R<tspan font-size="18.76" baseline-shift="sub">Y</tspan>(z<tspan font-size="18.76" baseline-shift="sub">5</tspan>)</text>
+</g>
+<g id="ry-gate-6" aria-label="RY rotation with angle z6 on qubit 5" data-component="6" data-wire="5">
+<rect id="ry-box-6" x="811" y="695" width="138" height="46" rx="3" fill="#F7F7F7" stroke="#202020" stroke-width="1.9"/>
+<text id="ry-label-6" x="880" y="727" font-family="DejaVu Serif, Times New Roman, serif" font-size="28" text-anchor="middle" fill="#202020">R<tspan font-size="18.76" baseline-shift="sub">Y</tspan>(z<tspan font-size="18.76" baseline-shift="sub">6</tspan>)</text>
+</g>
+<g id="ry-gate-7" aria-label="RY rotation with angle z7 on qubit 6" data-component="7" data-wire="6">
+<rect id="ry-box-7" x="811" y="765" width="138" height="46" rx="3" fill="#F7F7F7" stroke="#202020" stroke-width="1.9"/>
+<text id="ry-label-7" x="880" y="797" font-family="DejaVu Serif, Times New Roman, serif" font-size="28" text-anchor="middle" fill="#202020">R<tspan font-size="18.76" baseline-shift="sub">Y</tspan>(z<tspan font-size="18.76" baseline-shift="sub">7</tspan>)</text>
+</g>
+<g id="ry-gate-8" aria-label="RY rotation with angle z8 on qubit 7" data-component="8" data-wire="7">
+<rect id="ry-box-8" x="811" y="835" width="138" height="46" rx="3" fill="#F7F7F7" stroke="#202020" stroke-width="1.9"/>
+<text id="ry-label-8" x="880" y="867" font-family="DejaVu Serif, Times New Roman, serif" font-size="28" text-anchor="middle" fill="#202020">R<tspan font-size="18.76" baseline-shift="sub">Y</tspan>(z<tspan font-size="18.76" baseline-shift="sub">8</tspan>)</text>
+</g>
+</g>
+<g id="fixed-cnot-chain" aria-label="Fixed CNOT chain, controls 0 through 6 and targets 1 through 7, applied in left-to-right order">
+<text id="cnot-chain-label" x="1402" y="251" font-size="27" font-weight="700" text-anchor="middle" fill="#202020">Fixed CNOT chain</text>
+<text id="cnot-shared-note" x="1402" y="283" font-size="22" font-weight="400" text-anchor="middle" fill="#6C6C6C">fixed across observations</text>
+<g id="cnot-0-to-1" aria-label="CNOT: control qubit 0, target qubit 1" data-control="0" data-target="1" data-order="0">
+<path id="cnot-link-0" d="M1110,368 L1110,438" fill="none" stroke="#202020" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle id="cnot-control-0" cx="1110" cy="368" r="5.5" fill="#202020" stroke="#202020" stroke-width="1.5"/>
+<circle id="cnot-target-0" cx="1110" cy="438" r="13" fill="white" stroke="#202020" stroke-width="2.2"/>
+<path id="cnot-plus-h-0" d="M1102,438 L1118,438" fill="none" stroke="#202020" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="cnot-plus-v-0" d="M1110,430 L1110,446" fill="none" stroke="#202020" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="cnot-1-to-2" aria-label="CNOT: control qubit 1, target qubit 2" data-control="1" data-target="2" data-order="1">
+<path id="cnot-link-1" d="M1204,438 L1204,508" fill="none" stroke="#202020" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle id="cnot-control-1" cx="1204" cy="438" r="5.5" fill="#202020" stroke="#202020" stroke-width="1.5"/>
+<circle id="cnot-target-1" cx="1204" cy="508" r="13" fill="white" stroke="#202020" stroke-width="2.2"/>
+<path id="cnot-plus-h-1" d="M1196,508 L1212,508" fill="none" stroke="#202020" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="cnot-plus-v-1" d="M1204,500 L1204,516" fill="none" stroke="#202020" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="cnot-2-to-3" aria-label="CNOT: control qubit 2, target qubit 3" data-control="2" data-target="3" data-order="2">
+<path id="cnot-link-2" d="M1298,508 L1298,578" fill="none" stroke="#202020" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle id="cnot-control-2" cx="1298" cy="508" r="5.5" fill="#202020" stroke="#202020" stroke-width="1.5"/>
+<circle id="cnot-target-2" cx="1298" cy="578" r="13" fill="white" stroke="#202020" stroke-width="2.2"/>
+<path id="cnot-plus-h-2" d="M1290,578 L1306,578" fill="none" stroke="#202020" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="cnot-plus-v-2" d="M1298,570 L1298,586" fill="none" stroke="#202020" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="cnot-3-to-4" aria-label="CNOT: control qubit 3, target qubit 4" data-control="3" data-target="4" data-order="3">
+<path id="cnot-link-3" d="M1392,578 L1392,648" fill="none" stroke="#202020" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle id="cnot-control-3" cx="1392" cy="578" r="5.5" fill="#202020" stroke="#202020" stroke-width="1.5"/>
+<circle id="cnot-target-3" cx="1392" cy="648" r="13" fill="white" stroke="#202020" stroke-width="2.2"/>
+<path id="cnot-plus-h-3" d="M1384,648 L1400,648" fill="none" stroke="#202020" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="cnot-plus-v-3" d="M1392,640 L1392,656" fill="none" stroke="#202020" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="cnot-4-to-5" aria-label="CNOT: control qubit 4, target qubit 5" data-control="4" data-target="5" data-order="4">
+<path id="cnot-link-4" d="M1486,648 L1486,718" fill="none" stroke="#202020" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle id="cnot-control-4" cx="1486" cy="648" r="5.5" fill="#202020" stroke="#202020" stroke-width="1.5"/>
+<circle id="cnot-target-4" cx="1486" cy="718" r="13" fill="white" stroke="#202020" stroke-width="2.2"/>
+<path id="cnot-plus-h-4" d="M1478,718 L1494,718" fill="none" stroke="#202020" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="cnot-plus-v-4" d="M1486,710 L1486,726" fill="none" stroke="#202020" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="cnot-5-to-6" aria-label="CNOT: control qubit 5, target qubit 6" data-control="5" data-target="6" data-order="5">
+<path id="cnot-link-5" d="M1580,718 L1580,788" fill="none" stroke="#202020" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle id="cnot-control-5" cx="1580" cy="718" r="5.5" fill="#202020" stroke="#202020" stroke-width="1.5"/>
+<circle id="cnot-target-5" cx="1580" cy="788" r="13" fill="white" stroke="#202020" stroke-width="2.2"/>
+<path id="cnot-plus-h-5" d="M1572,788 L1588,788" fill="none" stroke="#202020" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="cnot-plus-v-5" d="M1580,780 L1580,796" fill="none" stroke="#202020" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="cnot-6-to-7" aria-label="CNOT: control qubit 6, target qubit 7" data-control="6" data-target="7" data-order="6">
+<path id="cnot-link-6" d="M1674,788 L1674,858" fill="none" stroke="#202020" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle id="cnot-control-6" cx="1674" cy="788" r="5.5" fill="#202020" stroke="#202020" stroke-width="1.5"/>
+<circle id="cnot-target-6" cx="1674" cy="858" r="13" fill="white" stroke="#202020" stroke-width="2.2"/>
+<path id="cnot-plus-h-6" d="M1666,858 L1682,858" fill="none" stroke="#202020" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="cnot-plus-v-6" d="M1674,850 L1674,866" fill="none" stroke="#202020" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</g>
+<g id="output-quantum-state" aria-label="The output is one joint eight-qubit quantum state for observation xi">
+<path id="joint-state-brace" d="M1805,366 C1824,366 1824,379 1824,400 V573 C1824,602 1832,613 1850,613 C1832,613 1824,624 1824,653 V826 C1824,847 1824,860 1805,860" fill="none" stroke="#878787" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="map-to-state" d="M1870,613 L1950,613" fill="none" stroke="#202020" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ink-arrow)"/>
+<text id="quantum-state-label" x="2170" y="549" font-size="32" font-weight="700" text-anchor="middle" fill="#202020">Quantum state</text>
+<text id="quantum-state-ket" x="2170" y="640" font-family="DejaVu Serif, Times New Roman, serif" font-size="66" text-anchor="middle" fill="#202020">|ψ(x<tspan font-size="44.22" baseline-shift="sub">i</tspan>)⟩</text>
+<g id="comparison-forward-cue" aria-label="Next: state comparison for fidelity or kernel similarity">
+<path id="comparison-cue-arrow" d="M1965,732 L2020,732" fill="none" stroke="#6C6C6C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#quiet-arrow)"/>
+<text id="comparison-next-label" x="2040" y="738" font-size="22" font-weight="700" text-anchor="start" fill="#6C6C6C">Next: state comparison</text>
+<text id="comparison-purpose-label" x="2040" y="770" font-size="21" font-weight="400" text-anchor="start" fill="#6C6C6C">fidelity / kernel similarity</text>
+</g>
+</g>
+</svg>
+          </div>
+        </div>
+        <div class="qfm-loop-takeaway" data-i18n="qfm_loop_takeaway"></div>
+      </figure>
+
+      <div class="qsvm-subsection-head">
+        <span class="qsvm-subsection-kicker" data-i18n="qsvm_mechanism_kicker"></span>
+        <h3 data-i18n="qsvm_mechanism_title"></h3>
+        <p data-i18n="qsvm_mechanism_desc"></p>
+      </div>
+
+      <div class="qsvm-map-panel qsvm-map-panel--inline">
         <div class="qsvm-arrow-grid" aria-label="QSVM quantum kernel mechanism">
           <article class="qsvm-flow-step">
             <span class="qsvm-step-number">01</span>
@@ -493,8 +677,13 @@
             <p data-i18n="qsvm_step8_text"></p>
           </article>
         </div>
-        </div>
-      </details>
+      </div>
+
+      <div class="qsvm-subsection-head qsvm-evidence-head">
+        <span class="qsvm-subsection-kicker" data-i18n="qsvm_evidence_kicker"></span>
+        <h3 data-i18n="qsvm_evidence_title"></h3>
+        <p data-i18n="qsvm_evidence_desc"></p>
+      </div>
 
       <div class="qsvm-explain-grid">
         <article class="qsvm-explain-card qsvm-primary-card">
